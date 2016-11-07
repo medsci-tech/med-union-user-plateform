@@ -1,4 +1,4 @@
-# Laravel Boilerplate by CoachCai
+# 迈德统一用户平台
 [![](https://travis-ci.org/ronaldoooo/laravel-boilerplate.svg?branch=develop)](https://travis-ci.org/ronaldoooo/laravel-boilerplate)
 
 - Updated to laravel 5.3
