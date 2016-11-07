@@ -25,7 +25,7 @@ $factory->define(User::class, function (Generator $faker) {
         'openid' => $faker->sha1,
         'unionid' => $faker->optional()->sha1,
         'password' => bcrypt(str_random(10)),
-        'api_token' => str_random(32),
+//        'api_token' => str_random(32),
         'remember_token' => str_random(10),
     ];
 });
