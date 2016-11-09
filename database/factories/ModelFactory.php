@@ -11,6 +11,10 @@
 |
 */
 
+use App\Business\Application\Application;
+use App\Business\Contract\Contract;
+use App\Business\Enterprise\Enterprise;
+use App\Business\Project\Project;
 use App\Core\Authorization\Permission\Permission;
 use App\Core\Authorization\Role\Role;
 use App\User;
@@ -41,5 +45,35 @@ $factory->define(Permission::class, function(Generator $faker) {
     return [
         'name' => $faker->unique()->sentence(2),
         'label' => $faker->sentence,
+    ];
+});
+
+$factory->define(Contract::class, function (Generator $faker) {
+    return [
+        'name' => $faker->unique()->sentence(2),
+        'serial' => $faker->unique()->uuid,
+        'amount_of_money' => ($temp = $faker->numberBetween(10, 100) * 10000),
+        'rate_of_beans' => ($rate = $faker->numberBetween(60, 120)),
+        'amount_of_beans' => $temp * $rate,
+    ];
+});
+
+$factory->define(Enterprise::class, function (Generator $faker) {
+    return [
+        'name' => $faker->unique()->sentence(2),
+    ];
+});
+
+$factory->define(Project::class, function (Generator $faker) {
+    return [
+        'name' => $faker->unique()->sentence(2),
+        'amount_of_beans' => 0,
+        'rest_of_beans' => 0,
+    ];
+});
+
+$factory->define(Application::class, function (Generator $faker) {
+    return [
+        'name' => $faker->unique()->sentence(2),
     ];
 });

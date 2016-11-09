@@ -15,7 +15,14 @@ class CreateContractsTable extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('project_id')->nullable();
+            $table->string('name')->unique()->comments('合同名称');
+            $table->string('serial')->unique()->comments('合同编号');
+            $table->decimal('amount_of_money', 12, 2)->comments('合同总金额，人民币');
+            $table->decimal('rate_of_beans')->comments('该合同中迈豆兑换比例');
+            $table->bigInteger('amount_of_beans')->comments('计算后合同包含迈豆总额');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

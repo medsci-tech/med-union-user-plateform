@@ -11,5 +11,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Application extends Model
 {
-    //
+    use ApplicationHasProjects;
+    use ApplicationBelongsToEnterprise;
 }

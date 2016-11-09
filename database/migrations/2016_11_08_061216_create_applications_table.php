@@ -15,7 +15,10 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('enterprise_id')->nullable()->comments('企业id');
+            $table->string('name')->unique()->comments('应用名称');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
