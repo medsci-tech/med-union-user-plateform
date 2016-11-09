@@ -1,4 +1,4 @@
 <?php
 
 
-Route::resource('enterprise', 'Business\EnterpriseController');
+Route::resource('enterprises', 'Business\EnterpriseController');

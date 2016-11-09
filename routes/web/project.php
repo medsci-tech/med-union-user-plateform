@@ -1,4 +1,4 @@
 <?php
 
 
-Route::resource('project', 'Business\ProjectController');
+Route::resource('projects', 'Business\ProjectController');

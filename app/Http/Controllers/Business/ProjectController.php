@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Business;
 
+use App\Business\Project\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        return view('business.projects.index', [
+            'projects' => Project::all()
+        ]);
     }
 
     /**
@@ -24,7 +27,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('business.projects.create');
     }
 
     /**
@@ -35,7 +38,11 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $project = Project::create($request->all());
+
+        return redirect('/projects/'. $project->id)->with([
+            'status' => 'ok'
+        ]);
     }
 
     /**
@@ -46,7 +53,9 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('business.projects.show', [
+            'project' => Project::find($id)
+        ]);
     }
 
     /**
@@ -57,7 +66,9 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('business.projects.edit', [
+            'project' => Project::find($id)
+        ]);
     }
 
     /**
@@ -69,7 +80,11 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Project::find($id)->update($request->all());
+
+        return redirect('/projects/'. $id)->with([
+            'status' => 'ok'
+        ]);
     }
 
     /**
@@ -80,6 +95,10 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Project::find($id)->delete();
+
+        return redirect('/projects')->with([
+            'status' => 'ok'
+        ]);
     }
 }

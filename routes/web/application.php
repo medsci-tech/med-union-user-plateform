@@ -1,4 +1,4 @@
 <?php
 
 
-Route::resource('application', 'Business\ApplicationController');
+Route::resource('applications', 'Business\ApplicationController');

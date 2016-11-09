@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Business;
 
+use App\Business\Application\Application;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,9 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        //
+        return view('business.applications.index', [
+            'applications' => Application::all()
+        ]);
     }
 
     /**
@@ -24,7 +27,7 @@ class ApplicationController extends Controller
      */
     public function create()
     {
-        //
+        return view('business.applications.create');
     }
 
     /**
@@ -35,7 +38,11 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Application::create($request->all());
+
+        return redirect('/applications')->with([
+            'status' => 'ok'
+        ]);
     }
 
     /**
@@ -46,7 +53,9 @@ class ApplicationController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('business.applications.show', [
+            'application' => Application::find($id)
+        ]);
     }
 
     /**
@@ -57,7 +66,9 @@ class ApplicationController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('business.applications.edit', [
+            'application' => Application::find($id)
+        ]);
     }
 
     /**
@@ -69,7 +80,11 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Application::find($id)->update($request->all());
+
+        return redirect('/applications/' . $id)->with([
+            'status' => 'ok',
+        ]);
     }
 
     /**
@@ -80,6 +95,10 @@ class ApplicationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Application::find($id)->delete();
+
+        return redirect('/applications')->with([
+            'status' => 'ok',
+        ]);
     }
 }
