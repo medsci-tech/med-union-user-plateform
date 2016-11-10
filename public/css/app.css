@@ -4874,12 +4874,12 @@ button.list-group-item-danger {
   border-color: #d3e0e9; }
   .panel-default > .panel-heading {
     color: #333333;
-    background-color: #fff;
+    background-color: #f5f5f5;
     border-color: #d3e0e9; }
     .panel-default > .panel-heading + .panel-collapse > .panel-body {
       border-top-color: #d3e0e9; }
     .panel-default > .panel-heading .badge {
-      color: #fff;
+      color: #f5f5f5;
       background-color: #333333; }
   .panel-default > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #d3e0e9; }

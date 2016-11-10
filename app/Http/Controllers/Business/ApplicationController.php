@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Business;
 
 use App\Business\Application\Application;
+use App\Business\Enterprise\Enterprise;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +28,9 @@ class ApplicationController extends Controller
      */
     public function create()
     {
-        return view('business.applications.create');
+        return view('business.applications.create', [
+        'enterprises' => Enterprise::all()
+        ]);
     }
 
     /**

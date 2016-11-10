@@ -69,7 +69,25 @@
 
     @include('layouts.status')
 
-    @yield('content')
+    <div class="container">
+        <div class="row">
+            @include('layouts.navigator')
+
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    @if(isset($panel_heading))
+                        <div class="panel-heading">
+                            {{$panel_heading}}
+                        </div>
+                    @endif
+
+                    <div class="panel-body">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>

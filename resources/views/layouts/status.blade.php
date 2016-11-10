@@ -8,7 +8,7 @@
             @endif
         </div>
     @elseif(session('status') == 'error')
-        <div class="alert alert-error">
+        <div class="alert alert-danger">
             @if(session('flash_message'))
                 {{ session('flash_message') }}
             @else
@@ -16,5 +16,14 @@
             @endif
         </div>
     @endif
+@endif
 
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
