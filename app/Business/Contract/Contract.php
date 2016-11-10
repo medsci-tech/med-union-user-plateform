@@ -33,4 +33,6 @@ use Illuminate\Database\Eloquent\Model;
 class Contract extends Model
 {
     use ContractBelongsToProject;
+
+    protected $fillable = ['name', 'description', 'project_id', 'amount_of_money', 'rate_of_beans', 'amount_of_beans'];
 }

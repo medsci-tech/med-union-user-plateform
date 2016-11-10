@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Business;
 
 use App\Business\Contract\Contract;
+use App\Business\Project\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +28,9 @@ class ContractController extends Controller
      */
     public function create()
     {
-        return view('business.contracts.create');
+        return view('business.contracts.create', [
+            'projects' => Project::all()
+        ]);
     }
 
     /**
@@ -38,7 +41,7 @@ class ContractController extends Controller
      */
     public function store(Request $request)
     {
-        $contract = Contract::create($request->all());
+        $contract = Contract::create($request->only(['name', 'description', 'project_id', 'amount_of_money', 'rate_of_beans', 'amount_of_beans']));
 
         return redirect('/contracts/' . $contract->id)->with([
             'status' => 'ok',

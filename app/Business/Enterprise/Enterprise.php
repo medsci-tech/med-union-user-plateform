@@ -27,4 +27,6 @@ class Enterprise extends Model
 {
     use EnterpriseHasApplications;
     use EnterpriseBelongsToUser;
+
+    protected $fillable = ['name', 'description'];
 }

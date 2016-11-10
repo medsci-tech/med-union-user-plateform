@@ -29,7 +29,7 @@ class ApplicationController extends Controller
     public function create()
     {
         return view('business.applications.create', [
-        'enterprises' => Enterprise::all()
+            'enterprises' => Enterprise::all()
         ]);
     }
 
@@ -41,9 +41,9 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        Application::create($request->all());
+        $applicaton = Application::create($request->only(['name', 'enterprise_id', 'description']));
 
-        return redirect('/applications')->with([
+        return redirect('/applications/'. $applicaton->id)->with([
             'status' => 'ok'
         ]);
     }

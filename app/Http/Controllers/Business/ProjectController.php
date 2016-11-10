@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Business;
 
+use App\Business\Application\Application;
 use App\Business\Project\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -27,7 +28,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('business.projects.create');
+        return view('business.projects.create', [
+            'applications' => Application::all()
+        ]);
     }
 
     /**
@@ -38,7 +41,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $project = Project::create($request->all());
+        $project = Project::create($request->only(['name', 'application_id', 'description']));
 
         return redirect('/projects/'. $project->id)->with([
             'status' => 'ok'
