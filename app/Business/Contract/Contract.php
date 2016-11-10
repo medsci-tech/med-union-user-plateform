@@ -34,5 +34,17 @@ class Contract extends Model
 {
     use ContractBelongsToProject;
 
-    protected $fillable = ['name', 'description', 'project_id', 'amount_of_money', 'rate_of_beans', 'amount_of_beans'];
+    protected $fillable = ['name', 'serial', 'description', 'project_id', 'amount_of_money', 'rate_of_beans', 'amount_of_beans'];
+
+    /**
+     * @param array $array
+     * @return Model|Contract
+     */
+    public static function create(array $array = [])
+    {
+        $array = array_add($array, 'serial', time());
+        $array = array_add($array, 'amount_of_beans', $array['amount_of_money'] * $array['rate_of_beans']);
+
+        return parent::create($array);
+    }
 }

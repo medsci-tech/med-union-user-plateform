@@ -41,7 +41,7 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        $applicaton = Application::create($request->only(['name', 'enterprise_id', 'description']));
+        $applicaton = Application::create($request->all());
 
         return redirect('/applications/'. $applicaton->id)->with([
             'status' => 'ok'

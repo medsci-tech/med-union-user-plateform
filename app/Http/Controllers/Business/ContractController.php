@@ -41,7 +41,7 @@ class ContractController extends Controller
      */
     public function store(Request $request)
     {
-        $contract = Contract::create($request->only(['name', 'description', 'project_id', 'amount_of_money', 'rate_of_beans', 'amount_of_beans']));
+        $contract = Contract::create($request->all());
 
         return redirect('/contracts/' . $contract->id)->with([
             'status' => 'ok',

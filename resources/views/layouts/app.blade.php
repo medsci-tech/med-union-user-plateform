@@ -76,8 +76,11 @@
             <div class="col-md-9">
                 <div class="panel panel-default">
                     @if(isset($panel_heading))
-                        <div class="panel-heading">
+                        <div class="panel-heading panel-title">
                             {{$panel_heading}}
+                            @if(isset($create_button))
+                                <a class="btn btn-default btn-sm pull-right" href="{{$create_button['href']}}"><span class="glyphicon glyphicon-plus"></span>&nbsp;{{$create_button['label']}}</a>
+                            @endif
                         </div>
                     @endif
 

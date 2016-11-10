@@ -2,9 +2,9 @@
     <div class="panel panel-default">
         <div class="panel-heading panel-title">业务管理</div>
         <div class="list-group">
-            <div class="list-group-item" href="/enterprises">
+            <a class="list-group-item" href="/enterprises">
                 企业列表
-            </div>
+            </a>
             <a class="list-group-item" href="/applications">
                 应用列表
             </a>

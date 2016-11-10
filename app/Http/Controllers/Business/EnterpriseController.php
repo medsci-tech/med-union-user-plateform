@@ -38,7 +38,7 @@ class EnterpriseController extends Controller
      */
     public function store(Request $request)
     {
-        $enterprise = Enterprise::create($request->only(['name', 'description']));
+        $enterprise = Enterprise::create($request->all());
 
         return redirect('/enterprises/'. $enterprise->id)->with([
             'status' => 'ok'

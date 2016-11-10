@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
             <label for="rate_of_beans">迈豆兑换比例</label>
-            <input id="rate_of_beans" name="rate_of_beans" type="number" placeholder="合同的金额，请填写人民币数值" class="form-control" required>
+            <input id="rate_of_beans" name="rate_of_beans" type="number" placeholder="合同金额转换到迈豆数量的比例" class="form-control" value="100" required>
         </div>
         <div class="form-group">
             <label for="project_id">所属项目</label>

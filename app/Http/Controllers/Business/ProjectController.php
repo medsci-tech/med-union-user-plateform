@@ -41,7 +41,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $project = Project::create($request->only(['name', 'application_id', 'description']));
+        $project = Project::create($request->all());
 
         return redirect('/projects/'. $project->id)->with([
             'status' => 'ok'
