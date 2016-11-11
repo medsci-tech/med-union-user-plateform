@@ -3,5 +3,13 @@
 
 [![develop](https://travis-ci.org/whplay/med-union-user-plateform.svg?branch=develop)](https://travis-ci.org/whplay/med-union-user-plateform)
 
-- Updated to laravel 5.3
-- Using roles and permission to handle authorization.
+- 提供其它平台对接的api接口
+- 对接口调用方提供oauth personal access身份鉴权
+- 迈德用户信息统一存储及管理
+- 后台用户权限管理
+- 后台用户可选绑定接口权限，提供管理token功能
+
+
+========
+
+接口文档地址

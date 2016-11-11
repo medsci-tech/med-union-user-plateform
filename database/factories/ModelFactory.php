@@ -55,12 +55,14 @@ $factory->define(Contract::class, function (Generator $faker) {
         'amount_of_money' => ($temp = $faker->numberBetween(10, 100) * 10000),
         'rate_of_beans' => ($rate = $faker->numberBetween(60, 120)),
         'amount_of_beans' => $temp * $rate,
+        'description' => $faker->sentence(),
     ];
 });
 
 $factory->define(Enterprise::class, function (Generator $faker) {
     return [
         'name' => $faker->unique()->sentence(2),
+        'description' => $faker->sentence(),
     ];
 });
 
@@ -69,11 +71,13 @@ $factory->define(Project::class, function (Generator $faker) {
         'name' => $faker->unique()->sentence(2),
         'amount_of_beans' => 0,
         'rest_of_beans' => 0,
+        'description' => $faker->sentence(),
     ];
 });
 
 $factory->define(Application::class, function (Generator $faker) {
     return [
         'name' => $faker->unique()->sentence(2),
+        'description' => $faker->sentence(),
     ];
 });

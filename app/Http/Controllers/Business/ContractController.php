@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Business;
 
+use App\Business\Contract\Contract;
+use App\Business\Project\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +16,9 @@ class ContractController extends Controller
      */
     public function index()
     {
-        //
+        return view('business.contracts.index', [
+            'contracts' => Contract::all()
+        ]);
     }
 
     /**
@@ -24,7 +28,9 @@ class ContractController extends Controller
      */
     public function create()
     {
-        //
+        return view('business.contracts.create', [
+            'projects' => Project::all()
+        ]);
     }
 
     /**
@@ -35,7 +41,11 @@ class ContractController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $contract = Contract::create($request->all());
+
+        return redirect('/contracts/' . $contract->id)->with([
+            'status' => 'ok',
+        ]);
     }
 
     /**
@@ -46,7 +56,9 @@ class ContractController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('business.contracts.show', [
+            'contract' => Contract::find($id)
+        ]);
     }
 
     /**
@@ -57,7 +69,9 @@ class ContractController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('business.contracts.edit', [
+            'contract' => Contract::find($id)
+        ]);
     }
 
     /**
@@ -69,7 +83,11 @@ class ContractController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Contract::find($id)->update($request->all());
+
+        return redirect('/contracts/'. $id)->with([
+            'status' => 'ok'
+        ]);
     }
 
     /**
@@ -80,6 +98,10 @@ class ContractController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Contract::find($id)->delete();
+
+        return redirect('contracts')->with([
+            'status' => 'ok'
+        ]);
     }
 }

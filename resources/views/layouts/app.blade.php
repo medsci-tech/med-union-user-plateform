@@ -67,7 +67,30 @@
         </div>
     </nav>
 
-    @yield('content')
+    @include('layouts.status')
+
+    <div class="container">
+        <div class="row">
+            @include('layouts.navigator')
+
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    @if(isset($panel_heading))
+                        <div class="panel-heading panel-title">
+                            {{$panel_heading}}
+                            @if(isset($create_button))
+                                <a class="btn btn-default btn-sm pull-right" href="{{$create_button['href']}}"><span class="glyphicon glyphicon-plus"></span>&nbsp;{{$create_button['label']}}</a>
+                            @endif
+                        </div>
+                    @endif
+
+                    <div class="panel-body">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>

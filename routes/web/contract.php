@@ -1,4 +1,4 @@
 <?php
 
 
-Route::resource('contract', 'Business\ContractController');
+Route::resource('contracts', 'Business\ContractController');
