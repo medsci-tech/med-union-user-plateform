@@ -17,6 +17,7 @@ class CreateApplicationsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('enterprise_id')->nullable()->comments('企业id');
             $table->string('name')->unique()->comments('应用名称');
+            $table->string('name_en')->unique()->comments('应用名称英文');
             $table->text('description')->comments('附加描述');
             $table->timestamps();
             $table->softDeletes();
