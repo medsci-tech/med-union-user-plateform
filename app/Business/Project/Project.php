@@ -34,5 +34,10 @@ class Project extends Model
     use ProjectHasContracts;
     use ProjectBelongsToApplication;
 
-    protected $fillable = ['application_id', 'name', 'description'];
+    protected $fillable = [
+        'application_id',
+        'name',
+        'name_en',
+        'description'
+    ];
 }

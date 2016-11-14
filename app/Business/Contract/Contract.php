@@ -36,7 +36,16 @@ class Contract extends Model
 {
     use ContractBelongsToProject;
 
-    protected $fillable = ['name', 'serial', 'description', 'project_id', 'amount_of_money', 'rate_of_beans', 'amount_of_beans'];
+    protected $fillable = [
+        'name',
+        'name_en',
+        'serial',
+        'description',
+        'project_id',
+        'amount_of_money',
+        'rate_of_beans',
+        'amount_of_beans'
+    ];
 
     /**
      * @param array $array

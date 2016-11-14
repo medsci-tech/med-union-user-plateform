@@ -11,6 +11,7 @@
             <tr>
                 <th>项目ID</th>
                 <th>项目名称</th>
+                <th>项目英文名称</th>
                 <th>所属应用</th>
                 <th>所属企业</th>
                 <th>总计迈豆</th>
@@ -24,6 +25,7 @@
                 <tr>
                     <td>{{$project->id}}</td>
                     <td><a href="{{route('projects.show', ['id' => $project->id])}}">{{$project->name}}</a></td>
+                    <td>{{$project->name_en}}</td>
                     <td><a href="{{route('applications.show', ['id' => $project->application->id])}}">{{$project->application->name}}</a></td>
                     <td><a href="{{route('enterprises.show', ['id' => $project->application->enterprise->id])}}">{{$project->application->enterprise->name}}</a></td>
                     <td>{{$project->amount_of_beans}}</td>

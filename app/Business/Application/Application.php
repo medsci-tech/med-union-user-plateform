@@ -30,5 +30,10 @@ class Application extends Model
     use ApplicationHasProjects;
     use ApplicationBelongsToEnterprise;
 
-    protected $fillable = ['name', 'enterprise_id', 'description'];
+    protected $fillable = [
+        'name',
+        'name_en',
+        'enterprise_id',
+        'description'
+    ];
 }

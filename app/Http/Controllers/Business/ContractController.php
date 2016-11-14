@@ -84,7 +84,9 @@ class ContractController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Contract::find($id)->update($request->all());
+        $array = $request->all();
+        $array = array_add($array, 'amount_of_beans', $array['amount_of_money'] * $array['rate_of_beans']);
+        Contract::find($id)->update($array);
 
         return redirect(route('contracts.show', ['id' => $id]))->with([
             'status' => 'ok'

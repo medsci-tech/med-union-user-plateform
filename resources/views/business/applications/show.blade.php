@@ -17,6 +17,12 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-sm-2 control-label">英文名称：</label>
+            <div class="col-sm-9">
+                {{$application->name_en}}
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-2 control-label">所属企业：</label>
             <div class="col-sm-9">
                 {{$application->enterprise->name}}
