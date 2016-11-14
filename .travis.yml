@@ -17,3 +17,7 @@ script: phpunit
 services:
   - mysql
 
+notifications:
+  slack:
+    rooms:
+      - whplay:zU0w0tRPIdeLYyKaXsHXDHPI#med-user-plateform
