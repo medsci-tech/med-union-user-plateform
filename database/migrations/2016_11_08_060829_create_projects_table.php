@@ -17,7 +17,7 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('application_id')->nullable()->comments('应用id');
             $table->string('name')->unique()->comments('项目名称');
-            $table->string('name_en')->unique()->comments('项目名称英文');
+            $table->string('name_en')->unique()->comments('项目名称英文，用于检索');
             $table->text('description')->comments('附加描述');
             $table->integer('amount_of_beans')->default(0)->comments('已经充值到此项目的迈豆总额');
             $table->integer('rest_of_beans')->default(0)->comments('项目中剩余迈豆');
