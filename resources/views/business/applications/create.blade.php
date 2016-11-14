@@ -1,7 +1,7 @@
 @extends('layouts.app', ['panel_heading' => '创建一个新的应用档案'])
 
 @section('content')
-    <form class="" role="form" action="/applications" method="POST">
+    <form class="" role="form" action="{{route('applications.store')}}" method="POST">
         {{csrf_field()}}
         <div class="form-group">
             <label for="name">应用名称</label>
