@@ -41,9 +41,9 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        $applicaton = Application::create($request->all());
+        $application = Application::create($request->all());
 
-        return redirect('/applications/'. $applicaton->id)->with([
+        return redirect(route('applications.show', ['id' => $application->id]))->with([
             'status' => 'ok'
         ]);
     }
@@ -70,7 +70,8 @@ class ApplicationController extends Controller
     public function edit($id)
     {
         return view('business.applications.edit', [
-            'application' => Application::find($id)
+            'application' => Application::find($id),
+            'enterprises' => Enterprise::all(),
         ]);
     }
 
@@ -85,7 +86,7 @@ class ApplicationController extends Controller
     {
         Application::find($id)->update($request->all());
 
-        return redirect('/applications/' . $id)->with([
+        return redirect(route('applications.show', ['id' => $id]))->with([
             'status' => 'ok',
         ]);
     }
@@ -100,7 +101,7 @@ class ApplicationController extends Controller
     {
         Application::find($id)->delete();
 
-        return redirect('/applications')->with([
+        return redirect(route('applications.index'))->with([
             'status' => 'ok',
         ]);
     }
