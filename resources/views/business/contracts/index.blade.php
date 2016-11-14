@@ -16,18 +16,22 @@
             <th>所属企业</th>
             <th>所含迈豆</th>
             <th>创建时间</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
         @foreach($contracts as $contract)
             <tr>
                 <td>{{$contract->id}}</td>
-                <td><a href="{{'/contracts/'. $contract->id}}">{{$contract->name}}</a></td>
-                <td><a href="{{'/projects/'. $contract->project->id}}">{{$contract->project->name}}</a></td>
-                <td><a href="{{'/applications/'. $contract->project->application->id}}">{{$contract->project->application->name}}</a></td>
-                <td><a href="{{'/enterprises/'. $contract->project->application->enterprise->id}}">{{$contract->project->application->enterprise->name}}</a></td>
+                <td><a href="{{route('contracts.show', ['id' => $contract->id])}}">{{$contract->name}}</a></td>
+                <td><a href="{{route('projects.show', ['id' => $contract->project->id])}}">{{$contract->project->name}}</a></td>
+                <td><a href="{{route('applications.show', ['id' => $contract->project->application->id])}}">{{$contract->project->application->name}}</a></td>
+                <td><a href="{{route('enterprises.show', ['id' => $contract->project->application->enterprise->id])}}">{{$contract->project->application->enterprise->name}}</a></td>
                 <td>{{$contract->amount_of_beans}}</td>
                 <td>{{$contract->created_at}}</td>
+                <td>
+                    <a class="btn btn-default btn-sm" href="{{route('contracts.edit',['id' => $contract->id])}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp;编辑</a>
+                </td>
             </tr>
         @endforeach
         </tbody>
