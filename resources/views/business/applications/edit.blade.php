@@ -9,6 +9,10 @@
             <input id="name" name="name" value="{{$application->name}}" type="text" placeholder="应用的中文名称，请保证对于已有记录是唯一的" class="form-control" required>
         </div>
         <div class="form-group">
+            <label for="name_en">应用名称</label>
+            <input id="name_en" name="name_en" value="{{$application->name_en}}" type="text" placeholder="应用的英文名称，请保证对于已有记录是唯一的" class="form-control" required>
+        </div>
+        <div class="form-group">
             <label for="enterprise_id">所属企业</label>
             <select class="form-control enterprises-select2" id="enterprise_id" name="enterprise_id" required>
                 <option></option>

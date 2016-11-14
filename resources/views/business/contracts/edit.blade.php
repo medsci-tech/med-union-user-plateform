@@ -9,6 +9,10 @@
             <input id="name" name="name" value="{{$contract->name}}" type="text" placeholder="合同的中文名称，请保证对于已有记录是唯一的" class="form-control" required>
         </div>
         <div class="form-group">
+            <label for="name_en">合同英文名称</label>
+            <input id="name_en" name="name_en" value="{{$contract->name_en}}" type="text" placeholder="合同的英文名称，请保证对于已有记录是唯一的" class="form-control" required>
+        </div>
+        <div class="form-group">
             <label for="amount_of_money">合同金额</label>
             <input id="amount_of_money" name="amount_of_money" value="{{$contract->amount_of_money}}" type="number" placeholder="合同的金额，请填写人民币数值" class="form-control" required>
         </div>

@@ -17,6 +17,18 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-sm-2 control-label">英文名称：</label>
+            <div class="col-sm-9">
+                {{$contract->name_en}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">合同编号：</label>
+            <div class="col-sm-9">
+                {{$contract->serial}}
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-2 control-label">所属项目：</label>
             <div class="col-sm-9">
                 {{$contract->project->name}}
@@ -32,6 +44,12 @@
             <label class="col-sm-2 control-label">迈豆兑换比例：</label>
             <div class="col-sm-9">
                 {{$contract->rate_of_beans}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">迈豆总额：</label>
+            <div class="col-sm-9">
+                {{$contract->amount_of_beans}}
             </div>
         </div>
         <div class="form-group">
