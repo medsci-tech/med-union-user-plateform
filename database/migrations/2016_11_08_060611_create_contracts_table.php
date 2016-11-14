@@ -17,6 +17,7 @@ class CreateContractsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('project_id')->nullable();
             $table->string('name')->unique()->comments('合同名称');
+            $table->string('name_en')->unique()->comments('合同名称英文，用于检索');
             $table->string('serial')->unique()->comments('合同编号');
             $table->text('description')->comments('附加描述');
             $table->decimal('amount_of_money', 12, 2)->comments('合同总金额，人民币');

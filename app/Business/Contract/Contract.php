@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Contract\Contract whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Contract\Contract whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Contract\Contract whereDeletedAt($value)
+ * @property string $description
+ * @method static \Illuminate\Database\Query\Builder|\App\Business\Contract\Contract whereDescription($value)
  */
 class Contract extends Model
 {
