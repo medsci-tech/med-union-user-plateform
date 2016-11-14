@@ -22,6 +22,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Application\Application whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Application\Application whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Application\Application whereDeletedAt($value)
+ * @property string $description
+ * @method static \Illuminate\Database\Query\Builder|\App\Business\Application\Application whereDescription($value)
  */
 class Application extends Model
 {
