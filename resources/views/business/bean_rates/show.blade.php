@@ -3,6 +3,10 @@
      'edit_button' => [
         'href' => route('bean_rates.edit', ['id' => $bean_rate->id]),
     ],
+     'delete_button' => [
+        'url' => route('bean_rates.destroy', ['id' => $bean_rate->id]),
+        'id' => $bean_rate->id,
+    ],
 ])
 
 @section('content')

@@ -3,6 +3,10 @@
      'edit_button' => [
         'href' => route('projects.edit', ['id' => $project->id]),
     ],
+     'delete_button' => [
+        'url' => route('projects.destroy', ['id' => $project->id]),
+        'id' => $project->id,
+    ],
 ])
 
 @section('content')
