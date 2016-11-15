@@ -76,11 +76,29 @@
             <div class="col-md-9">
                 <div class="panel panel-default">
                     @if(isset($panel_heading))
-                        <div class="panel-heading panel-title">
-                            {{$panel_heading}}
-                            @if(isset($create_button))
-                                <a class="btn btn-default btn-sm pull-right" href="{{$create_button['href']}}"><span class="glyphicon glyphicon-plus"></span>&nbsp;{{$create_button['label']}}</a>
+                        <div class="panel-heading panel-title clearfix">
+                            @if(is_array($panel_heading))
+                                编辑&nbsp;-&nbsp;<a href="{{$panel_heading['url']}}">{{$panel_heading['name']}}</a>
+                            @else
+                                {{$panel_heading}}
                             @endif
+                            <div class="pull-right">
+
+                                @if(isset($create_button))
+                                    <a class="btn btn-default btn-sm" href="{{$create_button['href']}}"><span class="glyphicon glyphicon-plus"></span>&nbsp;新增</a>
+                                @endif
+                                @if(isset($edit_button))
+                                    <a class="btn btn-default btn-sm " href="{{$edit_button['href']}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; 修改</a>
+                                @endif
+                                @if(isset($delete_button))
+                                    <form id="delete-form-show" action="{{$delete_button['url']}}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                        {{method_field('delete')}}
+                                        <input type="hidden" name="id" value="{{$delete_button['id']}}">
+                                    </form>
+                                    <a data-delete="delete-form-show" class="btn btn-default btn-sm" href="javascript:;"><span class="glyphicon glyphicon-remove"></span>&nbsp; 删除</a>
+                                @endif
+                            </div>
                         </div>
                     @endif
 
@@ -94,5 +112,12 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script>
+        $(function () {
+            $('[data-delete="delete-form-show"]').click(function () {
+                $('#delete-form-show').submit();
+            })
+        })
+    </script>
 </body>
 </html>

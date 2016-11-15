@@ -1,5 +1,3 @@
 <?php
 
-Route::get('oauth/dashboard', function () {
-    return view('oauth.dashboard');
-})->middleware('auth');
+Route::get('oauth/dashboard', 'OAuth\DashboardController@dashboard')->middleware('auth');

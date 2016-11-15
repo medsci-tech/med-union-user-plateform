@@ -1,11 +1,15 @@
 @extends('layouts.app', ['panel_heading' => '创建一个新的应用档案'])
 
 @section('content')
-    <form class="" role="form" action="/applications" method="POST">
+    <form class="" role="form" action="{{route('applications.store')}}" method="POST">
         {{csrf_field()}}
         <div class="form-group">
             <label for="name">应用名称</label>
             <input id="name" name="name" type="text" placeholder="应用的中文名称，请保证对于已有记录是唯一的" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="name_en">应用英文名称</label>
+            <input id="name_en" name="name_en" type="text" placeholder="应用的英文名称，请保证对于已有记录是唯一的" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="enterprise_id">所属企业</label>

@@ -43,7 +43,7 @@ class ContractController extends Controller
     {
         $contract = Contract::create($request->all());
 
-        return redirect('/contracts/' . $contract->id)->with([
+        return redirect(route('contracts.show', ['id' => $contract->id]))->with([
             'status' => 'ok',
         ]);
     }
@@ -70,7 +70,8 @@ class ContractController extends Controller
     public function edit($id)
     {
         return view('business.contracts.edit', [
-            'contract' => Contract::find($id)
+            'contract' => Contract::find($id),
+            'projects' => Project::all()
         ]);
     }
 
@@ -83,9 +84,11 @@ class ContractController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Contract::find($id)->update($request->all());
+        $array = $request->all();
+        $array = array_add($array, 'amount_of_beans', $array['amount_of_money'] * $array['rate_of_beans']);
+        Contract::find($id)->update($array);
 
-        return redirect('/contracts/'. $id)->with([
+        return redirect(route('contracts.show', ['id' => $id]))->with([
             'status' => 'ok'
         ]);
     }
@@ -100,7 +103,7 @@ class ContractController extends Controller
     {
         Contract::find($id)->delete();
 
-        return redirect('contracts')->with([
+        return redirect(route('contracts.index'))->with([
             'status' => 'ok'
         ]);
     }

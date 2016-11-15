@@ -22,11 +22,18 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Application\Application whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Application\Application whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Application\Application whereDeletedAt($value)
+ * @property string $description
+ * @method static \Illuminate\Database\Query\Builder|\App\Business\Application\Application whereDescription($value)
  */
 class Application extends Model
 {
     use ApplicationHasProjects;
     use ApplicationBelongsToEnterprise;
 
-    protected $fillable = ['name', 'enterprise_id', 'description'];
+    protected $fillable = [
+        'name',
+        'name_en',
+        'enterprise_id',
+        'description'
+    ];
 }

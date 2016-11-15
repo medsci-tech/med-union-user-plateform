@@ -1,11 +1,15 @@
 @extends('layouts.app', ['panel_heading' => '创建一个新的项目档案'])
 
 @section('content')
-    <form class="" role="form" action="/projects" method="POST">
+    <form class="" role="form" action="{{route('projects.store')}}" method="POST">
         {{csrf_field()}}
         <div class="form-group">
             <label for="name">项目名称</label>
             <input id="name" name="name" type="text" placeholder="项目的中文名称，请保证对于已有记录是唯一的" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="name_en">项目英文名称</label>
+            <input id="name_en" name="name_en" type="text" placeholder="项目的英文名称，请保证对于已有记录是唯一的" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="application_id">所属应用</label>

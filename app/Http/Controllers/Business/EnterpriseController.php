@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Business;
 
+use App\Business\Application\Application;
 use App\Business\Enterprise\Enterprise;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -40,7 +41,7 @@ class EnterpriseController extends Controller
     {
         $enterprise = Enterprise::create($request->all());
 
-        return redirect('/enterprises/'. $enterprise->id)->with([
+        return redirect(route('enterprises.show', ['id' => $enterprise->id]))->with([
             'status' => 'ok'
         ]);
     }
@@ -54,7 +55,8 @@ class EnterpriseController extends Controller
     public function show($id)
     {
         return view('business.enterprises.show', [
-            'enterprise' => Enterprise::find($id)
+            'enterprise' => Enterprise::find($id),
+            'applications' => Application::where(['enterprise_id' => $id])->get(),
         ]);
     }
 
@@ -82,7 +84,7 @@ class EnterpriseController extends Controller
     {
         Enterprise::find($id)->update($request->all());
 
-        return redirect('/enterprises/'. $id)->with([
+        return redirect(route('enterprises.show', ['id' => $id]))->with([
             'status' => 'ok'
         ]);
     }
@@ -97,7 +99,7 @@ class EnterpriseController extends Controller
     {
         Enterprise::find($id)->delete();
 
-        return redirect('/enterprises')->with([
+        return redirect(route('enterprises.index'))->with([
             'status' => 'ok'
         ]);
     }

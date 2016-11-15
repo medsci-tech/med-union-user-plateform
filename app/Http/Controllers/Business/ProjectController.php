@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Business;
 
 use App\Business\Application\Application;
+use App\Business\Bean\BeanRate;
+use App\Business\Contract\Contract;
 use App\Business\Project\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -43,7 +45,7 @@ class ProjectController extends Controller
     {
         $project = Project::create($request->all());
 
-        return redirect('/projects/'. $project->id)->with([
+        return redirect(route('projects.show', ['id' => $project->id]))->with([
             'status' => 'ok'
         ]);
     }
@@ -57,7 +59,9 @@ class ProjectController extends Controller
     public function show($id)
     {
         return view('business.projects.show', [
-            'project' => Project::find($id)
+            'project' => Project::find($id),
+            'contracts' => Contract::where(['project_id' => $id])->get(),
+            'bean_rates' => BeanRate::where(['project_id' => $id])->get(),
         ]);
     }
 
@@ -70,7 +74,8 @@ class ProjectController extends Controller
     public function edit($id)
     {
         return view('business.projects.edit', [
-            'project' => Project::find($id)
+            'project' => Project::find($id),
+            'applications' => Application::all()
         ]);
     }
 
@@ -85,7 +90,7 @@ class ProjectController extends Controller
     {
         Project::find($id)->update($request->all());
 
-        return redirect('/projects/'. $id)->with([
+        return redirect(route('projects.show', ['id' => $id]))->with([
             'status' => 'ok'
         ]);
     }
@@ -100,7 +105,7 @@ class ProjectController extends Controller
     {
         Project::find($id)->delete();
 
-        return redirect('/projects')->with([
+        return redirect(route('projects.index'))->with([
             'status' => 'ok'
         ]);
     }
