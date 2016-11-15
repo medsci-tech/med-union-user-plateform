@@ -3,6 +3,10 @@
      'edit_button' => [
         'href' => route('contracts.edit', ['id' => $contract->id]),
     ],
+     'delete_button' => [
+        'url' => route('contracts.destroy', ['id' => $contract->id]),
+        'id' => $contract->id,
+    ],
 ])
 
 @section('content')
