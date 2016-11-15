@@ -77,9 +77,19 @@
                 <div class="panel panel-default">
                     @if(isset($panel_heading))
                         <div class="panel-heading panel-title">
-                            {{$panel_heading}}
+                            @if(is_array($panel_heading))
+                                编辑 - <a href="{{$panel_heading['url']}}">{{$panel_heading['name']}}</a>
+                            @else
+                                {{$panel_heading}}
+                            @endif
                             @if(isset($create_button))
-                                <a class="btn btn-default btn-sm pull-right" href="{{$create_button['href']}}"><span class="glyphicon glyphicon-plus"></span>&nbsp;{{$create_button['label']}}</a>
+                                <a class="btn btn-default btn-sm pull-right" href="{{$create_button['href']}}"><span class="glyphicon glyphicon-plus"></span>&nbsp;新增</a>
+                            @endif
+                            @if(isset($edit_button))
+                                <a class="btn btn-default btn-sm pull-right" href="{{$edit_button['href']}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; 修改</a>
+                            @endif
+                            @if(isset($delete_button))
+                                <a class="btn btn-default btn-sm pull-right" href="{{$delete_button['href']}}"><span class="glyphicon glyphicon-remove"></span>&nbsp; 删除</a>
                             @endif
                         </div>
                     @endif

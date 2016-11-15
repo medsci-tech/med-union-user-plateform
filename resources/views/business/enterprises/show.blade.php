@@ -1,5 +1,8 @@
 @extends('layouts.app', [
-    'panel_heading' => '企业信息'
+    'panel_heading' => '企业信息',
+     'edit_button' => [
+        'href' => route('enterprises.edit', ['id' => $enterprise->id]),
+    ],
 ])
 
 @section('content')

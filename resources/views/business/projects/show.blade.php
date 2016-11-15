@@ -1,5 +1,8 @@
 @extends('layouts.app', [
-    'panel_heading' => '项目信息'
+    'panel_heading' => '项目信息',
+     'edit_button' => [
+        'href' => route('projects.edit', ['id' => $project->id]),
+    ],
 ])
 
 @section('content')

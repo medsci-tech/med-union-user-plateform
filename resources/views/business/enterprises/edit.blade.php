@@ -1,4 +1,9 @@
-@extends('layouts.app', ['panel_heading' => '编辑 - ' . $enterprise->name])
+@extends('layouts.app', [
+    'panel_heading' => [
+        'url' => route('enterprises.show',['id' => $enterprise->id]),
+        'name' => $enterprise->name,
+    ],
+])
 
 @section('content')
     <form class="" role="form" action="{{route('enterprises.update',['id' => $enterprise->id])}}" method="post">

@@ -1,4 +1,9 @@
-@extends('layouts.app', ['panel_heading' => '编辑 - ' . $contract->name])
+@extends('layouts.app', [
+    'panel_heading' => [
+        'url' => route('contracts.show',['id' => $contract->id]),
+        'name' => $contract->name,
+    ],
+])
 
 @section('content')
     <form class="" role="form" action="{{route('contracts.update', ['id' => $contract->id])}}" method="POST">
