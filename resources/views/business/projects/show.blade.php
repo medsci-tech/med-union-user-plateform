@@ -1,5 +1,8 @@
 @extends('layouts.app', [
-    'panel_heading' => '项目信息'
+    'panel_heading' => '项目信息',
+     'edit_button' => [
+        'href' => route('projects.edit', ['id' => $project->id]),
+    ],
 ])
 
 @section('content')
@@ -29,10 +32,18 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 text-right">下级资源：</label>
+            <label class="col-sm-2 text-right">下属合同：</label>
             <div class="col-sm-9">
                 @foreach($contracts as $contract)
                     <a href="{{route('contracts.show', ['id' => $contract->id])}}">{{$contract->name}}</a>
+                @endforeach
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 text-right">下属迈豆规则：</label>
+            <div class="col-sm-9">
+                @foreach($bean_rates as $bean_rate)
+                    <a href="{{route('bean_rates.show', ['id' => $bean_rate->id])}}">{{$bean_rate->name}}</a>
                 @endforeach
             </div>
         </div>

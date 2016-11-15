@@ -1,4 +1,9 @@
-@extends('layouts.app', ['panel_heading' => '编辑 - ' . $bean_rate->name])
+@extends('layouts.app', [
+    'panel_heading' => [
+        'url' => route('bean_rates.show',['id' => $bean_rate->id]),
+        'name' => $bean_rate->name,
+    ],
+])
 
 @section('content')
     <form class="" role="form" action="{{route('bean_rates.update', ['id' => $bean_rate->id])}}" method="POST">

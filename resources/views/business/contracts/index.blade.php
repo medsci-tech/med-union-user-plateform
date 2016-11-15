@@ -1,8 +1,8 @@
 @extends('layouts.app', [
-    'panel_heading' => '所有合同', 'create_button' => [
-        'label' => '新建合同',
-        'href' => '/contracts/create'
-    ]
+    'panel_heading' => '所有合同',
+     'create_button' => [
+        'href' => route('contracts.create'),
+    ],
 ])
 
 @section('content')

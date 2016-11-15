@@ -1,5 +1,8 @@
 @extends('layouts.app', [
-    'panel_heading' => '规则信息'
+    'panel_heading' => '规则信息',
+     'edit_button' => [
+        'href' => route('bean_rates.edit', ['id' => $bean_rate->id]),
+    ],
 ])
 
 @section('content')

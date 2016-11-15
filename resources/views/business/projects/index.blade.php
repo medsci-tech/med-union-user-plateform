@@ -1,8 +1,8 @@
 @extends('layouts.app', [
-    'panel_heading' => '所有项目', 'create_button' => [
-        'label' => '新建项目',
-        'href' => '/projects/create'
-    ]
+    'panel_heading' => '所有项目',
+     'create_button' => [
+        'href' => route('projects.create'),
+    ],
 ])
 
 @section('content')
