@@ -19,7 +19,7 @@ var apidoc = require('gulp-apidoc');
 gulp.task('doc', function(done){
     apidoc({
         src: "app/",
-        dest: "apidoc/"
+        dest: "public/apidoc/"
     },done);
 });
 
