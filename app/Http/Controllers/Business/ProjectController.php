@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Business;
 
 use App\Business\Application\Application;
+use App\Business\Contract\Contract;
 use App\Business\Project\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -57,7 +58,8 @@ class ProjectController extends Controller
     public function show($id)
     {
         return view('business.projects.show', [
-            'project' => Project::find($id)
+            'project' => Project::find($id),
+            'contracts' => Contract::where(['project_id' => $id])->get(),
         ]);
     }
 
