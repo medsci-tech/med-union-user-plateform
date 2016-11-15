@@ -18,5 +18,9 @@
   },
   "dependencies": {
     "select2": "^4.0.3"
+  },
+  "apidoc": {
+    "url": "https://user.mime.org.cn/api/v1",
+    "title": "迈德用户平台接入指南"
   }
 }
