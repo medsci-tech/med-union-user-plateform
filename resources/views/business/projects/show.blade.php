@@ -36,22 +36,6 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 text-right">下属合同：</label>
-            <div class="col-sm-9">
-                @foreach($contracts as $contract)
-                    <a href="{{route('contracts.show', ['id' => $contract->id])}}">{{$contract->name}}</a>
-                @endforeach
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 text-right">下属迈豆规则：</label>
-            <div class="col-sm-9">
-                @foreach($bean_rates as $bean_rate)
-                    <a href="{{route('bean_rates.show', ['id' => $bean_rate->id])}}">{{$bean_rate->name}}</a>
-                @endforeach
-            </div>
-        </div>
-        <div class="form-group">
             <label class="col-sm-2 text-right">迈豆总额：</label>
             <div class="col-sm-9">
                 {{$project->amount_of_beans}}
@@ -81,5 +65,70 @@
                 {{$project->updated_at}}
             </div>
         </div>
+
+        <div class="form-group">
+            <hr>
+            <label class="col-sm-12">下属合同：</label>
+        </div>
+        @if(count($contracts) > 0)
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>合同ID</th>
+                    <th>合同名称</th>
+                    <th>合同英文名称</th>
+                    <th>迈豆数</th>
+                    <th>创建时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($contracts as $contract)
+                    <tr>
+                        <td>{{$contract->id}}</td>
+                        <td><a href="{{route('contracts.show', ['id' => $contract->id])}}">{{$contract->name}}</a></td>
+                        <td>{{$contract->name_en}}</td>
+                        <td>{{$contract->amount_of_beans}}</td>
+                        <td>{{$contract->created_at}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        @else
+            没有
+        @endif
+
+        <div class="form-group">
+            <hr>
+            <label class="col-sm-12">下属规则：</label>
+        </div>
+
+        @if(count($bean_rates) > 0)
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>规则ID</th>
+                    <th>规则名称</th>
+                    <th>规则英文名称</th>
+                    <th>规则类型</th>
+                    <th>兑换比率</th>
+                    <th>创建时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($bean_rates as $bean_rate)
+                    <tr>
+                        <td>{{$bean_rate->id}}</td>
+                        <td><a href="{{route('bean_rates.show', ['id' => $bean_rate->id])}}">{{$bean_rate->name}}</a></td>
+                        <td>{{$bean_rate->name_en}}</td>
+                        <td>{{$bean_rate->bean_rate_type->name}}</td>
+                        <td>{{$bean_rate->rate}}</td>
+                        <td>{{$bean_rate->created_at}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        @else
+            没有
+        @endif
     </div>
 @endsection
