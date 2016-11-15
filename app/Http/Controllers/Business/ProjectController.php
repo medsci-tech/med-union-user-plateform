@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Business;
 
 use App\Business\Application\Application;
+use App\Business\Bean\BeanRate;
 use App\Business\Contract\Contract;
 use App\Business\Project\Project;
 use Illuminate\Http\Request;
@@ -60,6 +61,7 @@ class ProjectController extends Controller
         return view('business.projects.show', [
             'project' => Project::find($id),
             'contracts' => Contract::where(['project_id' => $id])->get(),
+            'bean_rates' => BeanRate::where(['project_id' => $id])->get(),
         ]);
     }
 

@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 text-right">下级资源：</label>
+            <label class="col-sm-2 text-right">下属应用：</label>
             <div class="col-sm-9">
                 @foreach($applications as $application)
                     <a href="{{route('applications.show', ['id' => $application->id])}}">{{$application->name}}</a>

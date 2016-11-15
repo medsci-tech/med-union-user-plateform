@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 text-right">下级资源：</label>
+            <label class="col-sm-2 text-right">下属项目：</label>
             <div class="col-sm-9">
                 @foreach($projects as $project)
                     <a href="{{route('projects.show', ['id' => $project->id])}}">{{$project->name}}</a>
