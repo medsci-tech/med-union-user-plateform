@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
 
-use App\Http\Requests\ThirdPartyInterface\UserRegister;
+use App\Http\Requests\ThirdPartyInterface\RegisterRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -18,9 +18,9 @@ class RegisterInterfaceController extends Controller
      *
      * @apiExample {curl} Example usage:
      *     curl -X "POST" "https://med-union-user-plateform.dev/api/v1/register" \
-                -H "Accept: application/json" \
-                -H "Authorization: Bearer [token]" \
-                -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8"
+     * -H "Accept: application/json" \
+     * -H "Authorization: Bearer [token]" \
+     * -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8"
      *
      * @apiHeader {String="application/json"} Accept
      * @apiHeader {String="Bearer [token]"} Authorization
@@ -47,8 +47,8 @@ class RegisterInterfaceController extends Controller
      *       "user_id": 1
      *     }
      *
-     * @apiError phone 电话是必填的.
-     * @apiError password 密码是必填的.
+     * @apiError       phone 电话是必填的.
+     * @apiError       password 密码是必填的.
      * @apiErrorExample {json} Error-Response:
      *     HTTP/1.1 422 Unprocessable Entity
      *     {
@@ -64,10 +64,10 @@ class RegisterInterfaceController extends Controller
      *       ]
      *     }
      *
-     * @param \App\Http\Requests\ThirdPartyInterface\UserRegister $request
+     * @param \App\Http\Requests\ThirdPartyInterface\RegisterRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function handleRequest(UserRegister $request)
+    public function handleRequest(RegisterRequest $request)
     {
         return $request->handle();
     }
