@@ -6,9 +6,8 @@
 ])
 
 @section('content')
-    <form class="" role="form" action="{{route('applications.update', ['id' => $application->id])}}" method="POST">
-        {{csrf_field()}}
-        {{method_field('put')}}
+    <form role="form" action="{{route('applications.update', ['id' => $application->id])}}" method="POST" id="form-validate">
+        @include('layouts.edit_form_common', ['request_id' => $application->id])
         <div class="form-group">
             <label for="name">应用名称</label>
             <input id="name" name="name" value="{{$application->name}}" type="text" placeholder="应用的中文名称，请保证对于已有记录是唯一的" class="form-control" required>

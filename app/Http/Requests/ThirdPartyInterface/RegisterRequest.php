@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\ThirdPartyInterface;
 
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRegister extends FormRequest
+class RegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +15,7 @@ class UserRegister extends FormRequest
     public function authorize()
     {
         //TODO UPDATE AUTHORIZATIONS AND AUTHENTICATIONS
-        return \Auth::check();
+        return Auth::user()->can('call-interface');
     }
 
     /**

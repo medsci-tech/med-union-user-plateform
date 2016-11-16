@@ -6,9 +6,8 @@
 ])
 
 @section('content')
-    <form class="" role="form" action="{{route('bean_rates.update', ['id' => $bean_rate->id])}}" method="POST">
-        {{csrf_field()}}
-        {{method_field('put')}}
+    <form role="form" action="{{route('bean_rates.update', ['id' => $bean_rate->id])}}" method="POST" id="form-validate">
+        @include('layouts.edit_form_common', ['request_id' => $bean_rate->id])
         <div class="form-group">
             <label for="name">规则名称</label>
             <input id="name" value="{{$bean_rate->name}}" type="text" placeholder="规则的中文名称，请保证对于已有记录是唯一的" class="form-control" disabled>

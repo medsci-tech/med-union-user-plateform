@@ -5,11 +5,22 @@ namespace App\Http\Controllers\Business;
 use App\Business\Application\Application;
 use App\Business\Enterprise\Enterprise;
 use App\Business\Project\Project;
-use Illuminate\Http\Request;
+use App\Http\Requests\Business\Application\StoreApplicationRequest;
+use App\Http\Requests\Business\Application\UpdateApplicationRequest;
 use App\Http\Controllers\Controller;
 
 class ApplicationController extends Controller
 {
+
+    /**
+     * auth 验证
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -40,7 +51,7 @@ class ApplicationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreApplicationRequest $request)
     {
         $application = Application::create($request->all());
 
@@ -84,7 +95,7 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateApplicationRequest $request, $id)
     {
         Application::find($id)->update($request->all());
 

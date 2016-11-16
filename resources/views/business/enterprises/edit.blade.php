@@ -6,9 +6,8 @@
 ])
 
 @section('content')
-    <form class="" role="form" action="{{route('enterprises.update',['id' => $enterprise->id])}}" method="post">
-        {{csrf_field()}}
-        {{method_field('put')}}
+    <form role="form" action="{{route('enterprises.update',['id' => $enterprise->id])}}" method="post" id="form-validate">
+        @include('layouts.edit_form_common', ['request_id' => $enterprise->id])
         <div class="form-group">
             <label for="name">企业名称</label>
             <input id="name" name="name" value="{{$enterprise->name}}" type="text" placeholder="企业的中文名称，请保证对于已有记录是唯一的" class="form-control" required>

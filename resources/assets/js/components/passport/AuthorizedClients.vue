@@ -12,14 +12,14 @@
     <div>
         <div v-if="tokens.length > 0">
             <div class="panel panel-default">
-                <div class="panel-heading">Authorized Applications</div>
+                <div class="panel-heading">授权的第三方应用</div>
 
                 <div class="panel-body">
                     <!-- Authorized Tokens -->
                     <table class="table table-borderless m-b-none">
                         <thead>
-                            <th>Name</th>
-                            <th>Scopes</th>
+                            <th>应用名</th>
+                            <th>授权范围</th>
                             <th></th>
                         </thead>
 
@@ -40,7 +40,7 @@
                                 <!-- Revoke Button -->
                                 <td style="vertical-align: middle;">
                                     <a class="action-link text-danger" @click="revoke(token)">
-                                        Revoke
+                                        废除
                                     </a>
                                 </td>
                             </tr>

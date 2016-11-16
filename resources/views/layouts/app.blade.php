@@ -8,7 +8,8 @@
     <title>迈德通信证</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
+    <link href="{{asset('plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top">
@@ -111,13 +112,39 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('plugins/validate/jquery.validate.min.js')}}"></script>
+    <script src="{{asset('plugins/validate/messages_zh.min.js')}}"></script>
+    <script src="{{asset('plugins/sweetalert/sweetalert.min.js')}}"></script>
     <script>
         $(function () {
             $('[data-delete="delete-form-show"]').click(function () {
-                $('#delete-form-show').submit();
-            })
-        })
+                swal({
+                    title: "您确定要删除吗",
+                    type: "error",
+                    showCancelButton: true,
+                    cancelButtonText: '取消',
+                    confirmButtonColor: "#f27474",
+                    confirmButtonText: "确定",
+                    closeOnConfirm: false
+                }, function () {
+                    $('#delete-form-show').submit();
+                });
+            });
+
+            // 表单验证
+            $.validator.setDefaults({
+                highlight: function (e) {
+                    $(e).closest(".form-group").removeClass("has-success").addClass("has-error");
+                }, success: function (e) {
+                    e.closest(".form-group").removeClass("has-error").addClass("has-success");
+                }, errorElement: "span", errorPlacement: function (e, r) {
+                    e.appendTo(r.is(":radio") || r.is(":checkbox") ? r.parent().parent().parent() : r.parent());
+                }, errorClass: "help-block m-b-none", validClass: "help-block m-b-none"
+            });
+
+            $('#form-validate').validate();
+        });
     </script>
 </body>
 </html>
