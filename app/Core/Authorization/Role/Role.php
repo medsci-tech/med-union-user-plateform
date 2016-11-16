@@ -29,6 +29,8 @@ class Role extends Model
 {
     use RoleHasPermission;
 
+    protected $fillable = ['name', 'label'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany|Builder|User[]
      */
