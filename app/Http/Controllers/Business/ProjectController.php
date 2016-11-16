@@ -11,6 +11,16 @@ use App\Http\Controllers\Controller;
 
 class ProjectController extends Controller
 {
+
+    /**
+     * auth 验证
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
