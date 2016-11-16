@@ -1,7 +1,7 @@
 @extends('layouts.app', ['panel_heading' => '创建一个新的合同档案'])
 
 @section('content')
-    <form class="" role="form" action="{{route('contracts.store')}}" method="POST">
+    <form role="form" action="{{route('contracts.store')}}" method="POST" id="form-validate">
         {{csrf_field()}}
         <div class="form-group">
             <label for="name">合同名称</label>
