@@ -9,8 +9,7 @@ use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
-
-Passport::pruneRevokedTokens();
+use PDOException;
 
 Passport::tokensCan([
     'register' => '调用注册接口',
@@ -57,11 +56,9 @@ class AuthServiceProvider extends ServiceProvider
                 });
             }
         } catch (QueryException $e) {
-            if (app()->environment('local')) {
-                echo "Permissions system not work properly, because database not setup correctly. " . PHP_EOL;
-                echo "Maybe you have forgot to run the migration command, unless you're now doing this." . PHP_EOL;
-                echo "Ignored." . PHP_EOL;
-            }
+            $this->logErrorMessageToConsole();
+        } catch (PDOException $e) {
+            $this->logErrorMessageToConsole();
         }
     }
 
@@ -71,5 +68,14 @@ class AuthServiceProvider extends ServiceProvider
 
         Passport::tokensExpireIn(Carbon::now()->addDays(15));
         Passport::refreshTokensExpireIn(Carbon::now()->addDays(30));
+    }
+
+    protected function logErrorMessageToConsole()
+    {
+        if (app()->environment('local')) {
+            echo "Permissions system not work properly, because database not setup correctly. " . PHP_EOL;
+            echo "Maybe you have forgot to run the migration command, unless you're now doing this." . PHP_EOL;
+            echo "Ignored." . PHP_EOL;
+        }
     }
 }
