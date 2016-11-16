@@ -36,32 +36,35 @@ class InitialSeeder extends Seeder
         ]);
 
         $role1 = Role::create([
-            'name' => 'super-administrator',
+            'name' => 'super administrator',
             'label' => '超级管理员'
         ]);
 
         $role2 = Role::create([
-            'name' => 'sub-company-administrator',
-            'label' => '子公司管理员'
+            'name' => 'interface caller',
+            'label' => '接口调用者'
         ]);
 
         $permission1 = Permission::create([
-            'name' => 'manage-users',
+            'name' => 'manage users',
             'label' => '管理用户'
         ]);
 
         $permission2 = Permission::create([
-            'name' => 'manage-backend-resources',
+            'name' => 'manage backend resources',
             'label' => '后台资源管理'
         ]);
 
         $permission3 = Permission::create([
-            'name' => 'call-interfaces',
+            'name' => 'call interfaces',
             'label' => '调用接口'
         ]);
 
         $role1->permissions()->save($permission1);
         $role1->permissions()->save($permission2);
+        $role1->permissions()->save($permission3);
         $role2->permissions()->save($permission3);
+
+        $user->assignRole($role1);
     }
 }

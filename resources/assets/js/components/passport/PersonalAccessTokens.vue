@@ -19,7 +19,7 @@
                         </span>
 
                         <a class="action-link" @click="showCreateTokenForm">
-                            Create New Token
+                            创建新的Token
                         </a>
                     </div>
                 </div>
@@ -27,13 +27,13 @@
                 <div class="panel-body">
                     <!-- No Tokens Notice -->
                     <p class="m-b-none" v-if="tokens.length === 0">
-                        You have not created any personal access tokens.
+                        你还没有创建任何 personal access tokens.
                     </p>
 
                     <!-- Personal Access Tokens -->
                     <table class="table table-borderless m-b-none" v-if="tokens.length > 0">
                         <thead>
-                            <th>Name</th>
+                            <th>名称</th>
                             <th></th>
                         </thead>
 
@@ -47,7 +47,7 @@
                                 <!-- Delete Button -->
                                 <td style="vertical-align: middle;">
                                     <a class="action-link text-danger" @click="revoke(token)">
-                                        Delete
+                                        删除
                                     </a>
                                 </td>
                             </tr>
@@ -65,7 +65,7 @@
                         <button type="button " class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
                         <h4 class="modal-title">
-                            Create Token
+                            创建 Token
                         </h4>
                     </div>
 
@@ -85,7 +85,7 @@
                         <form class="form-horizontal" role="form" @submit.prevent="store">
                             <!-- Name -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Name</label>
+                                <label class="col-md-4 control-label">名称</label>
 
                                 <div class="col-md-6">
                                     <input id="create-token-name" type="text" class="form-control" name="name" v-model="form.name">
@@ -94,7 +94,7 @@
 
                             <!-- Scopes -->
                             <div class="form-group" v-if="scopes.length > 0">
-                                <label class="col-md-4 control-label">Scopes</label>
+                                <label class="col-md-4 control-label">授权域</label>
 
                                 <div class="col-md-6">
                                     <div v-for="scope in scopes">
@@ -104,7 +104,7 @@
                                                     @click="toggleScope(scope.id)"
                                                     :checked="scopeIsAssigned(scope.id)">
 
-                                                    {{ scope.id }}
+                                                    {{ scope.description }}
                                             </label>
                                         </div>
                                     </div>
@@ -115,10 +115,10 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 
                         <button type="button" class="btn btn-primary" @click="store">
-                            Create
+                            创建
                         </button>
                     </div>
                 </div>
@@ -139,8 +139,8 @@
 
                     <div class="modal-body">
                         <p>
-                            Here is your new personal access token. This is the only time it will be shown so don't lose it!
-                            You may now use this token to make API requests.
+                            这是你新建的 personal access token. 这个 token 仅会显示这一次，请妥善保存。如果丢失，请创建一个新的token。
+                            你可以用这个token来做后台api调用。
                         </p>
 
                         <pre><code>{{ accessToken }}</code></pre>
@@ -148,7 +148,7 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     </div>
                 </div>
             </div>
