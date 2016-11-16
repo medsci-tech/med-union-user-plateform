@@ -13,7 +13,8 @@ cache:
 before_script:
   - mysql -e 'CREATE DATABASE `med-union-user-plateform`;'
   - cp .env.travis .env
-  - composer install --prefer-source --no-interaction
+  - travis_retry composer self-update
+  - travis_retry composer install --prefer-dist --no-interaction --no-suggest
   - php artisan migrate
 
 script: phpunit
