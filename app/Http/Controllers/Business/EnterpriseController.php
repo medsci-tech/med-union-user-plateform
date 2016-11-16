@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Business;
 
 use App\Business\Application\Application;
 use App\Business\Enterprise\Enterprise;
-use Illuminate\Http\Request;
+use App\Http\Requests\Business\Enterprise\StoreEnterpriseRequest;
 use App\Http\Controllers\Controller;
 
 class EnterpriseController extends Controller
@@ -47,7 +47,7 @@ class EnterpriseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEnterpriseRequest $request)
     {
         $enterprise = Enterprise::create($request->all());
 
@@ -90,7 +90,7 @@ class EnterpriseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreEnterpriseRequest $request, $id)
     {
         Enterprise::find($id)->update($request->all());
 

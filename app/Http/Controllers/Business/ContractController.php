@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Business;
 
 use App\Business\Contract\Contract;
 use App\Business\Project\Project;
-use Illuminate\Http\Request;
+use App\Http\Requests\Business\Contract\StoreContractRequest;
 use App\Http\Controllers\Controller;
 
 class ContractController extends Controller
@@ -49,7 +49,7 @@ class ContractController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreContractRequest $request)
     {
         $contract = Contract::create($request->all());
 
@@ -92,7 +92,7 @@ class ContractController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreContractRequest $request, $id)
     {
         $array = $request->all();
         $array = array_add($array, 'amount_of_beans', $array['amount_of_money'] * $array['rate_of_beans']);

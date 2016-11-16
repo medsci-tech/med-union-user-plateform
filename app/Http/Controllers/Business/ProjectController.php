@@ -6,6 +6,7 @@ use App\Business\Application\Application;
 use App\Business\Bean\BeanRate;
 use App\Business\Contract\Contract;
 use App\Business\Project\Project;
+use App\Http\Requests\Business\Project\StoreProjectRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -51,7 +52,7 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
         $project = Project::create($request->all());
 
@@ -96,7 +97,7 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreProjectRequest $request, $id)
     {
         Project::find($id)->update($request->all());
 
