@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Business;
 
 use App\Business\Bean\BeanRate;
-use App\Business\Project\Project;
-use Illuminate\Http\Request;
+use App\Http\Requests\Business\BeanRate\UpdateBeanRateRequest;
 use App\Http\Controllers\Controller;
 
 class BeanRateController extends Controller
@@ -65,7 +64,7 @@ class BeanRateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBeanRateRequest $request, $id)
     {
         BeanRate::find($id)->update($request->all());
 
