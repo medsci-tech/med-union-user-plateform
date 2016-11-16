@@ -4,7 +4,7 @@ namespace App\Http\Requests\Business\Project;
 
 use App\Http\Requests\Request;
 
-class StoreProjectRequest extends Request
+class UpdateProjectRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,11 @@ class StoreProjectRequest extends Request
      */
     public function rules()
     {
+        $request_id = $this->get('request_validate_id');
         return [
             //
-            'name' => 'required|unique:projects|max:255',
-            'name_en' => 'required|unique:projects|max:255',
+            'name' => 'required|max:255|unique:projects,name,' . $request_id,
+            'name_en' => 'required|max:255|unique:projects,name_en,' . $request_id,
             'application_id' => 'required',
         ];
     }

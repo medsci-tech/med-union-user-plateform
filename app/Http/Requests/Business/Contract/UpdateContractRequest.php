@@ -4,7 +4,7 @@ namespace App\Http\Requests\Business\Contract;
 
 use App\Http\Requests\Request;
 
-class StoreContractRequest extends Request
+class UpdateContractRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,11 @@ class StoreContractRequest extends Request
      */
     public function rules()
     {
+        $request_id = $this->get('request_validate_id');
         return [
-            'name' => 'required|max:255|unique:contracts',
-            'name_en' => 'required|max:255|unique:contracts',
+            //
+            'name' => 'required|max:255|unique:contracts,name,' . $request_id,
+            'name_en' => 'required|max:255|unique:contracts,name_en,' . $request_id,
             'project_id' => 'required',
             'amount_of_money' => 'required',
             'rate_of_beans' => 'required',

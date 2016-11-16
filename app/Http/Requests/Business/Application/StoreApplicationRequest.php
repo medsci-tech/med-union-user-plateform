@@ -25,8 +25,8 @@ class StoreApplicationRequest extends Request
     {
         return [
             //
-            'name' => 'required|unique:enterprises|max:255',
-            'name_en' => 'required|unique:enterprises|max:255',
+            'name' => 'required|unique:applications|max:255',
+            'name_en' => 'required|unique:applications|max:255',
             'enterprise_id' => 'required',
         ];
     }

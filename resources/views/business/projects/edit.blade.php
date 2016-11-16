@@ -9,6 +9,7 @@
     <form role="form" action="{{route('projects.update', ['id' => $project->id])}}" method="POST" id="form-validate">
         {{csrf_field()}}
         {{method_field('put')}}
+        @include('layouts.edit_id_input', ['request_id' => $project->id])
         <div class="form-group">
             <label for="name">项目名称</label>
             <input id="name" name="name" value="{{$project->name}}" type="text" placeholder="项目的中文名称，请保证对于已有记录是唯一的" class="form-control" required>

@@ -6,6 +6,7 @@ use App\Business\Application\Application;
 use App\Business\Enterprise\Enterprise;
 use App\Http\Requests\Business\Enterprise\StoreEnterpriseRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Business\Enterprise\UpdateEnterpriseRequest;
 
 class EnterpriseController extends Controller
 {
@@ -90,7 +91,7 @@ class EnterpriseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreEnterpriseRequest $request, $id)
+    public function update(UpdateEnterpriseRequest $request, $id)
     {
         Enterprise::find($id)->update($request->all());
 

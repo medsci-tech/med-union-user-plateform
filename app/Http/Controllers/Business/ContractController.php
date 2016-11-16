@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Business;
 use App\Business\Contract\Contract;
 use App\Business\Project\Project;
 use App\Http\Requests\Business\Contract\StoreContractRequest;
+use App\Http\Requests\Business\Contract\UpdateContractRequest;
 use App\Http\Controllers\Controller;
 
 class ContractController extends Controller
@@ -92,7 +93,7 @@ class ContractController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreContractRequest $request, $id)
+    public function update(UpdateContractRequest $request, $id)
     {
         $array = $request->all();
         $array = array_add($array, 'amount_of_beans', $array['amount_of_money'] * $array['rate_of_beans']);

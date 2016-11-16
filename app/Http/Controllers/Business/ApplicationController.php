@@ -6,6 +6,7 @@ use App\Business\Application\Application;
 use App\Business\Enterprise\Enterprise;
 use App\Business\Project\Project;
 use App\Http\Requests\Business\Application\StoreApplicationRequest;
+use App\Http\Requests\Business\Application\UpdateApplicationRequest;
 use App\Http\Controllers\Controller;
 
 class ApplicationController extends Controller
@@ -94,7 +95,7 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreApplicationRequest $request, $id)
+    public function update(UpdateApplicationRequest $request, $id)
     {
         Application::find($id)->update($request->all());
 
