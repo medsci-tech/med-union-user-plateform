@@ -6,7 +6,7 @@
 ])
 
 @section('content')
-    <form class="" role="form" action="{{route('contracts.update', ['id' => $contract->id])}}" method="POST">
+    <form role="form" action="{{route('contracts.update', ['id' => $contract->id])}}" method="POST" id="form-validate">
         {{csrf_field()}}
         {{method_field('put')}}
         <div class="form-group">
