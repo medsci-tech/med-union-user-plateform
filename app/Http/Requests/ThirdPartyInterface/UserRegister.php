@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\ThirdPartyInterface;
 
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRegister extends FormRequest
@@ -14,7 +15,7 @@ class UserRegister extends FormRequest
     public function authorize()
     {
         //TODO UPDATE AUTHORIZATIONS AND AUTHENTICATIONS
-        return \Auth::check();
+        return Auth::user()->can('call-interface');
     }
 
     /**

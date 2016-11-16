@@ -39,7 +39,7 @@ trait UserHasRole
             return $this->roles()->get()->contains('name', $role->name);
         }
 
-        return false;
+        return !! $role->get()->intersect($this->roles()->get())->count();
     }
 
 
