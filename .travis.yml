@@ -19,8 +19,6 @@ before_script:
 
 script: phpunit
 
-services:
-  - mysql
 
 notifications:
   slack:
