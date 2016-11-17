@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\ThirdPartyInterface;
+namespace App\Http\Requests\ThirdPartyInterfaces;
 
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
@@ -15,7 +15,7 @@ class RegisterRequest extends FormRequest
     public function authorize()
     {
         //TODO UPDATE AUTHORIZATIONS AND AUTHENTICATIONS
-        return Auth::user()->can('call-interface');
+        return Auth::user()->can('call interfaces');
     }
 
     /**
