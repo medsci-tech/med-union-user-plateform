@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    @if(Auth::check() && Auth::user()->can('manage users'))
+    @can('manage users')
         <div class="panel panel-default">
             <div class="panel-heading panel-title">用户管理</div>
             <div class="list-group">
@@ -29,9 +29,9 @@
                 </a>
             </div>
         </div>
-    @endif
+    @endcan
 
-    @if(Auth::check() && Auth::user()->can('call interfaces'))
+    @can('call interfaces')
         <div class="panel panel-default">
             <div class="panel-heading panel-title">接口管理</div>
             <div class="list-group">
@@ -40,5 +40,5 @@
                 </a>
             </div>
         </div>
-    @endif
+    @endcan
 </div>
