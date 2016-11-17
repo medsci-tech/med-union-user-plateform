@@ -6,21 +6,12 @@ use App\Business\Application\Application;
 use App\Business\Bean\BeanRate;
 use App\Business\Contract\Contract;
 use App\Business\Project\Project;
+use App\Http\Controllers\CommonController;
 use App\Http\Requests\Business\Project\StoreProjectRequest;
 use App\Http\Requests\Business\Project\UpdateProjectRequest;
-use App\Http\Controllers\Controller;
 
-class ProjectController extends Controller
+class ProjectController extends CommonController
 {
-
-    /**
-     * auth 验证
-     *
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Display a listing of the resource.

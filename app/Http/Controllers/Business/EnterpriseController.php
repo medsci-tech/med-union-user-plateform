@@ -4,21 +4,12 @@ namespace App\Http\Controllers\Business;
 
 use App\Business\Application\Application;
 use App\Business\Enterprise\Enterprise;
+use App\Http\Controllers\CommonController;
 use App\Http\Requests\Business\Enterprise\StoreEnterpriseRequest;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Business\Enterprise\UpdateEnterpriseRequest;
 
-class EnterpriseController extends Controller
+class EnterpriseController extends CommonController
 {
-
-    /**
-     * auth 验证
-     *
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Display a listing of the resource.
