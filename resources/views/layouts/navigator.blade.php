@@ -20,6 +20,17 @@
         </div>
     </div>
 
+    @if(Auth::check() && Auth::user()->can('manage users'))
+        <div class="panel panel-default">
+            <div class="panel-heading panel-title">用户管理</div>
+            <div class="list-group">
+                <a class="list-group-item" href="{{route('users.index')}}">
+                    用户列表
+                </a>
+            </div>
+        </div>
+    @endif
+
     @if(Auth::check() && Auth::user()->can('call interfaces'))
         <div class="panel panel-default">
             <div class="panel-heading panel-title">接口管理</div>
