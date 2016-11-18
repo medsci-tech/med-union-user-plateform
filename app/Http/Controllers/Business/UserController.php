@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Business;
 
-use App\Business\User\User;
+use App\User;
 use App\Http\Controllers\CommonController;
 use App\Http\Requests\Business\User\UpdateUserRequest;
 
