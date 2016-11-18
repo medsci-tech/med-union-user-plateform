@@ -5,6 +5,8 @@ php:
   - '7.0'
   - 'nightly'
 
+matrix:
+  fast_finish: true
 
 cache:
   directories:
@@ -13,7 +15,8 @@ cache:
 before_script:
   - mysql -e 'CREATE DATABASE `med-union-user-plateform`;'
   - cp .env.travis .env
-  - phpenv config-add travis.php.ini
+  - phpenv config-rm xdebug.ini
+  - pecl install mongodb
   - travis_retry composer self-update
   - travis_retry composer install --prefer-dist --no-interaction --no-suggest
   - php artisan migrate
