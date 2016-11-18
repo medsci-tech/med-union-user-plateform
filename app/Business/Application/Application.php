@@ -3,6 +3,7 @@
 namespace App\Business\Application;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Business\Application\Application
@@ -29,6 +30,7 @@ class Application extends Model
 {
     use ApplicationHasProjects;
     use ApplicationBelongsToEnterprise;
+    use SoftDeletes;
 
     protected $fillable = [
         'name',

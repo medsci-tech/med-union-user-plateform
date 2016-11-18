@@ -4,6 +4,7 @@ namespace App\Business\Bean;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Business\Project\Project;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class BeanRate
@@ -14,6 +15,7 @@ use App\Business\Project\Project;
  */
 class BeanRate extends Model
 {
+    use SoftDeletes;
 
     protected $fillable = [
         'rate',

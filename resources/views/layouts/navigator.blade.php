@@ -17,6 +17,9 @@
             <a class="list-group-item" href="{{route('bean_rates.index')}}">
                 迈豆规则列表
             </a>
+            <a class="list-group-item" href="{{route('users.index')}}">
+                用户列表
+            </a>
         </div>
     </div>
 
