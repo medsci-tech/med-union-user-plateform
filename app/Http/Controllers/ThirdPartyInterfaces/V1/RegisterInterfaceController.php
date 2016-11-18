@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
 
+use App\Business\Statistic\User\User;
 use App\Http\Requests\ThirdPartyInterfaces\RegisterRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use MongoDB\BSON\UTCDateTime;
 
 class RegisterInterfaceController extends Controller
 {
@@ -61,5 +64,28 @@ class RegisterInterfaceController extends Controller
     public function handleRequest(RegisterRequest $request)
     {
         return $request->handle();
+    }
+
+
+    public function mongo()
+    {
+//        echo(new UTCDateTime(Carbon::now()->timestamp));
+//        dd();
+//        $create_time = User::where('phone', '18699999999')->first()->create_time;
+//        dd($create_time);
+//        $user = User::create([
+//            'phone' => '18699999999',
+//            'create_time' => new UTCDateTime(Carbon::now()->micro),
+//            'role' => 'user',
+//            'total_beans' => 1000,
+//            'optimizing_health_mate_wechat_2016' => [
+//                'year' => 2016,
+//                'access_way' => 'wechat',
+//                'create_time' => new UTCDateTime(Carbon::now()->timestamp * 1000),
+//                'upstream_phone' => '18688888888'
+//            ]
+//        ]);
+//
+//        dd($user);
     }
 }

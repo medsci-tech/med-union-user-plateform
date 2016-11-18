@@ -3,6 +3,7 @@
 namespace App\Business\Contract;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Business\Contract\Contract
@@ -35,6 +36,7 @@ use Illuminate\Database\Eloquent\Model;
 class Contract extends Model
 {
     use ContractBelongsToProject;
+    use SoftDeletes;
 
     protected $fillable = [
         'name',
