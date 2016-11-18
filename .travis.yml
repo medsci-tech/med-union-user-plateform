@@ -1,4 +1,5 @@
 language: php
+sudo: false
 
 php:
   - '5.6'
@@ -15,7 +16,6 @@ cache:
 before_script:
   - mysql -e 'CREATE DATABASE `med-union-user-plateform`;'
   - cp .env.travis .env
-  - phpenv config-rm xdebug.ini
   - pecl install mongodb
   - travis_retry composer self-update
   - travis_retry composer install --prefer-dist --no-interaction --no-suggest
