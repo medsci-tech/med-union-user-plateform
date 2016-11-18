@@ -16,6 +16,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Route::get('/mongo', 'ThirdPartyInterfaces\V1\RegisterInterfaceController@mongo');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
