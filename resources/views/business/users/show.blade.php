@@ -18,15 +18,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 text-right">昵称：</label>
+            <label class="col-sm-2 text-right">姓名：</label>
             <div class="col-sm-9">
                 {{$user->name}}
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 text-right">账号：</label>
-            <div class="col-sm-9">
-                {{$user->account}}
             </div>
         </div>
         <div class="form-group">
@@ -47,6 +41,33 @@
                 {{$user->updated_at}}
             </div>
         </div>
+
+        <div class="form-group">
+            <hr>
+            <label class="col-sm-12">角色：</label>
+        </div>
+        @if(count($user->roles) > 0)
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>角色ID</th>
+                    <th>名称</th>
+                    <th>英文名称</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($user->roles as $user_role)
+                    <tr>
+                        <td>{{$user_role->id}}</td>
+                        <td>{{$user_role->label}}</td>
+                        <td>{{$user_role->name}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        @else
+            没有
+        @endif
 
     </div>
 @endsection
