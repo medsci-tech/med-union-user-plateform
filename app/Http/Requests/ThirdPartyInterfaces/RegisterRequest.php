@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\ThirdPartyInterfaces;
 
+use App\Events\InterfaceCalled\Register;
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -33,7 +34,13 @@ class RegisterRequest extends FormRequest
 
     public function handle()
     {
-        //TODO
+        try {
+            event(new Register($this));
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error'
+            ], 500);
+        }
         return response()->json([
             'status' => 'ok'
         ]);

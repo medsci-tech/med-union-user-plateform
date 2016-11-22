@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Enterprise\Enterprise whereDeletedAt($value)
  * @property string $description
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Enterprise\Enterprise whereDescription($value)
+ * @property string $name_en 企业名称英文，用于检索
+ * @method static \Illuminate\Database\Query\Builder|\App\Business\Enterprise\Enterprise whereNameEn($value)
  */
 class Enterprise extends Model
 {

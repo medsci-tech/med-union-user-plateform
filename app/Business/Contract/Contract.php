@@ -32,6 +32,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Contract\Contract whereDeletedAt($value)
  * @property string $description
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Contract\Contract whereDescription($value)
+ * @property string $name_en 合同名称英文，用于检索
+ * @method static \Illuminate\Database\Query\Builder|\App\Business\Contract\Contract whereNameEn($value)
  */
 class Contract extends Model
 {
