@@ -63,8 +63,10 @@ class RegisterInterfaceController extends Controller
      *          "密码 不能为空。"
      *       ]
      *     }
+     *
      * @apiUse Unauthorized
      * @apiUse Forbidden
+     *
      *
      * @param \App\Http\Requests\ThirdPartyInterfaces\RegisterRequest $request
      * @return \Illuminate\Http\JsonResponse

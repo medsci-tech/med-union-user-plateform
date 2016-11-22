@@ -63,7 +63,6 @@ class TestConnectionInterfaceController extends Controller
      *
      * @apiUse Unauthorized
      * @apiUse Forbidden
-     *
      * @param \App\Http\Requests\ThirdPartyInterfaces\TestConnectionRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
