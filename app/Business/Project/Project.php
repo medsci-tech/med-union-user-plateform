@@ -2,6 +2,7 @@
 
 namespace App\Business\Project;
 
+use App\Exceptions\BeansNotEnoughForProjectException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -29,6 +30,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Project\Project whereDeletedAt($value)
  * @property string $description
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Project\Project whereDescription($value)
+ * @property string $name_en 项目名称英文，用于检索
+ * @method static \Illuminate\Database\Query\Builder|\App\Business\Project\Project whereNameEn($value)
  */
 class Project extends Model
 {
@@ -42,4 +45,33 @@ class Project extends Model
         'name_en',
         'description'
     ];
+
+    public function minusBean(float $amount)
+    {
+        \DB::transaction(function () use ($amount) {
+            \DB::table('projects')->lockForUpdate();
+            $fresh = $this->fresh();
+            if ($fresh->rest_of_beans < $amount) {
+                throw new BeansNotEnoughForProjectException();
+            }
+            $fresh->update([
+                'rest_of_beans' => $fresh->rest_of_beans - $amount
+            ]);
+        });
+
+        return $this;
+    }
+
+    public function addBean(float $amount)
+    {
+        \DB::transaction(function () use ($amount) {
+            \DB::table('projects')->lockForUpdate();
+            $fresh = $this->fresh();
+            $fresh->update([
+                'rest_of_beans' => $fresh->rest_of_beans + $amount
+            ]);
+        });
+
+        return $this;
+    }
 }

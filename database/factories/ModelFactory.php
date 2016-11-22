@@ -24,7 +24,6 @@ use Faker\Generator;
 $factory->define(User::class, function (Generator $faker) {
     return [
         'name' => $faker->name,
-        'account' => $faker->userName,
         'email' => $faker->safeEmail,
         'openid' => $faker->sha1,
         'unionid' => $faker->optional()->sha1,
