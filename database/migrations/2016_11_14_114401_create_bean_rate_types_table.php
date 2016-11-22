@@ -15,8 +15,8 @@ class CreateBeanRateTypesTable extends Migration
     {
         Schema::create('bean_rate_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique()->comments('规则类型');
-            $table->string('name_en')->unique()->comments('规则类型英文名，用于检索');
+            $table->string('name')->unique()->comment('规则类型');
+            $table->string('name_en')->unique()->comment('规则类型英文名，用于检索');
             $table->timestamps();
         });
     }

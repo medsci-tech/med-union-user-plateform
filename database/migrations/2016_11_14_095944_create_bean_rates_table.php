@@ -15,11 +15,11 @@ class CreateBeanRatesTable extends Migration
     {
         Schema::create('bean_rates', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique()->comments('规则名');
-            $table->string('name_en')->unique()->comments('规则英文名，用于检索');
-            $table->unsignedInteger('bean_rate_type_id')->nullable()->comments('关联迈豆规则类型id');
-            $table->unsignedInteger('project_id')->nullable()->comments('关联的项目名称');
-            $table->integer('rate')->default(1)->comments('规则比率，例如学习一次返20迈豆，就设为20');
+            $table->string('name')->unique()->comment('规则名');
+            $table->string('name_en')->unique()->comment('规则英文名，用于检索');
+            $table->unsignedInteger('bean_rate_type_id')->nullable()->comment('关联迈豆规则类型id');
+            $table->unsignedInteger('project_id')->nullable()->comment('关联的项目名称');
+            $table->integer('rate')->default(1)->comment('规则比率，例如学习一次返20迈豆，就设为20');
             $table->timestamps();
             $table->softDeletes();
         });

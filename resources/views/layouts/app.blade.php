@@ -10,6 +10,7 @@
     <!-- Styles -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <link href="{{asset('plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
+    <link href="{{asset('plugins/icheck-flat/blue.css')}}" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top">
@@ -97,7 +98,7 @@
                                         {{method_field('delete')}}
                                         <input type="hidden" name="id" value="{{$delete_button['id']}}">
                                     </form>
-                                    <a data-delete="delete-form-show" class="btn btn-default btn-sm" href="javascript:;"><span class="glyphicon glyphicon-remove"></span>&nbsp; 删除</a>
+                                    <a data-delete="delete-form-show" class="btn btn-danger btn-sm" href="javascript:;"><span class="glyphicon glyphicon-remove"></span>&nbsp; 删除</a>
                                 @endif
                             </div>
                         </div>
@@ -116,8 +117,31 @@
     <script src="{{asset('plugins/validate/jquery.validate.min.js')}}"></script>
     <script src="{{asset('plugins/validate/messages_zh.min.js')}}"></script>
     <script src="{{asset('plugins/sweetalert/sweetalert.min.js')}}"></script>
+    <script src="{{asset('plugins/icheck-flat/jquery.icheck.min.js')}}"></script>
+    <script src="{{asset('plugins/icheck-flat/select2.min.js')}}"></script>
     <script>
         $(function () {
+            // 选择按钮
+            var checkboxClass = 'icheckbox_flat-blue';
+            var radioClass = 'iradio_flat-blue';
+            $('input[type=checkbox],input[type=radio]').iCheck({
+                checkboxClass: checkboxClass,
+                radioClass: radioClass
+            });
+            $("span.icon input:checkbox, th input:checkbox").on('ifChecked || ifUnchecked',function() {
+                var checkedStatus = this.checked;
+                var checkbox = $(this).parents('.widget-box').find('tr td:first-child input:checkbox');
+                checkbox.each(function() {
+                    this.checked = checkedStatus;
+                    if (checkedStatus == this.checked) {
+                        $(this).closest('.' + checkboxClass).removeClass('checked');
+                    }
+                    if (this.checked) {
+                        $(this).closest('.' + checkboxClass).addClass('checked');
+                    }
+                });
+            });
+
             $('[data-delete="delete-form-show"]').click(function () {
                 swal({
                     title: "您确定要删除吗",

@@ -2,6 +2,10 @@
 
 namespace App;
 
+use App\Business\Bean\UserHasBean;
+use App\Business\Log\UserHasBeanLogs;
+use App\Business\Position\UserHasPosition;
+use App\Business\Profile\UserHasProfile;
 use App\Core\Authentication\Wechat\IsWechatUser;
 use App\Core\Authorization\Role\UserHasRole;
 use Illuminate\Notifications\Notifiable;
@@ -46,6 +50,10 @@ class User extends Authenticatable
 {
     use Notifiable;
     use UserHasRole;
+    use UserHasProfile;
+    use UserHasPosition;
+    use UserHasBean;
+    use UserHasBeanLogs;
     use IsWechatUser;
     use HasApiTokens;
 
@@ -55,7 +63,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'account', 'phone'
     ];
 
     /**
