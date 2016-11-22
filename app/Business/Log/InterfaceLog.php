@@ -35,6 +35,8 @@ class InterfaceLog extends Model
 {
     use SoftDeletes;
 
+    protected $guarded = [];
+
     public function token()
     {
         return $this->belongsTo(Token::class);

@@ -22,14 +22,22 @@ class RegisterInterfaceController extends Controller
      *
      * @apiExample {curl} Example usage:
      *     curl -X "POST" "https://med-union-user-plateform.dev/api/v1/register" \
-     * -H "Accept: application/json" \
-     * -H "Authorization: Bearer [token]" \
-     * -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8"
+     *          -H "Accept: application/json" \
+     *          -H "Authorization: Bearer [token]" \
+     *          -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8"
      *
-     * @apiParam {String} phone 用户的手机号码。
+     * @apiParam {String} phone 用户的手机号码。必填。唯一。
+     * @apiParam {String} name 姓名。选填。
+     * @apiParam {String} password 密码。选填。
+     * @apiParam {String} email 用户的电子邮箱密码，用作后台登录，选填。唯一。
+     * @apiParam {String} unionid 用户的unionid。选填。唯一。
      * @apiParamExample {json} Request-Example:
      *     {
-     *       "phone": "18812345678"
+     *       "phone": "18812345678"，
+     *       "name": "张三",
+     *       "password": "123456",
+     *       "email": "abc@foxmail.com",
+     *       "unionid": "QWERTYUADFAFALDKFJLKJOIAFJLJDSKJFADAFA"
      *     }
      *
      * @apiSuccess {String} status 自定义状态码，这里总是显示"ok".

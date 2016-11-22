@@ -35,7 +35,7 @@ class AddRegisterBean
         \DB::transaction(function () use ($user, $event, $project, $bean_rate) {
             \DB::table('projects')->lockForUpdate();
             \DB::table('beans')->lockForUpdate();
-            $bean = $user->bean()->fresh();
+            $bean = $user->bean()->first()->fresh();
             $event->beansBefore = $bean->number;
 
             $project->minusBean($bean_rate->rate);

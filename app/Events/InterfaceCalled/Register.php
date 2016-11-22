@@ -44,6 +44,11 @@ class Register extends InterfaceCalledEvent
     public $project;
 
     /**
+     * @var RegisterRequest
+     */
+    public $request;
+
+    /**
      * Register constructor.
      * @param \Illuminate\Http\Request $request
      */

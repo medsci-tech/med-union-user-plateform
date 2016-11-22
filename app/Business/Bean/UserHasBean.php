@@ -26,7 +26,7 @@ trait UserHasBean
     {
         \DB::transaction(function () use ($amount) {
             \DB::table('beans')->lockForUpdate();
-            $fresh = $this->bean()->fresh();
+            $fresh = $this->bean()->first()->fresh();
             $fresh->update([
                 'number' => $fresh->number + $amount
             ]);
@@ -39,7 +39,7 @@ trait UserHasBean
     {
         \DB::transaction(function () use ($amount) {
             \DB::table('beans')->lockForUpdate();
-            $fresh = $this->bean()->fresh();
+            $fresh = $this->bean()->first()->fresh();
             if ($fresh->number < $amount) {
                 throw new BeansNotEnoughForUserException();
             }

@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Logs\Statistics;
 
-use App\Events\InterfaceCalled\Register;
+use App\Events\InterfaceCalled\Register as RegisterEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -21,10 +21,10 @@ class Register
     /**
      * Handle the event.
      *
-     * @param  Register  $event
+     * @param  RegisterEvent  $event
      * @return void
      */
-    public function handle(Register $event)
+    public function handle(RegisterEvent $event)
     {
         //
     }

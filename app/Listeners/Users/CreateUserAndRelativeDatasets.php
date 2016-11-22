@@ -2,6 +2,7 @@
 
 namespace App\Listeners\Users;
 
+use App\Business\Bean\Bean;
 use App\Business\Bean\BeanRate;
 use App\Events\InterfaceCalled\Register;
 use App\User;
@@ -28,14 +29,19 @@ class CreateUserAndRelativeDatasets
      */
     public function handle(Register $event)
     {
-        $event->user = User::create([
+        $user = $event->user = User::create([
             'phone' => $event->request->input('phone'),
             'name' => $event->request->input('name', null),
+            'email' => $event->request->input('email', null),
             'openid' => $event->request->input('openid', null),
             'unionid' => $event->request->input('unionid', null),
             'password' => ($password = $event->request->input('password', null)) ? bcrypt($password) : null
         ]);
+        $user->bean()->save(
+            Bean::create(['number' => 0])
+        );
         $bean_rate = $event->beanRate = BeanRate::where('name_en', 'register')->first();
-        $event->project = $bean_rate->project();
+        $event->project = $bean_rate->project()->first();
+        $event->request->created_user = $user;
     }
 }

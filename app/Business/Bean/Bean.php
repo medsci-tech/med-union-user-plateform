@@ -25,4 +25,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Bean extends Model
 {
     use SoftDeletes;
+
+    protected $guarded = [];
 }
