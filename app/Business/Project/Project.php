@@ -39,6 +39,9 @@ class Project extends Model
     use ProjectBelongsToApplication;
     use SoftDeletes;
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'application_id',
         'name',
@@ -46,22 +49,12 @@ class Project extends Model
         'description'
     ];
 
-    public function minusBean(float $amount)
-    {
-        \DB::transaction(function () use ($amount) {
-            \DB::table('projects')->lockForUpdate();
-            $fresh = $this->fresh();
-            if ($fresh->rest_of_beans < $amount) {
-                throw new BeansNotEnoughForProjectException();
-            }
-            $fresh->update([
-                'rest_of_beans' => $fresh->rest_of_beans - $amount
-            ]);
-        });
-
-        return $this;
-    }
-
+    /**
+     * 企业通过合约增加迈豆，充值时调用此方法
+     *
+     * @param float $amount
+     * @return $this
+     */
     public function addBean(float $amount)
     {
         \DB::transaction(function () use ($amount) {

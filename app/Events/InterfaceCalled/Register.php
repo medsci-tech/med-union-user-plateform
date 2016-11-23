@@ -25,16 +25,6 @@ class Register extends InterfaceCalledEvent
     public $beanLog;
 
     /**
-     * @var float
-     */
-    public $beansBefore = 0;
-
-    /**
-     * @var float
-     */
-    public $beansAfter = 0;
-
-    /**
      * @var null|BeanRate
      */
     public $beanRate;

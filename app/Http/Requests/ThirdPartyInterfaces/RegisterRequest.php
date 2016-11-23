@@ -39,10 +39,9 @@ class RegisterRequest extends FormRequest
 
     public function handle()
     {
+        $event = new Register($this);
         try {
-            $event = new Register($this);
             event($event);
-
             return response()->json([
                 'status' => 'ok',
                 'user_id' => $event->user->id
@@ -50,7 +49,7 @@ class RegisterRequest extends FormRequest
         } catch (BeansNotEnoughForProjectException $e) {
             return response()->json([
                 'status' => 'warning',
-                'user_id' => $this->created_user->id,
+                'user_id' => $event->user->id,
                 'message' => $e->getMessage()
             ]);
         } catch (\Exception $e) {

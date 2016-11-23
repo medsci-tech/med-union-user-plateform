@@ -17,7 +17,6 @@ class EventServiceProvider extends ServiceProvider
             \App\Listeners\RegisterEventListeners\InterfaceCalled::class,
             \App\Listeners\RegisterEventListeners\CreateUserAndRelativeDatasets::class,
             \App\Listeners\RegisterEventListeners\AddBean::class,
-            \App\Listeners\RegisterEventListeners\CreateBeanLog::class,
             \App\Listeners\RegisterEventListeners\DumpDataIntoStatisticsDatabase::class,
             \App\Listeners\RegisterEventListeners\InterfaceSucceed::class,
         ],
