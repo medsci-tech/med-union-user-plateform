@@ -11,11 +11,6 @@ use Illuminate\Foundation\Http\FormRequest;
 class RegisterRequest extends FormRequest
 {
     /**
-     * @var User|null
-     */
-    public $created_user;
-
-    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -45,11 +40,12 @@ class RegisterRequest extends FormRequest
     public function handle()
     {
         try {
-            event(new Register($this));
+            $event = new Register($this);
+            event($event);
 
             return response()->json([
                 'status' => 'ok',
-                'user_id' => $this->created_user->id
+                'user_id' => $event->user->id
             ]);
         } catch (BeansNotEnoughForProjectException $e) {
             return response()->json([
