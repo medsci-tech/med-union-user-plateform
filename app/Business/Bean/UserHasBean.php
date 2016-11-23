@@ -39,7 +39,7 @@ trait UserHasBean
 
             $fresh = $this->bean()->first()->fresh();
             $user_beans_before = $fresh->number;
-            if ($user_beans_before < $amount) {
+            if ($user_beans_before + $amount < 0) {
                 throw new BeansNotEnoughForUserException();
             }
             $fresh->update([
@@ -52,9 +52,10 @@ trait UserHasBean
             if ($projcet_beans_before < $amount) {
                 throw new BeansNotEnoughForProjectException();
             }
-            $fresh_project->update([
-                'rest_of_beans' => $fresh_project->rest_of_beans - $amount
-            ]);
+
+            $fresh_project->rest_of_beans = $fresh_project->rest_of_beans - $amount;//Can't do mass assignment here!
+            $fresh_project->save();
+
             $project_beans_after = $fresh_project->rest_of_beans;
 
             BeanLog::create([

@@ -46,7 +46,7 @@ class Project extends Model
         'application_id',
         'name',
         'name_en',
-        'description'
+        'description',
     ];
 
     /**

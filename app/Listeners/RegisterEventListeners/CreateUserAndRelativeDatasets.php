@@ -4,6 +4,7 @@ namespace App\Listeners\RegisterEventListeners;
 
 use App\Business\Bean\Bean;
 use App\Business\Bean\BeanRate;
+use App\Business\Profile\Profile;
 use App\Events\InterfaceCalled\Register;
 use App\User;
 use Illuminate\Queue\InteractsWithQueue;
@@ -40,14 +41,14 @@ class CreateUserAndRelativeDatasets
         $user->bean()->save(
             Bean::create(['number' => 0])
         );
-        $user->profile()->save([
+        $user->profile()->save(Profile::create([
             'role' => $event->request->input('role', null),
             'title' => $event->request->input('title', null),
             'office' => $event->request->input('office', null),
             'province' => $event->request->input('province', null),
             'city' => $event->request->input('city', null),
             'hospital_name' => $event->request->input('hospital_name', null),
-        ]);
+        ]));
         $bean_rate = $event->beanRate = BeanRate::where('name_en', 'register')->first();
         $event->project = $bean_rate->project()->first();
     }
