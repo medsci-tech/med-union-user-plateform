@@ -29,7 +29,8 @@ class AddBean
     public function handle(Register $event)
     {
         $user = $event->user;
-        $bean_rate = $event->beanRate;
+        $bean_rate = $event->beanRate = BeanRate::where('name_en', 'register')->first();
+        $event->project = $bean_rate->project()->first();
 
         $user->modifyBeanAccordingToBeanRate($bean_rate);
     }

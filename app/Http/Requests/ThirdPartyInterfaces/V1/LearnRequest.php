@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\ThirdPartyInterfaces;
+namespace App\Http\Requests\ThirdPartyInterfaces\V1;
 
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TestConnectionRequest extends FormRequest
+class LearnRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class TestConnectionRequest extends FormRequest
      */
     public function authorize()
     {
-        return \Auth::user()->can('call interfaces');
+        return Auth::user()->can('call interfaces');
     }
 
     /**
@@ -24,15 +25,7 @@ class TestConnectionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'phone' => 'exists:users'
         ];
-    }
-
-    public function handle()
-    {
-        return response()->json([
-            'status' => 'ok',
-            'message' => '接入成功！欢迎使用迈德api！'
-        ]);
     }
 }

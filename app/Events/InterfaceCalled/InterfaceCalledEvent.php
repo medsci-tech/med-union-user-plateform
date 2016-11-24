@@ -34,4 +34,13 @@ class InterfaceCalledEvent
         $this->request = $request;
         $this->interfaceLog = null;
     }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return User
+     */
+    protected function getTargetUserByPhone(\Illuminate\Http\Request $request)
+    {
+        return User::where('phone', $request->input('phone'))->firstOrFail();
+    }
 }

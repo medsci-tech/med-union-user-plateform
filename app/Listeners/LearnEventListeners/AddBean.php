@@ -2,9 +2,8 @@
 
 namespace App\Listeners\LearnEventListeners;
 
+use App\Business\Bean\BeanRate;
 use App\Events\InterfaceCalled\Learn;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class AddBean
 {
@@ -26,6 +25,8 @@ class AddBean
      */
     public function handle(Learn $event)
     {
-        //
+        $bean_rate = $event->beanRate = BeanRate::where('name_en', 'register')->first();
+
+        $event->user->modifyBeanAccordingToBeanRate($bean_rate);
     }
 }

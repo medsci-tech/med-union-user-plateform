@@ -23,21 +23,18 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\InterfaceCalled\Learn::class => [
             \App\Listeners\LearnEventListeners\InterfaceCalled::class,
             \App\Listeners\LearnEventListeners\AddBean::class,
-            \App\Listeners\LearnEventListeners\CreateBeanLog::class,
             \App\Listeners\LearnEventListeners\DumpDataIntoStatisticsDatabase::class,
             \App\Listeners\LearnEventListeners\InterfaceSucceed::class,
         ],
         \App\Events\InterfaceCalled\Consume::class => [
             \App\Listeners\ConsumeEventListeners\InterfaceCalled::class,
             \App\Listeners\ConsumeEventListeners\AddBean::class,
-            \App\Listeners\ConsumeEventListeners\CreateBeanLog::class,
             \App\Listeners\ConsumeEventListeners\DumpDataIntoStatisticsDatabase::class,
             \App\Listeners\ConsumeEventListeners\InterfaceSucceed::class,
         ],
         \App\Events\InterfaceCalled\ModifyBeanManually::class => [
             \App\Listeners\ModifyBeanManuallyEventListeners\InterfaceCalled::class,
             \App\Listeners\ModifyBeanManuallyEventListeners\AddBean::class,
-            \App\Listeners\ModifyBeanManuallyEventListeners\CreateBeanLog::class,
             \App\Listeners\ModifyBeanManuallyEventListeners\DumpDataIntoStatisticsDatabase::class,
             \App\Listeners\ModifyBeanManuallyEventListeners\InterfaceSucceed::class,
         ],

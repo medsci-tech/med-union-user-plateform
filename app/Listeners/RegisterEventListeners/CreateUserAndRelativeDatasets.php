@@ -49,7 +49,5 @@ class CreateUserAndRelativeDatasets
             'city' => $event->request->input('city', null),
             'hospital_name' => $event->request->input('hospital_name', null),
         ]));
-        $bean_rate = $event->beanRate = BeanRate::where('name_en', 'register')->first();
-        $event->project = $bean_rate->project()->first();
     }
 }

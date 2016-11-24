@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
 
 use App\Business\Statistic\User\User;
-use App\Http\Requests\ThirdPartyInterfaces\RegisterRequest;
+use App\Events\InterfaceCalled\Register;
+use App\Exceptions\BeansNotEnoughForProjectException;
+use App\Http\Requests\ThirdPartyInterfaces\V1\RegisterRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -68,12 +70,30 @@ class RegisterInterfaceController extends Controller
      * @apiUse Forbidden
      *
      *
-     * @param \App\Http\Requests\ThirdPartyInterfaces\RegisterRequest $request
+     * @param RegisterRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function handleRequest(RegisterRequest $request)
     {
-        return $request->handle();
+        $event = new Register($request);
+        try {
+            event($event);
+            return response()->json([
+                'status' => 'ok',
+                'user_id' => $event->user->id
+            ]);
+        } catch (BeansNotEnoughForProjectException $e) {
+            return response()->json([
+                'status' => 'warning',
+                'user_id' => $event->user->id,
+                'message' => $e->getMessage()
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => '未知错误，请联系管理员'
+            ], 500);
+        }
     }
 
 

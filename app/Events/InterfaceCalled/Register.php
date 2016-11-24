@@ -5,7 +5,7 @@ namespace App\Events\InterfaceCalled;
 use App\Business\Bean\BeanRate;
 use App\Business\Log\BeanLog;
 use App\Business\Project\Project;
-use App\Http\Requests\ThirdPartyInterfaces\RegisterRequest;
+use App\Http\Requests\ThirdPartyInterfaces\V1\RegisterRequest;
 use App\User;
 
 
@@ -40,9 +40,9 @@ class Register extends InterfaceCalledEvent
 
     /**
      * Register constructor.
-     * @param \Illuminate\Http\Request $request
+     * @param RegisterRequest $request
      */
-    public function __construct(\Illuminate\Http\Request $request)
+    public function __construct(RegisterRequest $request)
     {
         parent::__construct($request);
         $this->user = null;
