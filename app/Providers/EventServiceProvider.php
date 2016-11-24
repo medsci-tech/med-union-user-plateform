@@ -40,10 +40,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         \App\Events\InterfaceCalled\QueryUser::class => [
             \App\Listeners\QueryUserEventListeners\InterfaceCalled::class,
+            \App\Listeners\QueryUserEventListeners\QueryForResult::class,
             \App\Listeners\QueryUserEventListeners\InterfaceSucceed::class,
         ],
         \App\Events\InterfaceCalled\QueryUserBeanLogs::class => [
             \App\Listeners\QueryUserBeanLogsEventListeners\InterfaceCalled::class,
+            \App\Listeners\QueryUserBeanLogsEventListeners\QueryForResult::class,
             \App\Listeners\QueryUserBeanLogsEventListeners\InterfaceSucceed::class,
         ],
     ];
