@@ -60,7 +60,7 @@ class ConsumeInterfaceController extends Controller
      * @apiErrorExample {json} Error-500
      *     HTTP/1.1 500 Internal Server Error
      *     {
-     *       "message": "\u7528\u6237\u8fc8\u8c46\u4e0d\u8db3",
+     *       "message": "用户迈豆不足",
      *       "status": "error"
      *     }
      *

@@ -35,4 +35,5 @@ class Profile extends Model
     use ProfileBelongsToUser;
 
     protected $guarded = [];
+    protected $hidden = ['id', 'user_id', 'created_at', 'updated_at'];
 }

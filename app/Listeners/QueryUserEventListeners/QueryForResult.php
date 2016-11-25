@@ -3,8 +3,7 @@
 namespace App\Listeners\QueryUserEventListeners;
 
 use App\Events\InterfaceCalled\QueryUser;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+
 
 class QueryForResult
 {
@@ -26,6 +25,8 @@ class QueryForResult
      */
     public function handle(QueryUser $event)
     {
-        //
+        $event->request->setResultSet($event->user->fresh(['profile', 'bean'])->makeHidden([
+            'created_at', 'updated_at'
+        ])->toArray());
     }
 }
