@@ -29,7 +29,7 @@ trait UserHasBean
      * @param float                       $multiplicand 迈豆被乘数，通常是用户通过接口传入的
      * @return $this
      */
-    public function modifyBeanAccordingToBeanRate(BeanRate $beanRate, float $multiplicand = 1.0)
+    public function modifyBeanAccordingToBeanRate($beanRate, float $multiplicand = 1.0)
     {
         \DB::transaction(function () use ($beanRate, $multiplicand) {
             \DB::table('beans')->lockForUpdate();
