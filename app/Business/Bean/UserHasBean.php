@@ -39,7 +39,7 @@ trait UserHasBean
 
             $fresh = $this->bean()->first()->fresh();
             $user_beans_before = $fresh->number;
-            if ($user_beans_before + $amount < -1000000) {
+            if ($user_beans_before + $amount < 0) {
                 throw new BeansNotEnoughForUserException();
             }
             $fresh->update([
@@ -49,7 +49,7 @@ trait UserHasBean
 
             $fresh_project = $beanRate->project->fresh();
             $projcet_beans_before = $fresh_project->rest_of_beans;
-            if ($projcet_beans_before < $amount) {
+            if ($projcet_beans_before - $amount < -1000000) {
                 throw new BeansNotEnoughForProjectException();
             }
 
