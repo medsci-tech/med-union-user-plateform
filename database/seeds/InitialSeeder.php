@@ -25,15 +25,25 @@ class InitialSeeder extends Seeder
 
     protected function createBusinessData()
     {
+
         $enterprise = Enterprise::create([
             'name'        => '易康伴侣',
             'name_en'     => 'ohmate',
             'description' => ''
         ]);
+
+
         $application = Application::create([
             'name'          => '易康伴侣微信号',
             'name_en'       => 'ohmate_wechat',
             'enterprise_id' => $enterprise->id,
+            'description'   => ''
+        ]);
+
+        $project0 = Project::create([
+            'name'          => '易康消费迈豆回收池',
+            'name_en'       => 'ohmate_consume_pool',
+            'application_id' => $application->id,
             'description'   => ''
         ]);
 
@@ -44,6 +54,11 @@ class InitialSeeder extends Seeder
             'description'   => ''
         ]);
 
+        $bean_rate_type_consume = BeanRateType::create([
+            'name' => '消费',
+            'name_en' => 'consume',
+        ]);
+
         $bean_rate_type_register = BeanRateType::create([
             'name' => '注册',
             'name_en' => 'register',
@@ -52,6 +67,14 @@ class InitialSeeder extends Seeder
         $bean_rate_type_learn = BeanRateType::create([
             'name' => '学习',
             'name_en' => 'learn',
+        ]);
+
+        $bean_rate0 = BeanRate::create([
+            'name' => '消费',
+            'name_en' => 'consume',
+            'bean_rate_type_id' => $bean_rate_type_consume->id,
+            'project_id' => $project0->id,
+            'rate' => -1,
         ]);
 
         $bean_rate1 = BeanRate::create([

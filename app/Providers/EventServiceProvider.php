@@ -13,42 +13,40 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\InterfaceCalled\Register' => [
-            'App\Listeners\Logs\Interfaces\Called\Register',
-            'App\Listeners\Users\CreateUserAndRelativeDatasets',
-            'App\Listeners\Beans\AddRegisterBean',
-            'App\Listeners\Logs\Beans\Register',
-            'App\Listeners\Logs\Statistics\Register',
-            'App\Listeners\Logs\Interfaces\Succeed\Register',
+        \App\Events\InterfaceCalled\Register::class => [
+            \App\Listeners\RegisterEventListeners\InterfaceCalled::class,
+            \App\Listeners\RegisterEventListeners\CreateUserAndRelativeDatasets::class,
+            \App\Listeners\RegisterEventListeners\AddBean::class,
+            \App\Listeners\RegisterEventListeners\DumpDataIntoStatisticsDatabase::class,
+            \App\Listeners\RegisterEventListeners\InterfaceSucceed::class,
         ],
-        'App\Events\InterfaceCalled\Learn' => [
-            'App\Listeners\Logs\Interfaces\Called\Learn',
-            'App\Listeners\Beans\AddLearnBean',
-            'App\Listeners\Logs\Beans\Learn',
-            'App\Listeners\Logs\Statistics\Learn',
-            'App\Listeners\Logs\Interfaces\Succeed\Learn',
+        \App\Events\InterfaceCalled\Learn::class => [
+            \App\Listeners\LearnEventListeners\InterfaceCalled::class,
+            \App\Listeners\LearnEventListeners\AddBean::class,
+            \App\Listeners\LearnEventListeners\DumpDataIntoStatisticsDatabase::class,
+            \App\Listeners\LearnEventListeners\InterfaceSucceed::class,
         ],
-        'App\Events\InterfaceCalled\Consume' => [
-            'App\Listeners\Logs\Interfaces\Called\Consume',
-            'App\Listeners\Beans\AddConsumeBean',
-            'App\Listeners\Logs\Beans\Consume',
-            'App\Listeners\Logs\Statistics\Consume',
-            'App\Listeners\Logs\Interfaces\Succeed\Consume',
+        \App\Events\InterfaceCalled\Consume::class => [
+            \App\Listeners\ConsumeEventListeners\InterfaceCalled::class,
+            \App\Listeners\ConsumeEventListeners\AddBean::class,
+            \App\Listeners\ConsumeEventListeners\DumpDataIntoStatisticsDatabase::class,
+            \App\Listeners\ConsumeEventListeners\InterfaceSucceed::class,
         ],
-        'App\Events\InterfaceCalled\ModifyBeanManually' => [
-            'App\Listeners\Logs\Interfaces\Called\ModifyBeanManually',
-            'App\Listeners\Beans\ModifyBeanManually',
-            'App\Listeners\Logs\Beans\ModifyBeanManually',
-            'App\Listeners\Logs\Statistics\ModifyBeanManually',
-            'App\Listeners\Logs\Interfaces\Succeed\ModifyBeanManually',
+        \App\Events\InterfaceCalled\ModifyBeanManually::class => [
+            \App\Listeners\ModifyBeanManuallyEventListeners\InterfaceCalled::class,
+            \App\Listeners\ModifyBeanManuallyEventListeners\AddBean::class,
+            \App\Listeners\ModifyBeanManuallyEventListeners\DumpDataIntoStatisticsDatabase::class,
+            \App\Listeners\ModifyBeanManuallyEventListeners\InterfaceSucceed::class,
         ],
-        'App\Events\InterfaceCalled\QueryUser' => [
-            'App\Listeners\Logs\Interfaces\Called\QueryUserBean',
-            'App\Listeners\Logs\Interfaces\Succeed\QueryUserBean',
+        \App\Events\InterfaceCalled\QueryUser::class => [
+            \App\Listeners\QueryUserEventListeners\InterfaceCalled::class,
+            \App\Listeners\QueryUserEventListeners\QueryForResult::class,
+            \App\Listeners\QueryUserEventListeners\InterfaceSucceed::class,
         ],
-        'App\Events\InterfaceCalled\QueryUserBeanLogs' => [
-            'App\Listeners\Logs\Interfaces\Called\QueryUserBeanLogs',
-            'App\Listeners\Logs\Interfaces\Succeed\QueryUserBeanLogs',
+        \App\Events\InterfaceCalled\QueryUserBeanLogs::class => [
+            \App\Listeners\QueryUserBeanLogsEventListeners\InterfaceCalled::class,
+            \App\Listeners\QueryUserBeanLogsEventListeners\QueryForResult::class,
+            \App\Listeners\QueryUserBeanLogsEventListeners\InterfaceSucceed::class,
         ],
     ];
 

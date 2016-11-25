@@ -27,6 +27,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Log\BeanLog whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Log\BeanLog whereDeletedAt($value)
  * @mixin \Eloquent
+ * @property float $user_beans_before 操作前用户的迈豆
+ * @property float $user_beans_after 操作后用户的迈豆
+ * @property float $project_beans_before 操作前项目的迈豆
+ * @property float $project_beans_after 操作后项目的迈豆
+ * @method static \Illuminate\Database\Query\Builder|\App\Business\Log\BeanLog whereUserBeansBefore($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Business\Log\BeanLog whereUserBeansAfter($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Business\Log\BeanLog whereProjectBeansBefore($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Business\Log\BeanLog whereProjectBeansAfter($value)
  */
 class BeanLog extends Model
 {

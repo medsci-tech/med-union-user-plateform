@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
 
-use App\Http\Requests\ThirdPartyInterfaces\TestConnectionRequest;
+use App\Http\Requests\ThirdPartyInterfaces\V1\TestConnectionRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -63,7 +63,7 @@ class TestConnectionInterfaceController extends Controller
      *
      * @apiUse Unauthorized
      * @apiUse Forbidden
-     * @param \App\Http\Requests\ThirdPartyInterfaces\TestConnectionRequest $request
+     * @param TestConnectionRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function handleRequest(TestConnectionRequest $request)

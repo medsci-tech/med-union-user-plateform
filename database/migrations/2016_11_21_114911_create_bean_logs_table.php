@@ -17,8 +17,10 @@ class CreateBeanLogsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable()->comment('关联的user');
             $table->unsignedInteger('bean_rate_id')->nullable()->comment('关联的bean_rate');
-            $table->decimal('beans_before', 20, 2)->nullable()->comment('操作前用户的迈豆');
-            $table->decimal('beans_after', 20, 2)->nullable()->comment('操作后用户的迈豆');
+            $table->decimal('user_beans_before', 20, 2)->nullable()->comment('操作前用户的迈豆');
+            $table->decimal('user_beans_after', 20, 2)->nullable()->comment('操作后用户的迈豆');
+            $table->decimal('project_beans_before', 20, 2)->nullable()->comment('操作前项目的迈豆');
+            $table->decimal('project_beans_after', 20, 2)->nullable()->comment('操作后项目的迈豆');
             $table->timestamps();
             $table->softDeletes();
 
