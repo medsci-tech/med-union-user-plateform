@@ -27,22 +27,29 @@ class RegisterInterfaceController extends Controller
      *          -H "Accept: application/json" \
      *          -H "Authorization: Bearer [token]" \
      *          -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8"
+     *          --data-urlencode "phone=18671616266"
      *
      * @apiParam {String} phone 用户的手机号码。必填。唯一。
      * @apiParam {String} name 姓名。选填。
      * @apiParam {String} password 密码。选填。
      * @apiParam {String} email 用户的电子邮箱密码，用作后台登录，选填。唯一。
      * @apiParam {String} unionid 用户的unionid。选填。唯一。
+     * @apiParam {String} role 用户的角色，请依据预定义角色填写。选填。
+     * @apiParam {String} title 用户的职称。选填。
+     * @apiParam {String} office 用户的科室。选填。
+     * @apiParam {String} province 用户的省份。选填。
+     * @apiParam {String} city 用户的城市。选填。
+     * @apiParam {String} hospital_name 用户的医院名称。选填。
      * @apiParamExample {json} Request-Example:
      *     {
-     *       "phone": "18812345678"，
+     *       "phone": "18812345678",
      *       "name": "张三",
      *       "password": "123456",
      *       "email": "abc@foxmail.com",
      *       "unionid": "QWERTYUADFAFALDKFJLKJOIAFJLJDSKJFADAFA"
      *     }
      *
-     * @apiSuccess {String} status 自定义状态码，这里总是显示"ok".
+     * @apiSuccess {String} status 自定义状态码，这里总是显示"ok".仅当项目迈豆不足时显示"warning"。此时只会注册，不会发放迈豆。
      * @apiSuccess {Number} user_id 创建用户的id
      * @apiSuccessExample {json} Success-Response:
      *     HTTP/1.1 200 OK

@@ -31,13 +31,27 @@ class Learn extends InterfaceCalledEvent
     public $request;
 
     /**
-     * Learn constructor.
-     * @param \Illuminate\Http\Request $request
+     * @var integer
      */
-    public function __construct(\Illuminate\Http\Request $request)
+    public $chance_remains_today;
+
+    /**
+     * Learn constructor.
+     * @param LearnRequest $request
+     */
+    public function __construct(LearnRequest $request)
     {
         parent::__construct($request);
         $this->user = $this->getTargetUserByPhone($request);
-        $this->beanRate = BeanRate::where('name', 'register')->firstOrFail();
+        $this->beanRate = $this->getBeanRate();
+        $this->chance_remains_today = 0;
+    }
+
+    /**
+     * @return BeanRate
+     */
+    protected function getBeanRate()
+    {
+        return BeanRate::where('name_en', 'learn')->firstOrFail();
     }
 }
