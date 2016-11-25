@@ -42,7 +42,7 @@ class Learn extends InterfaceCalledEvent
     public function __construct(LearnRequest $request)
     {
         parent::__construct($request);
-        $this->user = $this->getTargetUserByPhone($request);
+        $this->user = $request->getTargetUser();
         $this->beanRate = $this->getBeanRate();
         $this->chance_remains_today = 0;
     }

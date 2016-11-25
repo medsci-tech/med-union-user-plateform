@@ -45,6 +45,12 @@ use Laravel\Passport\HasApiTokens;
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $readNotifications
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
+ * @property string $phone
+ * @property-read \App\Business\Profile\Profile $profile
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Business\Position\Position[] $positions
+ * @property-read \App\Business\Bean\Bean $bean
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Business\Log\BeanLog[] $beanLogs
+ * @method static \Illuminate\Database\Query\Builder|\App\User wherePhone($value)
  */
 class User extends Authenticatable
 {

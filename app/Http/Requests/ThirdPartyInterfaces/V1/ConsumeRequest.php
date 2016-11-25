@@ -6,7 +6,7 @@ use App\Http\Requests\ThirdPartyInterfaces\RequestHasTargetUser;
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class LearnRequest extends FormRequest
+class ConsumeRequest extends FormRequest
 {
     use RequestHasTargetUser;
 
@@ -28,7 +28,13 @@ class LearnRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone' => 'exists:users'
+            'phone' => 'required|exists:users',
+            'multiplicant' => 'required|numeric|between:0,1000000'
         ];
+    }
+
+    public function getMultiplicant()
+    {
+        return $this->input('multiplicant', 0);
     }
 }
