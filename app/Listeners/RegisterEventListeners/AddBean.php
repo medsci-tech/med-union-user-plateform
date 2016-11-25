@@ -29,20 +29,9 @@ class AddBean
     public function handle(Register $event)
     {
         $user = $event->user;
-        $bean_rate = $event->beanRate;
-        $project = $event->project;
+        $bean_rate = $event->beanRate = BeanRate::where('name_en', 'register')->first();
+        $event->project = $bean_rate->project()->first();
 
-        \DB::transaction(function () use ($user, $event, $project, $bean_rate) {
-            \DB::table('projects')->lockForUpdate();
-            \DB::table('beans')->lockForUpdate();
-            $bean = $user->bean()->first()->fresh();
-            $event->beansBefore = $bean->number;
-
-            $project->minusBean($bean_rate->rate);
-            $user->addBean($bean_rate->rate);
-
-            $bean = $bean->fresh();
-            $event->beansAfter = $bean->number;
-        });
+        $user->modifyBeanAccordingToBeanRate($bean_rate);
     }
 }

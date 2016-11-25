@@ -26,6 +26,6 @@ class AddBean
      */
     public function handle(Consume $event)
     {
-        //
+        $event->user->modifyBeanAccordingToBeanRate($event->beanRate, $event->multiplicant);
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Listeners\ConsumeEventListeners;
+namespace App\Listeners\QueryUserBeanLogsEventListeners;
 
-use App\Events\InterfaceCalled\Consume;
+use App\Events\InterfaceCalled\QueryUserBeanLogs;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CreateBeanLog
+class QueryForResult
 {
     /**
      * Create the event listener.
@@ -21,10 +21,10 @@ class CreateBeanLog
     /**
      * Handle the event.
      *
-     * @param  Consume  $event
+     * @param  QueryUserBeanLogs  $event
      * @return void
      */
-    public function handle(Consume $event)
+    public function handle(QueryUserBeanLogs $event)
     {
         //
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\ThirdPartyInterfaces;
+namespace App\Http\Requests\ThirdPartyInterfaces\V1;
 
 use App\Events\InterfaceCalled\Register;
 use App\Exceptions\BeansNotEnoughForProjectException;
@@ -35,29 +35,5 @@ class RegisterRequest extends FormRequest
             'unionid' => 'unique:users',
             'email' => 'unique:users'
         ];
-    }
-
-    public function handle()
-    {
-        try {
-            $event = new Register($this);
-            event($event);
-
-            return response()->json([
-                'status' => 'ok',
-                'user_id' => $event->user->id
-            ]);
-        } catch (BeansNotEnoughForProjectException $e) {
-            return response()->json([
-                'status' => 'warning',
-                'user_id' => $this->created_user->id,
-                'message' => $e->getMessage()
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => '未知错误，请联系管理员'
-            ], 500);
-        }
     }
 }

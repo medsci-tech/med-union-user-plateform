@@ -14,6 +14,8 @@ use PDOException;
 Passport::tokensCan([
     'register' => '调用注册接口',
     'authenticate' => '检测用户认证信息接口',
+    'learn' => '学习返迈豆接口',
+    'consume' => '迈豆消费接口',
     'query-user-information' => '调用查询用户基本信息接口',
     'query-user-beans-log' => '调用查询用户迈豆记录接口',
     'update-user' => '调用更新用户信息接口'
