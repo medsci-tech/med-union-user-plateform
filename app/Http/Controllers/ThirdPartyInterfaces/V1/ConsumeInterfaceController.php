@@ -32,7 +32,8 @@ class ConsumeInterfaceController extends Controller
      * @apiParamExample {json} Request-Example:
      *     {
      *       "phone": "18812345678",
-     *       "multiplicant": 100
+     *       "cash_paid_by_beans": 100
+     *       "cash_paid": 100
      *     }
      *
      * @apiSuccess {String} status 自定义状态码，这里总是显示"ok".
