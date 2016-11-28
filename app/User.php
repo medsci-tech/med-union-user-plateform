@@ -6,6 +6,7 @@ use App\Business\Bean\UserHasBean;
 use App\Business\Log\UserHasBeanLogs;
 use App\Business\Position\UserHasPosition;
 use App\Business\Profile\UserHasProfile;
+use App\Business\UserRelevance\UserHasUpperUserPhone;
 use App\Core\Authentication\Wechat\IsWechatUser;
 use App\Core\Authorization\Role\UserHasRole;
 use Illuminate\Notifications\Notifiable;
@@ -59,6 +60,7 @@ class User extends Authenticatable
     use UserHasProfile;
     use UserHasPosition;
     use UserHasBean;
+    use UserHasUpperUserPhone;
     use UserHasBeanLogs;
     use IsWechatUser;
     use HasApiTokens;

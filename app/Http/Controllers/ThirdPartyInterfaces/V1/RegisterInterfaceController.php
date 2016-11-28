@@ -40,6 +40,8 @@ class RegisterInterfaceController extends Controller
      * @apiParam {String} province 用户的省份。选填。
      * @apiParam {String} city 用户的城市。选填。
      * @apiParam {String} hospital_name 用户的医院名称。选填。
+     * @apiParam {String} upper_user_phone 用户的上级用户电话，依据此建立关联关系。选填。
+     * @apiParam {String} upper_user_remark 用户的上级用户备注。选填。
      * @apiParamExample {json} Request-Example:
      *     {
      *       "phone": "18812345678",
