@@ -53,6 +53,12 @@ class InitialSeeder extends Seeder
             'application_id' => $application->id,
             'description'   => ''
         ]);
+        $project2 = Project::create([
+            'name'          => '易康伴侣消费上级返利',
+            'name_en'       => 'ohmate_wechat_cash_consume_upper_feedback',
+            'application_id' => $application->id,
+            'description'   => ''
+        ]);
 
         $bean_rate_type_consume = BeanRateType::create([
             'name' => '消费',
@@ -69,12 +75,17 @@ class InitialSeeder extends Seeder
             'name_en' => 'learn',
         ]);
 
+        $bean_rate_type_consume_feedback = BeanRateType::create([
+            'name' => '消费返利',
+            'name_en' => 'consume_feedback',
+        ]);
+
         $bean_rate0 = BeanRate::create([
             'name' => '消费',
             'name_en' => 'consume',
             'bean_rate_type_id' => $bean_rate_type_consume->id,
             'project_id' => $project0->id,
-            'rate' => -1,
+            'rate' => -100,
         ]);
 
         $bean_rate1 = BeanRate::create([
@@ -91,6 +102,14 @@ class InitialSeeder extends Seeder
             'project_id' => $project->id,
             'rate' => 20,
         ]);
+        $bean_rate3 = BeanRate::create([
+            'name' => '现金消费上级返迈豆',
+            'name_en' => 'cash_consume_upper_feedback',
+            'bean_rate_type_id' => $bean_rate_type_consume_feedback->id,
+            'project_id' => $project2->id,
+            'rate' => 2,
+        ]);
+
     }
 
     protected function createDummyUsers()
