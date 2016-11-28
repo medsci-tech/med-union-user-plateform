@@ -27,7 +27,8 @@ class ConsumeInterfaceController extends Controller
      *          --data-urlencode "multiplicant=100"
      *
      * @apiParam {String} phone 用户的手机号码。必填。唯一。
-     * @apiParam {Number} multiplicant 被乘数，可以理解为用户消费的迈豆数。
+     * @apiParam {Number} cash_paid_by_beans 迈豆抵扣的人民币数额。
+     * @apiParam {Number} cash_paid 实际支付的人民币数额。
      * @apiParamExample {json} Request-Example:
      *     {
      *       "phone": "18812345678",

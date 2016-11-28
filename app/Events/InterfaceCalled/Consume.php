@@ -28,7 +28,11 @@ class Consume extends InterfaceCalledEvent
     /**
      * @var float
      */
-    public $multiplicant;
+    public $cash_paid_by_beans;
+    /**
+     * @var float
+     */
+    public $cash_paid;
 
     /**
      * Consume constructor.
@@ -39,7 +43,8 @@ class Consume extends InterfaceCalledEvent
         parent::__construct($request);
         $this->user = $request->getTargetUser();
         $this->beanRate = $this->getBeanRate();
-        $this->multiplicant = $request->getMultiplicant();
+        $this->cash_paid_by_beans = $request->getCashPaidByBeans();
+        $this->cash_paid = $request->getCashPaid();
     }
 
     /**

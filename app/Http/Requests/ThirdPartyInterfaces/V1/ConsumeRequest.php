@@ -29,12 +29,18 @@ class ConsumeRequest extends FormRequest
     {
         return [
             'phone' => 'required|exists:users',
-            'multiplicant' => 'required|numeric|between:0,1000000'
+            'cash_paid_by_beans' => 'required|numeric|between:0,10000',
+            'cash_paid' => 'required|numeric|between:0,10000'
         ];
     }
 
-    public function getMultiplicant()
+    public function getCashPaidByBeans()
     {
-        return $this->input('multiplicant', 0);
+        return $this->input('cash_paid_by_beans', 0);
+    }
+
+    public function getCashPaid()
+    {
+        return $this->input('cash_paid', 0);
     }
 }
