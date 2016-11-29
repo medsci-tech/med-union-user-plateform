@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Listeners\ConsumeEventListeners;
+namespace App\Listeners\V1\ConsumeEventListeners;
 
 use App\Business\Bean\BeanRate;
-use App\Events\InterfaceCalled\Consume;
+use App\Events\InterfaceCalled\V1\Consume;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

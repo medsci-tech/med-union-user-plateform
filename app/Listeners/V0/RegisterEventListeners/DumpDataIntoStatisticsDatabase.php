@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Listeners\ModifyBeanManuallyEventListeners;
+namespace App\Listeners\V0\RegisterEventListeners;
 
-use App\Events\InterfaceCalled\ModifyBeanManually;
+use App\Events\InterfaceCalled\V0\Register as RegisterEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -21,10 +21,10 @@ class DumpDataIntoStatisticsDatabase
     /**
      * Handle the event.
      *
-     * @param  ModifyBeanManually  $event
+     * @param  RegisterEvent  $event
      * @return void
      */
-    public function handle(ModifyBeanManually $event)
+    public function handle(RegisterEvent $event)
     {
         //
     }

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Listeners\LearnEventListeners;
+namespace App\Listeners\V1\LearnEventListeners;
 
 use App\Business\Bean\BeanRate;
-use App\Events\InterfaceCalled\Learn;
+use App\Events\InterfaceCalled\V1\Learn;
 use Carbon\Carbon;
 
 class AddBean

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Listeners\RegisterEventListeners;
+namespace App\Listeners\V1\RegisterEventListeners;
 
-use App\Events\InterfaceCalled\Register as RegisterEvent;
+use App\Events\InterfaceCalled\V1\Register as RegisterEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

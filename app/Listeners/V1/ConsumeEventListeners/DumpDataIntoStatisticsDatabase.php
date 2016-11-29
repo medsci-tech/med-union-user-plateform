@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Listeners\ModifyBeanManuallyEventListeners;
+namespace App\Listeners\V1\ConsumeEventListeners;
 
-use App\Events\InterfaceCalled\ModifyBeanManually;
+use App\Events\InterfaceCalled\V1\Consume;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AddBean
+class DumpDataIntoStatisticsDatabase
 {
     /**
      * Create the event listener.
@@ -21,10 +21,10 @@ class AddBean
     /**
      * Handle the event.
      *
-     * @param  ModifyBeanManually  $event
+     * @param  Consume  $event
      * @return void
      */
-    public function handle(ModifyBeanManually $event)
+    public function handle(Consume $event)
     {
         //
     }

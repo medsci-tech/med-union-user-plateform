@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Listeners\QueryUserBeanLogsEventListeners;
+namespace App\Listeners\V1\LearnEventListeners;
 
-use App\Events\InterfaceCalled\QueryUserBeanLogs;
+use App\Events\InterfaceCalled\V1\Learn;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class QueryForResult
+class DumpDataIntoStatisticsDatabase
 {
     /**
      * Create the event listener.
@@ -21,10 +21,10 @@ class QueryForResult
     /**
      * Handle the event.
      *
-     * @param  QueryUserBeanLogs  $event
+     * @param  Learn  $event
      * @return void
      */
-    public function handle(QueryUserBeanLogs $event)
+    public function handle(Learn $event)
     {
         //
     }

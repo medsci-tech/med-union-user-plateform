@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Listeners\QueryUserEventListeners;
+namespace App\Listeners\V1\QueryUserEventListeners;
 
-use App\Events\InterfaceCalled\QueryUser;
+use App\Events\InterfaceCalled\V1\QueryUser;
 
 
 class QueryForResult
