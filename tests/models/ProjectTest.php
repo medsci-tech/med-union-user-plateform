@@ -13,10 +13,15 @@ class ProjectTest extends TestCase
       */
      public function projectsGeneratedSuccessfully()
      {
+
+         echo 'Test projects ...... ';
+
          factory(Project::class, 5)->create();
          $this->assertEquals(Project::count(), 5);
 
          factory(Project::class, 5)->create();
          $this->assertEquals(Project::count(),10);
+
+         echo 'OK'.PHP_EOL;
      }
 }

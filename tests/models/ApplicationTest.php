@@ -17,14 +17,14 @@ class ApplicationTest extends TestCase
      */
     public function applicationsGeneratedSuccessfully()
     {
+        echo 'Test application ...... ';
+
         factory(Application::class, 5)->create();
         $this->assertEquals(Application::count(), 5);
         factory(Application::class, 5)->create();
         $this->assertEquals(Application::count(), 10);
+
+        echo 'OK'.PHP_EOL;
     }
 
-    public function assignToUserSuccessfully()
-    {
-
-    }
 }

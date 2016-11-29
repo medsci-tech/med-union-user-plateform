@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\ThirdPartyInterfaces\V1;
 
+use App\Http\Requests\ThirdPartyInterfaces\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TestConnectionRequest extends FormRequest
+class TestConnectionRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class TestConnectionRequest extends FormRequest
      */
     public function authorize()
     {
-        return \Auth::user()->can('call interfaces');
+        return $this->getApiAuthedUser() && $this->getApiAuthedUser()->can('call interfaces');
     }
 
     /**

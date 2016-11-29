@@ -2,11 +2,12 @@
 
 namespace App\Http\Requests\ThirdPartyInterfaces\V1;
 
+use App\Http\Requests\ThirdPartyInterfaces\ApiRequest;
 use App\Http\Requests\ThirdPartyInterfaces\RequestHasTargetUser;
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class LearnRequest extends FormRequest
+class LearnRequest extends ApiRequest
 {
     use RequestHasTargetUser;
 
@@ -17,7 +18,7 @@ class LearnRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('call interfaces');
+        return $this->getApiAuthedUser() && $this->getApiAuthedUser()->can('call interfaces');
     }
 
     /**

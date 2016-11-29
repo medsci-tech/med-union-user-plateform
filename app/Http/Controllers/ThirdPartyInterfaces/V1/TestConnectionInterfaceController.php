@@ -47,9 +47,9 @@ class TestConnectionInterfaceController extends Controller
      *
      * @apiExample {curl} Example usage:
      *     curl -X "POST" "https://med-union-user-plateform.dev/api/v1/test" \
-     * -H "Accept: application/json" \
-     * -H "Authorization: Bearer [token]" \
-     * -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8"
+     *          -H "Accept: application/json" \
+     *          -H "Authorization: Bearer [token]" \
+     *          -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8"
      *
      * @apiUse Header
      *
