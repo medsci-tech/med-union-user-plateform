@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Events\InterfaceCalled;
+namespace App\Events\InterfaceCalled\V0;
 
+use App\Events\InterfaceCalled\InterfaceCalledEvent;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;

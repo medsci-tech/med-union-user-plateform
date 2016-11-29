@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
+namespace App\Http\Controllers\ThirdPartyInterfaces\V0;
 
 use App\Business\Statistic\User\User;
-use App\Events\InterfaceCalled\V1\Register;
+use App\Events\InterfaceCalled\V0\Register;
 use App\Exceptions\BeansNotEnoughForProjectException;
-use App\Http\Requests\ThirdPartyInterfaces\V1\RegisterRequest;
+use App\Http\Requests\ThirdPartyInterfaces\V0\RegisterRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,16 +14,16 @@ use MongoDB\BSON\UTCDateTime;
 class RegisterInterfaceController extends Controller
 {
     /**
-     * @api            {post} /v1/register 用户注册
+     * @api            {post} /v0/register 用户注册
      * @apiName        register
      * @apiDescription 根据请求内容为用户注册。注册成功后，会在数据库中生成用户记录。
-     * @apiGroup       v1
+     * @apiGroup       v0
      * @apiVersion     1.0.0
      *
      * @apiUse Header
      *
      * @apiExample {curl} Example usage:
-     *     curl -X "POST" "https://med-union-user-plateform.dev/api/v1/register" \
+     *     curl -X "POST" "https://med-union-user-plateform.dev/api/v0/register" \
      *          -H "Accept: application/json" \
      *          -H "Authorization: Bearer [token]" \
      *          -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8"

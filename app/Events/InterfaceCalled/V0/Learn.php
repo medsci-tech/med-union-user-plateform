@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Events\InterfaceCalled;
+namespace App\Events\InterfaceCalled\V0;
 
 use App\Business\Bean\BeanRate;
 use App\Business\Log\BeanLog;
-use App\Http\Requests\ThirdPartyInterfaces\V1\LearnRequest;
+use App\Events\InterfaceCalled\InterfaceCalledEvent;
+use App\Http\Requests\ThirdPartyInterfaces\V0\LearnRequest;
 use App\User;
 
 

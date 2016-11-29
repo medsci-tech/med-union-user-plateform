@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
 
-use App\Events\InterfaceCalled\Consume;
+use App\Events\InterfaceCalled\V1\Consume;
 use App\Http\Requests\ThirdPartyInterfaces\V1\ConsumeRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,7 +13,7 @@ class ConsumeInterfaceController extends Controller
      * @api            {post} /v1/consume 消费
      * @apiName        consume
      * @apiDescription 用户消费迈豆接口。调用此接口，传入消费迈豆数值，为用户扣减迈豆。
-     * @apiGroup       User
+     * @apiGroup       v1
      * @apiVersion     1.0.0
      *
      * @apiUse Header

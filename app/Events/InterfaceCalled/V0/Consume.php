@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Events\InterfaceCalled;
+namespace App\Events\InterfaceCalled\V0;
 
 use App\Business\Bean\BeanRate;
-use App\Http\Requests\ThirdPartyInterfaces\V1\ConsumeRequest;
+use App\Events\InterfaceCalled\InterfaceCalledEvent;
+use App\Http\Requests\ThirdPartyInterfaces\V0\ConsumeRequest;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -36,7 +37,7 @@ class Consume extends InterfaceCalledEvent
 
     /**
      * Consume constructor.
-     * @param \App\Http\Requests\ThirdPartyInterfaces\V1\ConsumeRequest $request
+     * @param \App\Http\Requests\ThirdPartyInterfaces\V0\ConsumeRequest $request
      */
     public function __construct(ConsumeRequest $request)
     {
