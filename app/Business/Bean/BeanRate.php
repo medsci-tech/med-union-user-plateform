@@ -39,6 +39,8 @@ class BeanRate extends Model
 
     protected $fillable = [
         'rate',
+        'name',
+        'name_en'
     ];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|BeanRateType

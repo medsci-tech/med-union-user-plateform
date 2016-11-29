@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
 
-use App\Events\InterfaceCalled\QueryUser;
+use App\Events\InterfaceCalled\V1\QueryUser;
 use App\Http\Requests\ThirdPartyInterfaces\V1\QueryUserInformationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,7 +14,7 @@ class QueryUserInformationInterfaceController extends Controller
      * @api            {get} /v1/query-user-information 查询用户信息
      * @apiName        query-user-information
      * @apiDescription 查询用户信息接口。
-     * @apiGroup       User
+     * @apiGroup       v1
      * @apiVersion     1.0.0
      *
      * @apiUse Header

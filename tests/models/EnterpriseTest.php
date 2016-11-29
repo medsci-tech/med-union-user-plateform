@@ -14,10 +14,14 @@ class EnterpriseTest extends TestCase
       */
      public function enterprisesGeneratedSuccsessfully()
      {
+         echo 'Test enterprises ...... ';
+
          factory(Enterprise::class, 5)->create();
          $this->assertEquals(Enterprise::count(), 5);
 
          factory(Enterprise::class, 5)->create();
          $this->assertEquals(Enterprise::count(), 10);
+
+         echo 'OK'.PHP_EOL;
      }
 }

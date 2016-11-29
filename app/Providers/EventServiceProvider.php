@@ -13,40 +13,28 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        \App\Events\InterfaceCalled\Register::class => [
-            \App\Listeners\RegisterEventListeners\InterfaceCalled::class,
-            \App\Listeners\RegisterEventListeners\CreateUserAndRelativeDatasets::class,
-            \App\Listeners\RegisterEventListeners\AddBean::class,
-            \App\Listeners\RegisterEventListeners\DumpDataIntoStatisticsDatabase::class,
-            \App\Listeners\RegisterEventListeners\InterfaceSucceed::class,
+        \App\Events\InterfaceCalled\V1\Register::class => [
+            \App\Listeners\V1\RegisterEventListeners\CreateUserAndRelativeDatasets::class,
+            \App\Listeners\V1\RegisterEventListeners\AddBean::class,
+            \App\Listeners\V1\RegisterEventListeners\DumpDataIntoStatisticsDatabase::class,
         ],
-        \App\Events\InterfaceCalled\Learn::class => [
-            \App\Listeners\LearnEventListeners\InterfaceCalled::class,
-            \App\Listeners\LearnEventListeners\AddBean::class,
-            \App\Listeners\LearnEventListeners\DumpDataIntoStatisticsDatabase::class,
-            \App\Listeners\LearnEventListeners\InterfaceSucceed::class,
+        \App\Events\InterfaceCalled\V1\Learn::class => [
+            \App\Listeners\V1\LearnEventListeners\AddBean::class,
+            \App\Listeners\V1\LearnEventListeners\DumpDataIntoStatisticsDatabase::class,
         ],
-        \App\Events\InterfaceCalled\Consume::class => [
-            \App\Listeners\ConsumeEventListeners\InterfaceCalled::class,
-            \App\Listeners\ConsumeEventListeners\AddBean::class,
-            \App\Listeners\ConsumeEventListeners\DumpDataIntoStatisticsDatabase::class,
-            \App\Listeners\ConsumeEventListeners\InterfaceSucceed::class,
+        \App\Events\InterfaceCalled\V1\Consume::class => [
+            \App\Listeners\V1\ConsumeEventListeners\AddBean::class,
+            \App\Listeners\V1\ConsumeEventListeners\DumpDataIntoStatisticsDatabase::class,
         ],
-        \App\Events\InterfaceCalled\ModifyBeanManually::class => [
-            \App\Listeners\ModifyBeanManuallyEventListeners\InterfaceCalled::class,
-            \App\Listeners\ModifyBeanManuallyEventListeners\AddBean::class,
-            \App\Listeners\ModifyBeanManuallyEventListeners\DumpDataIntoStatisticsDatabase::class,
-            \App\Listeners\ModifyBeanManuallyEventListeners\InterfaceSucceed::class,
+        \App\Events\InterfaceCalled\V1\ModifyBeanManually::class => [
+            \App\Listeners\V1\ModifyBeanManuallyEventListeners\AddBean::class,
+            \App\Listeners\V1\ModifyBeanManuallyEventListeners\DumpDataIntoStatisticsDatabase::class,
         ],
-        \App\Events\InterfaceCalled\QueryUser::class => [
-            \App\Listeners\QueryUserEventListeners\InterfaceCalled::class,
-            \App\Listeners\QueryUserEventListeners\QueryForResult::class,
-            \App\Listeners\QueryUserEventListeners\InterfaceSucceed::class,
+        \App\Events\InterfaceCalled\V1\QueryUser::class => [
+            \App\Listeners\V1\QueryUserEventListeners\QueryForResult::class,
         ],
-        \App\Events\InterfaceCalled\QueryUserBeanLogs::class => [
-            \App\Listeners\QueryUserBeanLogsEventListeners\InterfaceCalled::class,
-            \App\Listeners\QueryUserBeanLogsEventListeners\QueryForResult::class,
-            \App\Listeners\QueryUserBeanLogsEventListeners\InterfaceSucceed::class,
+        \App\Events\InterfaceCalled\V1\QueryUserBeanLogs::class => [
+            \App\Listeners\V1\QueryUserBeanLogsEventListeners\QueryForResult::class,
         ],
     ];
 

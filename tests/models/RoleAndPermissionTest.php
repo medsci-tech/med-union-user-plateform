@@ -17,6 +17,8 @@ class RoleAndPermissionTest extends TestCase
       */
      public function roleAndPermissionGeneratedSuccessfully()
      {
+         echo 'Test role and permission generated ...... ';
+
          /** @var Collection $users */
          /** @var Collection $roles */
          /** @var Collection $permissions */
@@ -25,6 +27,8 @@ class RoleAndPermissionTest extends TestCase
          $this->assertEquals($users->count(), 5);
          $this->assertEquals($roles->count(), 10);
          $this->assertEquals($permissions->count(), 10);
+
+         echo 'OK!'.PHP_EOL;
      }
 
      /**
@@ -32,6 +36,8 @@ class RoleAndPermissionTest extends TestCase
       */
      public function roleHasPermissionAndPermissionOperation()
      {
+         echo 'Test role and permission operation ...... ';
+
          /** @var Collection $roles */
          /** @var Collection $permissions */
          list(, $roles, $permissions) = $this->generateTestData();
@@ -43,6 +49,8 @@ class RoleAndPermissionTest extends TestCase
              $this->stringActionForOnce($roles, $permissions);
              $this->modelActionForOnce($roles, $permissions);
          }
+
+         echo 'OK!'.PHP_EOL;
      }
 
     /**

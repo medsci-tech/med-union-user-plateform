@@ -64,6 +64,12 @@ class AuthServiceProvider extends ServiceProvider
         }
     }
 
+    public function reloadPermissionsFromDatabase()
+    {
+        $this->definePermissions();
+    }
+
+
     protected function generatePassport()
     {
         Passport::routes();

@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AfterInterfaceCalled;
+use App\Http\Middleware\BeforeInterfaceCalled;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -33,6 +35,8 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            'api.before',
+            'api.after',
             'throttle:60,1',
             'bindings',
         ],
@@ -54,5 +58,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,
         'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
+        'api.before' => BeforeInterfaceCalled::class,
+        'api.after' => AfterInterfaceCalled::class,
     ];
 }

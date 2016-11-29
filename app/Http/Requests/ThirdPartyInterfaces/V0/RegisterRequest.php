@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Http\Requests\ThirdPartyInterfaces\V1;
+namespace App\Http\Requests\ThirdPartyInterfaces\V0;
 
+use App\Events\InterfaceCalled\Register;
+use App\Exceptions\BeansNotEnoughForProjectException;
 use App\Http\Requests\ThirdPartyInterfaces\ApiRequest;
+use App\User;
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TestConnectionRequest extends ApiRequest
+class RegisterRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +28,12 @@ class TestConnectionRequest extends ApiRequest
      */
     public function rules()
     {
+        //TODO
         return [
-            //
+            'phone' => 'required|unique:users',
+            'openid' => 'unique:users',
+            'unionid' => 'unique:users',
+            'email' => 'unique:users'
         ];
-    }
-
-    public function handle()
-    {
-        return response()->json([
-            'status' => 'ok',
-            'message' => '接入成功！欢迎使用迈德api！'
-        ]);
     }
 }

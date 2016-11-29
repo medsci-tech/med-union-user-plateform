@@ -13,10 +13,14 @@ class ContractTest extends TestCase
       */
      public function contractsGeneratedSuccessfully()
      {
+         echo 'Test contracts ...... ';
+
          factory(Contract::class, 5)->create();
          $this->assertEquals(Contract::count(), 5);
 
          factory(Contract::class, 5)->create();
          $this->assertEquals(Contract::count(), 10);
+
+         echo 'OK'.PHP_EOL;
      }
 }

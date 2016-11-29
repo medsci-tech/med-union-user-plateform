@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
+namespace App\Http\Controllers\ThirdPartyInterfaces\V0;
 
-use App\Http\Requests\ThirdPartyInterfaces\V1\TestConnectionRequest;
+use App\Http\Requests\ThirdPartyInterfaces\V0\TestConnectionRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -35,18 +35,20 @@ class TestConnectionInterfaceController extends Controller
      * @apiErrorExample {text} Error-403:
      *     HTTP/1.1 403 Forbidden
      *     Forbidden
+     * @param \App\Http\Requests\ThirdPartyInterfaces\V0\TestConnectionRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
 
 
-    /**
-     * @api            {get} /v1/test 测试接入
+    /*
+     * @api            {get} /v0/test 测试接入
      * @apiName        test
      * @apiDescription 测试接入是否成功。
-     * @apiGroup       v1
+     * @apiGroup       v0
      * @apiVersion     1.0.0
      *
      * @apiExample {curl} Example usage:
-     *     curl -X "POST" "https://med-union-user-plateform.dev/api/v1/test" \
+     *     curl -X "POST" "https://med-union-user-plateform.dev/api/v0/test" \
      *          -H "Accept: application/json" \
      *          -H "Authorization: Bearer [token]" \
      *          -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8"

@@ -4,11 +4,12 @@ namespace App\Http\Requests\ThirdPartyInterfaces\V1;
 
 use App\Events\InterfaceCalled\Register;
 use App\Exceptions\BeansNotEnoughForProjectException;
+use App\Http\Requests\ThirdPartyInterfaces\ApiRequest;
 use App\User;
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class RegisterRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,8 +18,7 @@ class RegisterRequest extends FormRequest
      */
     public function authorize()
     {
-        //TODO UPDATE AUTHORIZATIONS AND AUTHENTICATIONS
-        return Auth::user()->can('call interfaces');
+        return $this->getApiAuthedUser() && $this->getApiAuthedUser()->can('call interfaces');
     }
 
     /**
