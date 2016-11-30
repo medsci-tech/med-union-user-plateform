@@ -20,7 +20,7 @@ class QueryUserInformationInterfaceController extends Controller
      * @apiUse Header
      *
      * @apiExample {curl} Example usage:
-     *     curl -X "POST" "https://med-union-user-plateform.dev/api/v1/consume" \
+     *     curl -X "GET" "https://med-union-user-plateform.dev/api/v1/query-user-information" \
      *          -H "Accept: application/json" \
      *          -H "Authorization: Bearer [token]" \
      *          -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8"

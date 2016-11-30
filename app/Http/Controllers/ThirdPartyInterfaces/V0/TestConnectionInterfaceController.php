@@ -29,7 +29,6 @@ class TestConnectionInterfaceController extends Controller
      *       "error":"Unauthenticated."
      *     }
      */
-
     /**
      * @apiDefine Forbidden
      * @apiErrorExample {text} Error-403:
@@ -40,7 +39,7 @@ class TestConnectionInterfaceController extends Controller
      */
 
 
-    /*
+    /**
      * @api            {get} /v0/test 测试接入
      * @apiName        test
      * @apiDescription 测试接入是否成功。
@@ -48,7 +47,7 @@ class TestConnectionInterfaceController extends Controller
      * @apiVersion     1.0.0
      *
      * @apiExample {curl} Example usage:
-     *     curl -X "POST" "https://med-union-user-plateform.dev/api/v0/test" \
+     *     curl -X "GET" "https://med-union-user-plateform.dev/api/v0/test" \
      *          -H "Accept: application/json" \
      *          -H "Authorization: Bearer [token]" \
      *          -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8"
@@ -65,6 +64,7 @@ class TestConnectionInterfaceController extends Controller
      *
      * @apiUse Unauthorized
      * @apiUse Forbidden
+     *
      * @param TestConnectionRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
