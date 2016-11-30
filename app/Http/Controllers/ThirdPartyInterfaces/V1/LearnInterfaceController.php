@@ -26,7 +26,7 @@ class LearnInterfaceController extends Controller
      * @api            {post} /v1/learn 用户参与学习
      * @apiName        learn
      * @apiDescription 用户参与学习，通过此接口上报给用户中心，用户中心依据策略给该用户发放迈豆，并且将学习行为纳入统计。学习返迈豆每日有次数限制。正常情况下每次用户学习（不管是否达到返迈豆的限制）都应该调用此接口。
-     * @apiGroup       v1
+     * @apiGroup       ohmate
      * @apiVersion     1.0.0
      *
      * @apiUse Header

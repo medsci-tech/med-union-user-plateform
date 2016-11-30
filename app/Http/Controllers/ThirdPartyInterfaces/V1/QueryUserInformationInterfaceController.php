@@ -14,7 +14,7 @@ class QueryUserInformationInterfaceController extends Controller
      * @api            {get} /v1/query-user-information 查询用户信息
      * @apiName        query-user-information
      * @apiDescription 查询用户信息接口。
-     * @apiGroup       v1
+     * @apiGroup       ohmate
      * @apiVersion     1.0.0
      *
      * @apiUse Header

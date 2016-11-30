@@ -19,7 +19,7 @@ class ConsumeInterfaceController extends Controller
      * @api            {post} /v1/consume 消费
      * @apiName        consume
      * @apiDescription 用户消费迈豆接口。调用此接口，传入消费迈豆数值，为用户扣减迈豆。
-     * @apiGroup       v1
+     * @apiGroup       ohmate
      * @apiVersion     1.0.0
      *
      * @apiUse Header

@@ -26,7 +26,7 @@ class RegisterInterfaceController extends Controller
      * @api            {post} /v1/register 用户注册
      * @apiName        register
      * @apiDescription 根据请求内容为用户注册。注册成功后，会在数据库中生成用户记录。
-     * @apiGroup       v1
+     * @apiGroup       ohmate
      * @apiVersion     1.0.0
      *
      * @apiUse Header

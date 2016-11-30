@@ -43,7 +43,7 @@ class TestConnectionInterfaceController extends Controller
      * @api            {get} /v0/test 测试接入
      * @apiName        test
      * @apiDescription 测试接入是否成功。
-     * @apiGroup       v0
+     * @apiGroup       basic
      * @apiVersion     1.0.0
      *
      * @apiExample {curl} Example usage:
