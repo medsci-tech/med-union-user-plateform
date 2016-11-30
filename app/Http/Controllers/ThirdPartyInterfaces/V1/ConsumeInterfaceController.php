@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
 
 use App\Business\Bean\BeanRate;
-use App\Events\InterfaceCalled\V1\Consume;
 use App\Http\Requests\ThirdPartyInterfaces\V1\ConsumeRequest;
 use App\User;
 use Illuminate\Http\Request;
@@ -82,14 +81,12 @@ class ConsumeInterfaceController extends Controller
      */
     public function handleRequest(ConsumeRequest $request)
     {
-        $event = new Consume($request);
-
         try {
             $this->modifyBeanForUser($request)
                 ->dumpToStatisticsDatabase($request);
             return response()->json([
                 'status' => 'ok',
-                'bean_rest' => $event->user->bean->number
+                'bean_rest' => $this->target_user->bean->number
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -110,6 +107,7 @@ class ConsumeInterfaceController extends Controller
 
         if (($cash_paid = $request->input('cash_paid')) > 0 && $this->target_user->hasUpperUser()) {
             $upper = $this->target_user->upperUser();
+
             $upper->modifyBeanAccordingToBeanRate(
                 BeanRate::where('name_en', 'ohmate_cash_consume_upper_feedback')->firstOrFail(),
                 $cash_paid

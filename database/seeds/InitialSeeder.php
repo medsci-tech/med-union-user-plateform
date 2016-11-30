@@ -53,6 +53,13 @@ class InitialSeeder extends Seeder
             'application_id' => $application->id,
             'description'   => ''
         ]);
+
+        $project1 = Project::create([
+            'name'          => '易康伴侣微信号学习迈豆',
+            'name_en'       => 'ohmate_wechat_learn',
+            'application_id' => $application->id,
+            'description'   => ''
+        ]);
         $project2 = Project::create([
             'name'          => '易康伴侣消费上级返利',
             'name_en'       => 'ohmate_wechat_cash_consume_upper_feedback',
@@ -99,7 +106,7 @@ class InitialSeeder extends Seeder
             'name' => '学习返迈豆',
             'name_en' => 'ohmate_learn',
             'bean_rate_type_id' => $bean_rate_type_learn->id,
-            'project_id' => $project->id,
+            'project_id' => $project1->id,
             'rate' => 20,
         ]);
         $bean_rate3 = BeanRate::create([
@@ -116,6 +123,7 @@ class InitialSeeder extends Seeder
     {
         $user = User::create([
             'email'    => 'admin@medsci-tech.com',
+            'phone'    => '00000000000',
             'password' => bcrypt('md123456'),
             'name'     => '超级管理员',
         ]);

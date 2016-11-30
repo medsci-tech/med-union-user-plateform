@@ -37,6 +37,12 @@ trait UserHasBean
 
             $amount = $beanRate->rate * $multiplicand;
 
+            if($this->bean == null) {
+                $this->bean()->save(Bean::create([
+                    'number' => 0
+                ]));
+            }
+
             $fresh = $this->bean()->first()->fresh();
             $user_beans_before = $fresh->number;
             if ($user_beans_before + $amount < 0) {
@@ -46,7 +52,6 @@ trait UserHasBean
                 'number' => $fresh->number + $amount
             ]);
             $user_beans_after = $fresh->number;
-
             $fresh_project = $beanRate->project->fresh();
             $projcet_beans_before = $fresh_project->rest_of_beans;
             if ($projcet_beans_before - $amount < -1000000) {
@@ -69,5 +74,33 @@ trait UserHasBean
         });
 
         return $this;
+    }
+
+    public function getBeanNumberAttribute()
+    {
+        if ($this->bean()->first() == null) {
+            $this->bean()->save(
+                new Bean([
+                    'number' => 0
+                ])
+            );
+        }
+
+        return $this->bean->number;
+    }
+
+    public function setBeanNumberAttribute($number)
+    {
+        if ($this->bean()->first() == null) {
+            $this->bean()->save(
+                new Bean([
+                    'number' => $number
+                ])
+            );
+        } else {
+            $this->bean->update([
+                'number' => $number
+            ]);
+        }
     }
 }

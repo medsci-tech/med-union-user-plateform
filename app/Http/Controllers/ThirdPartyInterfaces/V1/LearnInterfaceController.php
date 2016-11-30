@@ -77,14 +77,12 @@ class LearnInterfaceController extends Controller
      */
     public function handleRequest(LearnRequest $request)
     {
-        $event = new Learn($request);
-
         try {
             $this->addBeanForUser($request)
                 ->dumpToStatisticsDatabase($request);
             return response()->json([
                 'status' => 'ok',
-                'chance_remains_today' => $event->chance_remains_today
+                'chance_remains_today' => $this->chance_remains_today
             ]);
         } catch (\Exception $e) {
             return response()->json([
