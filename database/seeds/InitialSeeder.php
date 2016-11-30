@@ -82,7 +82,7 @@ class InitialSeeder extends Seeder
 
         $bean_rate0 = BeanRate::create([
             'name' => '消费',
-            'name_en' => 'consume',
+            'name_en' => 'ohmate_consume',
             'bean_rate_type_id' => $bean_rate_type_consume->id,
             'project_id' => $project0->id,
             'rate' => -100,
@@ -90,21 +90,21 @@ class InitialSeeder extends Seeder
 
         $bean_rate1 = BeanRate::create([
             'name' => '注册返迈豆',
-            'name_en' => 'register',
+            'name_en' => 'ohmate_register',
             'bean_rate_type_id' => $bean_rate_type_register->id,
             'project_id' => $project->id,
             'rate' => 1000,
         ]);
         $bean_rate2 = BeanRate::create([
             'name' => '学习返迈豆',
-            'name_en' => 'learn',
+            'name_en' => 'ohmate_learn',
             'bean_rate_type_id' => $bean_rate_type_learn->id,
             'project_id' => $project->id,
             'rate' => 20,
         ]);
         $bean_rate3 = BeanRate::create([
             'name' => '现金消费上级返迈豆',
-            'name_en' => 'cash_consume_upper_feedback',
+            'name_en' => 'ohmate_cash_consume_upper_feedback',
             'bean_rate_type_id' => $bean_rate_type_consume_feedback->id,
             'project_id' => $project2->id,
             'rate' => 2,

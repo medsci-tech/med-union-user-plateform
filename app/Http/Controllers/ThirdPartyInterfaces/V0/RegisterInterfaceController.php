@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\ThirdPartyInterfaces\V0;
 
-use App\Business\Statistic\User\User;
+use App\Business\Bean\Bean;
+use App\Business\Bean\BeanRate;
+use App\Business\Profile\Profile;
+use App\Business\UserRelevance\UpperUserPhone;
 use App\Events\InterfaceCalled\V0\Register;
 use App\Exceptions\BeansNotEnoughForProjectException;
 use App\Http\Requests\ThirdPartyInterfaces\V0\RegisterRequest;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,6 +17,10 @@ use MongoDB\BSON\UTCDateTime;
 
 class RegisterInterfaceController extends Controller
 {
+    /**
+     * @var User
+     */
+    protected $target_user;
     /**
      * @api            {post} /v0/register 用户注册
      * @apiName        register
@@ -51,7 +59,7 @@ class RegisterInterfaceController extends Controller
      *       "unionid": "QWERTYUADFAFALDKFJLKJOIAFJLJDSKJFADAFA"
      *     }
      *
-     * @apiSuccess {String} status 自定义状态码，这里总是显示"ok".仅当项目迈豆不足时显示"warning"。此时只会注册，不会发放迈豆。
+     * @apiSuccess {String} status 自定义状态码，这里总是显示"ok".
      * @apiSuccess {Number} user_id 创建用户的id
      * @apiSuccessExample {json} Success-Response:
      *     HTTP/1.1 200 OK
@@ -84,17 +92,22 @@ class RegisterInterfaceController extends Controller
      */
     public function handleRequest(RegisterRequest $request)
     {
-        $event = new Register($request);
         try {
-            event($event);
+
+            $this->createUser($request)
+                ->createBeanForUser()
+                ->saveUserProfile($request)
+                ->saveUpperUserPhoneIfExists($request)
+                ->dumpToStatisticsDatabase($request);
+
             return response()->json([
                 'status' => 'ok',
-                'user_id' => $event->user->id
+                'user_id' => $this->target_user->id
             ]);
         } catch (BeansNotEnoughForProjectException $e) {
             return response()->json([
                 'status' => 'warning',
-                'user_id' => $event->user->id,
+                'user_id' => $this->target_user->id,
                 'message' => $e->getMessage()
             ]);
         } catch (\Exception $e) {
@@ -105,26 +118,83 @@ class RegisterInterfaceController extends Controller
         }
     }
 
-
-    public function mongo()
+    /**
+     * @param RegisterRequest $request
+     * @return $this
+     */
+    protected function saveUserProfile($request)
     {
-//        echo(new UTCDateTime(Carbon::now()->timestamp));
-//        dd();
-//        $create_time = User::where('phone', '18699999999')->first()->create_time;
-//        dd($create_time);
-//        $user = User::create([
-//            'phone' => '18699999999',
-//            'create_time' => new UTCDateTime(Carbon::now()->micro),
-//            'role' => 'user',
-//            'total_beans' => 1000,
-//            'optimizing_health_mate_wechat_2016' => [
-//                'year' => 2016,
-//                'access_way' => 'wechat',
-//                'create_time' => new UTCDateTime(Carbon::now()->timestamp * 1000),
-//                'upstream_phone' => '18688888888'
-//            ]
-//        ]);
-//
-//        dd($user);
+        $this->target_user->profile()->save(Profile::create([
+            'role'          => $request->input('role', null),
+            'title'         => $request->input('title', null),
+            'office'        => $request->input('office', null),
+            'province'      => $request->input('province', null),
+            'city'          => $request->input('city', null),
+            'hospital_name' => $request->input('hospital_name', null),
+        ]));
+
+        return $this;
     }
+
+    /**
+     * @param RegisterRequest $request
+     * @return $this
+     */
+    protected function saveUpperUserPhoneIfExists($request)
+    {
+        if ($upper_user_phone = $request->input('upper_user_phone', null)) {
+            if ($this->target_user->upperUserPhones()->where('phone', $upper_user_phone)->first() == null) {
+                $this->target_user->upperUserPhones()->save(
+                    UpperUserPhone::create([
+                        'phone'  => $upper_user_phone,
+                        'remark' => $request->input('upper_user_remark')
+                    ])
+                );
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param RegisterRequest $request
+     * @return $this
+     */
+    protected function createUser($request)
+    {
+        $this->target_user = User::create([
+            'phone'    => $request->input('phone'),
+            'name'     => $request->input('name', null),
+            'email'    => $request->input('email', null),
+            'openid'   => $request->input('openid', null),
+            'unionid'  => $request->input('unionid', null),
+            'password' => ($password = $request->input('password', null)) ? bcrypt($password) : null
+        ]);
+
+        return $this;
+    }
+
+
+    /**
+     * @return $this
+     */
+    protected function createBeanForUser()
+    {
+        $this->target_user->bean()->save(
+            Bean::create(['number' => 0])
+        );
+
+        return $this;
+    }
+
+    /**
+     * @param RegisterRequest $request
+     * @return $this
+     */
+    protected function dumpToStatisticsDatabase($request)
+    {
+        return $this;
+    }
+
+
 }

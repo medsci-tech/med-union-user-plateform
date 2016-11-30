@@ -2,13 +2,26 @@
 
 namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
 
+use App\Business\Bean\BeanRate;
 use App\Events\InterfaceCalled\V1\Learn;
 use App\Http\Requests\ThirdPartyInterfaces\V1\LearnRequest;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class LearnInterfaceController extends Controller
 {
+    /**
+     * @var User
+     */
+    protected $target_user;
+
+    /**
+     * @var integer
+     */
+    protected $chance_remains_today;
+
     /**
      * @api            {post} /v1/learn 用户参与学习
      * @apiName        learn
@@ -67,7 +80,8 @@ class LearnInterfaceController extends Controller
         $event = new Learn($request);
 
         try {
-            event($event);
+            $this->addBeanForUser($request)
+                ->dumpToStatisticsDatabase($request);
             return response()->json([
                 'status' => 'ok',
                 'chance_remains_today' => $event->chance_remains_today
@@ -79,4 +93,36 @@ class LearnInterfaceController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * @param LearnRequest $request
+     * @return $this
+     */
+    protected function addBeanForUser($request)
+    {
+        $this->target_user = $request->getTargetUser();
+        $key = 'LEARN-' . Carbon::today()->format('Ymd') . '-' . $this->target_user->id;
+        if (!\Cache::has($key)) {
+            \Cache::put($key, 0, Carbon::now()->addDays(2));
+        }
+        if (($learn_count_today = \Cache::increment($key)) <= 5) {
+            //每日学习最多给5次迈豆，如果超过就跳过。此处increment在redis中是原子操作，在其它cache driver下可能非原子。和前一行的条件判断，在多线程下也可能导致同步问题。这里最好用redis的事务加锁。由于目前服务器环境是否能装redis还没确定，这里暂时先这么处理。
+            $this->target_user->modifyBeanAccordingToBeanRate(BeanRate::where('name_en', 'ohmate_learn')->firstOrFail());
+        }
+
+        $chance_remains_today = 5 - $learn_count_today;
+        $this->chance_remains_today = $chance_remains_today > 0 ? $chance_remains_today : 0;
+
+        return $this;
+    }
+
+    /**
+     * @param LearnRequest $request
+     * @return $this
+     */
+    protected function dumpToStatisticsDatabase($request)
+    {
+        return $this;
+    }
+
 }

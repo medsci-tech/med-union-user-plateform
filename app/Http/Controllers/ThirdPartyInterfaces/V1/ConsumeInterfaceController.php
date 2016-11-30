@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
 
+use App\Business\Bean\BeanRate;
 use App\Events\InterfaceCalled\V1\Consume;
 use App\Http\Requests\ThirdPartyInterfaces\V1\ConsumeRequest;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ConsumeInterfaceController extends Controller
 {
+    /**
+     * @var User
+     */
+    protected $target_user;
+
     /**
      * @api            {post} /v1/consume 消费
      * @apiName        consume
@@ -78,7 +85,8 @@ class ConsumeInterfaceController extends Controller
         $event = new Consume($request);
 
         try {
-            event($event);
+            $this->modifyBeanForUser($request)
+                ->dumpToStatisticsDatabase($request);
             return response()->json([
                 'status' => 'ok',
                 'bean_rest' => $event->user->bean->number
@@ -90,4 +98,34 @@ class ConsumeInterfaceController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * @param ConsumeRequest $request
+     * @return $this
+     */
+    protected function modifyBeanForUser($request)
+    {
+        $this->target_user = $request->getTargetUser();
+        $this->target_user->modifyBeanAccordingToBeanRate(BeanRate::where('name_en', 'ohmate_consume')->firstOrFail(), $request->input('cash_paid_by_beans', 0));
+
+        if (($cash_paid = $request->input('cash_paid')) > 0 && $this->target_user->hasUpperUser()) {
+            $upper = $this->target_user->upperUser();
+            $upper->modifyBeanAccordingToBeanRate(
+                BeanRate::where('name_en', 'ohmate_cash_consume_upper_feedback')->firstOrFail(),
+                $cash_paid
+            );
+
+        }
+        return $this;
+    }
+
+    /**
+     * @param ConsumeRequest $request
+     * @return $this
+     */
+    protected function dumpToStatisticsDatabase($request)
+    {
+        return $this;
+    }
+
 }
