@@ -2,6 +2,7 @@
 
 namespace App\Business\Log;
 
+use App\Business\Bean\BeanRate;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,8 +13,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $id
  * @property integer $user_id 关联的user
  * @property integer $bean_rate_id 关联的bean_rate
- * @property float $beans_before 操作前用户的迈豆
- * @property float $beans_after 操作后用户的迈豆
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
@@ -35,6 +34,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Log\BeanLog whereUserBeansAfter($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Log\BeanLog whereProjectBeansBefore($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Business\Log\BeanLog whereProjectBeansAfter($value)
+ * @property-read \App\Business\Bean\BeanRate $beanRate
  */
 class BeanLog extends Model
 {
@@ -45,5 +45,10 @@ class BeanLog extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function beanRate()
+    {
+        return $this->belongsTo(BeanRate::class);
     }
 }

@@ -31,7 +31,8 @@ class ConsumeRequest extends ApiRequest
         return [
             'phone' => 'required|exists:users',
             'cash_paid_by_beans' => 'required|numeric|between:0,10000',
-            'cash_paid' => 'required|numeric|between:0,10000'
+            'cash_paid' => 'required|numeric|between:0,10000',
+            'is_first_cash_consume' => 'boolean'
         ];
     }
 

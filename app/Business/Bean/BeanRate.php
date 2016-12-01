@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class BeanRate
  *
  * @package App\Business\Bean
- * @property-read \App\Business\Bean\BeanRateType $type
  * @mixin \Eloquent
  * @property integer $id
  * @property string $name 规则名

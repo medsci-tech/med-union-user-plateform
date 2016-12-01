@@ -2,6 +2,7 @@
 
 use App\Business\Project\Project;
 use App\User;
+use Illuminate\Foundation\Testing\WithoutEvents;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -10,12 +11,14 @@ class LearnTest extends TestCase
 {
     use DatabaseTransactions;
     use WithoutMiddleware;
-     /**
+
+    /**
       * @test
       */
      public function learnV1()
      {
          echo 'Test learnV1 ...... ';
+         $this->withoutEvents();
 
          $this->initiateSeeds();
 

@@ -45,4 +45,9 @@ trait UserHasUpperUserPhone
     {
         return $this->upperUser();
     }
+
+    public function upperUserPhone()
+    {
+        return $this->upperUserPhones()->first();
+    }
 }

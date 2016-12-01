@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
 
 use App\Business\Bean\BeanRate;
+use App\Events\Statistics\BeanActivity;
 use App\Http\Requests\ThirdPartyInterfaces\V1\ConsumeRequest;
 use App\User;
 use Illuminate\Http\Request;
@@ -35,6 +36,7 @@ class ConsumeInterfaceController extends Controller
      * @apiParam {String} phone 用户的手机号码。必填。唯一。
      * @apiParam {Number} cash_paid_by_beans 迈豆抵扣的人民币数额。
      * @apiParam {Number} cash_paid 实际支付的人民币数额。
+     * @apiParam {Boolean} is_first_cash_consume 是否激活首单消费上级返迈豆。只能是1或0，默认是0。
      * @apiParamExample {json} Request-Example:
      *     {
      *       "phone": "18812345678",
@@ -107,6 +109,10 @@ class ConsumeInterfaceController extends Controller
 
         if (($cash_paid = $request->input('cash_paid')) > 0 && $this->target_user->hasUpperUser()) {
             $upper = $this->target_user->upperUser();
+
+            if ($request->input('is_first_cash_consume') == 1) {
+                $upper->modifyBeanAccordingToBeanRate(BeanRate::where('name_en', 'ohmate_first_cash_consume_upper_feedback')->firstOrFail());
+            }
 
             $upper->modifyBeanAccordingToBeanRate(
                 BeanRate::where('name_en', 'ohmate_cash_consume_upper_feedback')->firstOrFail(),

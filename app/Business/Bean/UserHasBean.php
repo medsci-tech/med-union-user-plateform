@@ -5,6 +5,7 @@ namespace App\Business\Bean;
 
 
 use App\Business\Log\BeanLog;
+use App\Events\Statistics\BeanActivity;
 use App\Exceptions\BeansNotEnoughForProjectException;
 use App\Exceptions\BeansNotEnoughForUserException;
 use App\User;
@@ -36,22 +37,13 @@ trait UserHasBean
             \DB::table('projects')->lockForUpdate();
 
             $amount = $beanRate->rate * $multiplicand;
-
-            if($this->bean == null) {
-                $this->bean()->save(Bean::create([
-                    'number' => 0
-                ]));
-            }
-
-            $fresh = $this->bean()->first()->fresh();
-            $user_beans_before = $fresh->number;
+            $user_beans_before = $this->bean_number;//call the getter
             if ($user_beans_before + $amount < 0) {
                 throw new BeansNotEnoughForUserException();
             }
-            $fresh->update([
-                'number' => $fresh->number + $amount
-            ]);
-            $user_beans_after = $fresh->number;
+            $this->bean_number = $user_beans_before + $amount;//call the setter
+
+            $user_beans_after = $this->bean_number;
             $fresh_project = $beanRate->project->fresh();
             $projcet_beans_before = $fresh_project->rest_of_beans;
             if ($projcet_beans_before - $amount < -1000000) {
@@ -63,7 +55,7 @@ trait UserHasBean
 
             $project_beans_after = $fresh_project->rest_of_beans;
 
-            BeanLog::create([
+            $bean_log = BeanLog::create([
                 'user_id' => $this->id,
                 'bean_rate_id' => $beanRate->id,
                 'user_beans_before' => $user_beans_before,
@@ -71,6 +63,8 @@ trait UserHasBean
                 'project_beans_before' => $projcet_beans_before,
                 'project_beans_after' => $project_beans_after
             ]);
+
+            event(new BeanActivity($bean_log));
         });
 
         return $this;
@@ -78,6 +72,7 @@ trait UserHasBean
 
     public function getBeanNumberAttribute()
     {
+        //always use the dynamic query
         if ($this->bean()->first() == null) {
             $this->bean()->save(
                 new Bean([
@@ -86,7 +81,7 @@ trait UserHasBean
             );
         }
 
-        return $this->bean->number;
+        return $this->bean()->first()->number;
     }
 
     public function setBeanNumberAttribute($number)
@@ -98,7 +93,7 @@ trait UserHasBean
                 ])
             );
         } else {
-            $this->bean->update([
+            $this->bean()->first()->update([
                 'number' => $number
             ]);
         }

@@ -6,7 +6,7 @@ use App\Business\Bean\Bean;
 use App\Business\Bean\BeanRate;
 use App\Business\Profile\Profile;
 use App\Business\UserRelevance\UpperUserPhone;
-use App\Events\InterfaceCalled\V0\Register;
+use App\Events\Statistics\UserRegistered;
 use App\Exceptions\BeansNotEnoughForProjectException;
 use App\Http\Requests\ThirdPartyInterfaces\V0\RegisterRequest;
 use App\User;
@@ -193,6 +193,7 @@ class RegisterInterfaceController extends Controller
      */
     protected function dumpToStatisticsDatabase($request)
     {
+        event(new UserRegistered($this->target_user));
         return $this;
     }
 
