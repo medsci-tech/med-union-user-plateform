@@ -197,7 +197,6 @@ class RegisterInterfaceController extends Controller
     protected function dumpToStatisticsDatabase($request)
     {
         event(new UserRegistered($this->target_user, Project::where('name_en', 'ohmate_wechat_promotion')->firstOrFail()));
-        dump(0);
         return $this;
     }
 

@@ -20,7 +20,6 @@ class RegisterTest extends TestCase
     {
         echo 'Test register interface. ...... ';
         $this->initiateSeeds();
-//        $this->withoutModelEvents();
         $this->withoutEvents();
 
         $request = $this->actingAs(User::first(), 'api')->json('POST', '/api/v1/register', [

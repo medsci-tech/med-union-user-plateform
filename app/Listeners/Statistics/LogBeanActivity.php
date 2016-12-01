@@ -29,9 +29,6 @@ class LogBeanActivity
     public function handle(BeanActivity $event)
     {
         $bean_log = $event->beanLog;
-        dump($bean_log);
-        dump($bean_log->beanRate);
-
         Bean::create([
             'user_phone' => $bean_log->user->phone,
             'user_role' => $bean_log->user->profile->role,

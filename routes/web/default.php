@@ -13,7 +13,7 @@
 
 
 Route::get('/', function () {
-    return redirect('/auth/login');
+    return redirect('/login');
 });
 
 //Route::get('/mongo', 'ThirdPartyInterfaces\V1\RegisterInterfaceController@mongo');
