@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
 
 use App\Business\Bean\BeanRate;
-use App\Events\InterfaceCalled\V1\Learn;
 use App\Http\Requests\ThirdPartyInterfaces\V1\LearnRequest;
 use App\User;
 use Carbon\Carbon;

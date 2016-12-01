@@ -5,9 +5,10 @@ namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
 use App\Business\Bean\Bean;
 use App\Business\Bean\BeanRate;
 use App\Business\Profile\Profile;
+use App\Business\Project\Project;
 use App\Business\UserRelevance\UpperUserPhone;
+use App\Events\Statistics\UserRegistered;
 use App\User;
-use App\Events\InterfaceCalled\V1\Register;
 use App\Exceptions\BeansNotEnoughForProjectException;
 use App\Http\Requests\ThirdPartyInterfaces\V1\RegisterRequest;
 use Carbon\Carbon;
@@ -120,28 +121,6 @@ class RegisterInterfaceController extends Controller
         }
     }
 
-    public function mongo()
-    {
-//        echo(new UTCDateTime(Carbon::now()->timestamp));
-//        dd();
-//        $create_time = User::where('phone', '18699999999')->first()->create_time;
-//        dd($create_time);
-//        $user = User::create([
-//            'phone' => '18699999999',
-//            'create_time' => new UTCDateTime(Carbon::now()->micro),
-//            'role' => 'user',
-//            'total_beans' => 1000,
-//            'optimizing_health_mate_wechat_2016' => [
-//                'year' => 2016,
-//                'access_way' => 'wechat',
-//                'create_time' => new UTCDateTime(Carbon::now()->timestamp * 1000),
-//                'upstream_phone' => '18688888888'
-//            ]
-//        ]);
-//
-//        dd($user);
-    }
-
     /**
      * @param RegisterRequest $request
      * @return $this
@@ -217,6 +196,7 @@ class RegisterInterfaceController extends Controller
      */
     protected function dumpToStatisticsDatabase($request)
     {
+        event(new UserRegistered($this->target_user, Project::where('name_en', 'ohmate_wechat')->firstOrFail()));
         return $this;
     }
 

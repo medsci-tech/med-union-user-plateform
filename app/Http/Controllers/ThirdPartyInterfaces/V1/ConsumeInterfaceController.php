@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
 
 use App\Business\Bean\BeanRate;
+use App\Events\Statistics\BeanActivity;
 use App\Http\Requests\ThirdPartyInterfaces\V1\ConsumeRequest;
 use App\User;
 use Illuminate\Http\Request;

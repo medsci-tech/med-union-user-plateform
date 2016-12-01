@@ -1,6 +1,7 @@
 <?php
 
 use App\User;
+use Illuminate\Foundation\Testing\WithoutEvents;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -9,7 +10,9 @@ class QueryUserTest extends TestCase
 {
     use WithoutMiddleware;
     use DatabaseTransactions;
-     /**
+    use WithoutEvents;
+
+    /**
       * @test
       */
      public function queryUserInformationSucceed()

@@ -3,6 +3,7 @@
 use App\Business\Project\Project;
 use App\Business\UserRelevance\UpperUserPhone;
 use App\User;
+use Illuminate\Foundation\Testing\WithoutEvents;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -11,6 +12,7 @@ class ComsumeTest extends TestCase
 {
     use DatabaseTransactions;
     use WithoutMiddleware;
+    use WithoutEvents;
      /**
       * @test
       */

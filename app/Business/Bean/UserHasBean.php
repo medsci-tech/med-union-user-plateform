@@ -5,6 +5,7 @@ namespace App\Business\Bean;
 
 
 use App\Business\Log\BeanLog;
+use App\Events\Statistics\BeanActivity;
 use App\Exceptions\BeansNotEnoughForProjectException;
 use App\Exceptions\BeansNotEnoughForUserException;
 use App\User;
@@ -63,7 +64,7 @@ trait UserHasBean
 
             $project_beans_after = $fresh_project->rest_of_beans;
 
-            BeanLog::create([
+            $bean_log = BeanLog::create([
                 'user_id' => $this->id,
                 'bean_rate_id' => $beanRate->id,
                 'user_beans_before' => $user_beans_before,
@@ -71,6 +72,8 @@ trait UserHasBean
                 'project_beans_before' => $projcet_beans_before,
                 'project_beans_after' => $project_beans_after
             ]);
+
+            event(new BeanActivity($bean_log));
         });
 
         return $this;

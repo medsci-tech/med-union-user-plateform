@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
 
-use App\Events\InterfaceCalled\V1\QueryUser;
 use App\Http\Requests\ThirdPartyInterfaces\V1\QueryUserInformationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

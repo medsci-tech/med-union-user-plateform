@@ -1,6 +1,8 @@
 <?php
 
 use App\User;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Foundation\Testing\WithoutEvents;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -9,7 +11,7 @@ class RegisterTest extends TestCase
 {
     use WithoutMiddleware;
     use DatabaseTransactions;
-
+    use WithoutEvents;
 
     /**
      * @test
