@@ -90,13 +90,13 @@ class InitialSeeder extends Seeder
         ]);
 
         $bean_rate_type_learn = BeanRateType::create([
-            'name' => '学习',
-            'name_en' => 'learn',
+            'name' => '文章学习',
+            'name_en' => 'article_learn',
         ]);
 
         $bean_rate_type_consume_feedback = BeanRateType::create([
-            'name' => '消费返利',
-            'name_en' => 'consume_feedback',
+            'name' => '推广',
+            'name_en' => 'popularize',
         ]);
 
         $bean_rate0 = BeanRate::create([
