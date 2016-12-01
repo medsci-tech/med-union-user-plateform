@@ -9,6 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use MongoDB\BSON\UTCDateTime;
 
+
 class LogBeanActivity
 {
     /**
