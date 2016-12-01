@@ -32,7 +32,7 @@ class LogBeanActivity
         $bean_log = $event->beanLog;
         Bean::create([
             'user_phone' => $bean_log->user->phone,
-            'user_role' => ($bean_log->user->profile->role != null)? $bean_log->user->profile->role:'user',
+            'user_role' => ($bean_log->user->profile != null && $bean_log->user->profile->role != null)? $bean_log->user->profile->role:'user',
             'rule_type_name_en' => $bean_log->beanRate->bean_rate_type->name_en,
             'rule_name_en' => $bean_log->beanRate->name_en,
             'company_name_en' => $bean_log->beanRate->project->application->enterprise->name_en,
