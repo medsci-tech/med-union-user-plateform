@@ -10,7 +10,6 @@ class QueryUserTest extends TestCase
 {
     use WithoutMiddleware;
     use DatabaseTransactions;
-    use WithoutEvents;
 
     /**
       * @test
@@ -18,6 +17,7 @@ class QueryUserTest extends TestCase
      public function queryUserInformationSucceed()
      {
          echo 'Test query user information. ...... ';
+         $this->withoutModelEvents();
 
          $this->initiateSeeds();
 

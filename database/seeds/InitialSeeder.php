@@ -66,6 +66,18 @@ class InitialSeeder extends Seeder
             'application_id' => $application->id,
             'description'   => ''
         ]);
+        $project3 = Project::create([
+            'name'          => '易康伴侣首单消费上级返利',
+            'name_en'       => 'ohmate_wechat_first_cash_consume_upper_feedback',
+            'application_id' => $application->id,
+            'description'   => ''
+        ]);
+        $project4 = Project::create([
+            'name'          => '易康伴侣推广',
+            'name_en'       => 'ohmate_wechat_promotion',
+            'application_id' => $application->id,
+            'description'   => ''
+        ]);
 
         $bean_rate_type_consume = BeanRateType::create([
             'name' => '消费',
@@ -115,6 +127,13 @@ class InitialSeeder extends Seeder
             'bean_rate_type_id' => $bean_rate_type_consume_feedback->id,
             'project_id' => $project2->id,
             'rate' => 2,
+        ]);
+        $bean_rate4 = BeanRate::create([
+            'name' => '现金首单消费上级返迈豆',
+            'name_en' => 'ohmate_first_cash_consume_upper_feedback',
+            'bean_rate_type_id' => $bean_rate_type_consume_feedback->id,
+            'project_id' => $project3->id,
+            'rate' => 1000,
         ]);
 
     }

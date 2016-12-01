@@ -29,6 +29,7 @@ class LogUserRegistered
      */
     public function handle(UserRegistered $event)
     {
+        dump(1);
         $target_user = $event->target_user;
         $statistics_user = User::create([
             'phone' => $target_user->phone,

@@ -11,7 +11,7 @@ class RegisterTest extends TestCase
 {
     use WithoutMiddleware;
     use DatabaseTransactions;
-    use WithoutEvents;
+//    use WithoutEvents;
 
     /**
      * @test
@@ -20,8 +20,10 @@ class RegisterTest extends TestCase
     {
         echo 'Test register interface. ...... ';
         $this->initiateSeeds();
+//        $this->withoutModelEvents();
+        $this->withoutEvents();
 
-        $this->actingAs(User::first(), 'api')->json('POST', '/api/v1/register', [
+        $request = $this->actingAs(User::first(), 'api')->json('POST', '/api/v1/register', [
             'phone'         => '18877776666',
             'name'          => '张三',
             'password'      => '123456',
@@ -33,7 +35,8 @@ class RegisterTest extends TestCase
             'province'      => '湖北',
             'city'          => '武汉',
             'hospital_name' => '中心医院'
-        ])->seeJson([
+        ]);
+        $request->seeJson([
             'status'  => 'ok',
         ]);
         $this->seeInDatabase('users', [

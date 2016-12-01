@@ -13,11 +13,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Statistics\UserRegistered' => [
-            'Statistics\LogUserRegistered'
+        \App\Events\Statistics\UserRegistered::class => [
+            \App\Listeners\Statistics\LogUserRegistered::class
         ],
-        'Statistics\BeanActivity' => [
-            'Statistics\LogBeanActivity'
+        \App\Events\Statistics\BeanActivity::class => [
+            \App\Listeners\Statistics\LogBeanActivity::class
         ]
     ];
 

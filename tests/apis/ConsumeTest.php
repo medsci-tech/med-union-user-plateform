@@ -8,17 +8,17 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ComsumeTest extends TestCase
+class ConsumeTest extends TestCase
 {
     use DatabaseTransactions;
     use WithoutMiddleware;
-    use WithoutEvents;
      /**
       * @test
       */
      public function consume()
      {
          echo 'Test consume ...... ';
+         $this->withoutModelEvents();
 
          $this->initiateSeeds();
          $lower = User::create([
@@ -39,15 +39,17 @@ class ComsumeTest extends TestCase
          $this->actingAs(User::first(), 'api')->json('POST', '/api/v1/consume', [
              'phone' => '11122223333',
              'cash_paid_by_beans' => 10,
-             'cash_paid' => 10
+             'cash_paid' => 10,
+             'is_first_cash_consume' => 1
          ])->seeJson([
              'status' => 'ok'
          ]);
 
          $this->assertEquals($lower->bean_number, 0);
-         $this->assertEquals($upper->bean_number, 20);
+         $this->assertEquals($upper->bean_number, 1020);
          $this->assertEquals(Project::where('name_en', 'ohmate_consume_pool')->firstOrFail()->rest_of_beans, 1000);
          $this->assertEquals(Project::where('name_en', 'ohmate_wechat_cash_consume_upper_feedback')->firstOrFail()->rest_of_beans, -20);
+         $this->assertEquals(Project::where('name_en', 'ohmate_wechat_first_cash_consume_upper_feedback')->firstOrFail()->rest_of_beans, -1000);
 
          echo 'OK!'.PHP_EOL;
      }

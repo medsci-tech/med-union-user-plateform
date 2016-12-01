@@ -11,7 +11,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class InitialSeederTest extends TestCase
 {
     use DatabaseTransactions;
-    use WithoutEvents;
 
     /**
      * @test
@@ -19,6 +18,8 @@ class InitialSeederTest extends TestCase
     public function initialSeederWorks()
     {
         echo 'Test initial seeder ...... ';
+
+//        $this->withoutModelEvents();
 
         $this->artisan('db:seed');
 
