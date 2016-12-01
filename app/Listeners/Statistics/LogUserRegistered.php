@@ -33,7 +33,7 @@ class LogUserRegistered
         $statistics_user = User::create([
             'phone' => $target_user->phone,
             'create_time' => new UTCDateTime($target_user->created_at->timestamp * 1000),
-            'role' => $target_user->profile->role,
+            'role' => ($target_user->profile->role != null)? $target_user->profile->role:'user',
             'project' => $event->project->name_en,
             'total_beans' => $target_user->bean_number,
             'province' => $target_user->profile->province,
