@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\ThirdPartyInterfaces\V1;
 
-use App\Business\Statistic\User\User;
+use App\Business\Bean\Bean;
+use App\Business\Bean\BeanRate;
+use App\Business\Profile\Profile;
+use App\Business\UserRelevance\UpperUserPhone;
+use App\User;
 use App\Events\InterfaceCalled\V1\Register;
 use App\Exceptions\BeansNotEnoughForProjectException;
 use App\Http\Requests\ThirdPartyInterfaces\V1\RegisterRequest;
@@ -14,10 +18,15 @@ use MongoDB\BSON\UTCDateTime;
 class RegisterInterfaceController extends Controller
 {
     /**
+     * @var User
+     */
+    protected $target_user;
+
+    /**
      * @api            {post} /v1/register 用户注册
      * @apiName        register
      * @apiDescription 根据请求内容为用户注册。注册成功后，会在数据库中生成用户记录。
-     * @apiGroup       v1
+     * @apiGroup       ohmate
      * @apiVersion     1.0.0
      *
      * @apiUse Header
@@ -84,17 +93,23 @@ class RegisterInterfaceController extends Controller
      */
     public function handleRequest(RegisterRequest $request)
     {
-        $event = new Register($request);
         try {
-            event($event);
+
+            $this->createUser($request)
+                ->createBeanForUser()
+                ->saveUserProfile($request)
+                ->saveUpperUserPhoneIfExists($request)
+                ->addBeanForUser()
+                ->dumpToStatisticsDatabase($request);
+
             return response()->json([
                 'status' => 'ok',
-                'user_id' => $event->user->id
+                'user_id' => $this->target_user->id
             ]);
         } catch (BeansNotEnoughForProjectException $e) {
             return response()->json([
                 'status' => 'warning',
-                'user_id' => $event->user->id,
+                'user_id' => $this->target_user->id,
                 'message' => $e->getMessage()
             ]);
         } catch (\Exception $e) {
@@ -104,7 +119,6 @@ class RegisterInterfaceController extends Controller
             ], 500);
         }
     }
-
 
     public function mongo()
     {
@@ -127,4 +141,96 @@ class RegisterInterfaceController extends Controller
 //
 //        dd($user);
     }
+
+    /**
+     * @param RegisterRequest $request
+     * @return $this
+     */
+    protected function saveUserProfile($request)
+    {
+        $this->target_user->profile()->save(Profile::create([
+            'role'          => $request->input('role', null),
+            'title'         => $request->input('title', null),
+            'office'        => $request->input('office', null),
+            'province'      => $request->input('province', null),
+            'city'          => $request->input('city', null),
+            'hospital_name' => $request->input('hospital_name', null),
+        ]));
+
+        return $this;
+    }
+
+    /**
+     * @param RegisterRequest $request
+     * @return $this
+     */
+    protected function saveUpperUserPhoneIfExists($request)
+    {
+        if ($upper_user_phone = $request->input('upper_user_phone', null)) {
+            if ($this->target_user->upperUserPhones()->where('phone', $upper_user_phone)->first() == null) {
+                $this->target_user->upperUserPhones()->save(
+                    UpperUserPhone::create([
+                        'phone'  => $upper_user_phone,
+                        'remark' => $request->input('upper_user_remark')
+                    ])
+                );
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param RegisterRequest $request
+     * @return $this
+     */
+    protected function createUser($request)
+    {
+        $this->target_user = User::create([
+            'phone'    => $request->input('phone'),
+            'name'     => $request->input('name', null),
+            'email'    => $request->input('email', null),
+            'openid'   => $request->input('openid', null),
+            'unionid'  => $request->input('unionid', null),
+            'password' => ($password = $request->input('password', null)) ? bcrypt($password) : null
+        ]);
+
+        return $this;
+    }
+
+
+    /**
+     * @return $this
+     */
+    protected function createBeanForUser()
+    {
+        $this->target_user->bean()->save(
+            Bean::create(['number' => 0])
+        );
+
+        return $this;
+    }
+
+    /**
+     * @param RegisterRequest $request
+     * @return $this
+     */
+    protected function dumpToStatisticsDatabase($request)
+    {
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function addBeanForUser()
+    {
+        $user = $this->target_user;
+        $bean_rate = BeanRate::where('name_en', 'ohmate_register')->first();
+
+        $user->modifyBeanAccordingToBeanRate($bean_rate);
+
+        return $this;
+    }
+
 }

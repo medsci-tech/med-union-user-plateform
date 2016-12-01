@@ -14,13 +14,13 @@ class QueryUserInformationInterfaceController extends Controller
      * @api            {get} /v1/query-user-information 查询用户信息
      * @apiName        query-user-information
      * @apiDescription 查询用户信息接口。
-     * @apiGroup       v1
+     * @apiGroup       ohmate
      * @apiVersion     1.0.0
      *
      * @apiUse Header
      *
      * @apiExample {curl} Example usage:
-     *     curl -X "POST" "https://med-union-user-plateform.dev/api/v1/consume" \
+     *     curl -X "GET" "https://med-union-user-plateform.dev/api/v1/query-user-information" \
      *          -H "Accept: application/json" \
      *          -H "Authorization: Bearer [token]" \
      *          -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8"
@@ -97,19 +97,11 @@ class QueryUserInformationInterfaceController extends Controller
      */
     public function handleRequest(QueryUserInformationRequest $request)
     {
-        $event = new QueryUser($request);
-
-        try {
-            event($event);
-            return response()->json([
-                'status' => 'ok',
-                'result' => $request->getResultSet()
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => $e->getMessage()
-            ], 500);
-        }
+        return response()->json([
+            'status' => 'ok',
+            'result' => $request->getTargetUser()->fresh(['profile', 'bean'])->makeHidden([
+                'created_at', 'updated_at'
+            ])->toArray()
+        ]);
     }
 }

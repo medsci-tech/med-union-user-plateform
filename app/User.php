@@ -53,6 +53,8 @@ use Laravel\Passport\HasApiTokens;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Business\Log\BeanLog[] $beanLogs
  * @method static \Illuminate\Database\Query\Builder|\App\User wherePhone($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Business\UserRelevance\UpperUserPhone[] $upperUserPhones
+ * @property mixed $bean_number
+ * @property-read mixed $upper_user
  */
 class User extends Authenticatable
 {

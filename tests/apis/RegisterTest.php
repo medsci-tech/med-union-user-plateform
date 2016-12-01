@@ -1,6 +1,5 @@
 <?php
 
-use App\Providers\AuthServiceProvider;
 use App\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -18,8 +17,7 @@ class RegisterTest extends TestCase
     public function userRegisterSucceed()
     {
         echo 'Test register interface. ...... ';
-        $this->artisan('db:seed');
-        (new AuthServiceProvider($this->app))->reloadPermissionsFromDatabase();//由于权限是在service启动时就绑定了，更新数据库并未重新绑定权限。此处必须重新加载数据库中的权限。
+        $this->initiateSeeds();
 
         $this->actingAs(User::first(), 'api')->json('POST', '/api/v1/register', [
             'phone'         => '18877776666',
