@@ -21,3 +21,20 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+
+//Route::get('test', function () {
+//    $query = DB::connection('test')->table('customers')
+//        ->where('is_registered', 1)
+//        ->whereNotNull('phone')
+//        ->select(['phone', 'beans_total', 'referrer_id', 'unionid', 'created_at'])->get()->toArray();
+//
+//    foreach ($query as $row) {
+//        if ($row->referrer_id != 0) {
+//            $row->upper = DB::connection('test')->table('customers')->where('id', $row->referrer_id)->first()->phone;
+//        } else {
+//            $row->upper = null;
+//        }
+//    }
+//    return response()->json($query);
+//});

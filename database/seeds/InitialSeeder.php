@@ -147,6 +147,13 @@ class InitialSeeder extends Seeder
             'name'     => '超级管理员',
         ]);
 
+        $user2 = User::create([
+            'email'    => 'admin@ohmate.com',
+            'phone'    => '00000000001',
+            'password' => bcrypt('ohmate123456'),
+            'name'     => '易康管理员',
+        ]);
+
         $role1 = Role::create([
             'name'  => 'super administrator',
             'label' => '超级管理员'
