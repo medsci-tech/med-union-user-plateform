@@ -37,8 +37,8 @@ class LogBeanActivity
             'company_name_en' => $bean_log->beanRate->project->application->enterprise->name_en,
             'app_name_en' => $bean_log->beanRate->project->application->name_en,
             'project_name_en' => $bean_log->beanRate->project->name_en,
-            'posted_beans' => ($bean_log->beans_after - $bean_log->beans_before) / $bean_log->beanRate->rate,
-            'saved_beans' => ($bean_log->beans_after - $bean_log->beans_before),
+            'posted_beans' => ($bean_log->user_beans_after - $bean_log->user_beans_before) / $bean_log->beanRate->rate,
+            'saved_beans' => ($bean_log->user_beans_after - $bean_log->user_beans_before),
             'create_time' => new UTCDateTime($bean_log->created_at->timestamp * 1000),
         ]);
     }

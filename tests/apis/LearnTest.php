@@ -18,7 +18,7 @@ class LearnTest extends TestCase
      public function learnV1()
      {
          echo 'Test learnV1 ...... ';
-         $this->withoutModelEvents();
+         $this->withoutEvents();
 
          $this->initiateSeeds();
 

@@ -18,7 +18,8 @@ class ConsumeTest extends TestCase
      public function consume()
      {
          echo 'Test consume ...... ';
-         $this->withoutModelEvents();
+//         $this->withoutModelEvents();
+         $this->withoutEvents();
 
          $this->initiateSeeds();
          $lower = User::create([

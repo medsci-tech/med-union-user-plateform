@@ -13,8 +13,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $id
  * @property integer $user_id 关联的user
  * @property integer $bean_rate_id 关联的bean_rate
- * @property float $beans_before 操作前用户的迈豆
- * @property float $beans_after 操作后用户的迈豆
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
