@@ -4,6 +4,11 @@ namespace App\Business\Statistic\User;
 
 use Jenssegers\Mongodb\Eloquent\Model;
 
+/**
+ * Class User
+ * @package App\Business\Statistic\User
+ * @mixin \Eloquent
+ */
 class User extends Model
 {
     protected $connection = 'mongodb';

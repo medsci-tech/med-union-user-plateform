@@ -3,6 +3,7 @@
 namespace App\Listeners\Statistics;
 
 use App\Business\Statistic\User\Bean;
+use App\Business\Statistic\User\User;
 use App\Events\Statistics\BeanActivity;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -40,6 +41,10 @@ class LogBeanActivity
             'posted_beans' => ($bean_log->user_beans_after - $bean_log->user_beans_before) / $bean_log->beanRate->rate,
             'saved_beans' => ($bean_log->user_beans_after - $bean_log->user_beans_before),
             'create_time' => new UTCDateTime($bean_log->created_at->timestamp * 1000),
+        ]);
+
+        User::where('phone', $bean_log->user->phone)->first()->update([
+            'total_beans' => $bean_log->user_beans_after
         ]);
     }
 }
