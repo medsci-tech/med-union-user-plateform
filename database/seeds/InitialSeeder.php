@@ -76,7 +76,7 @@ class InitialSeeder extends Seeder
 
         $bean_rate0 = BeanRate::create([
             'name' => '消费',
-            'name_en' => 'ohmate_consume',
+            'name_en' => 'ohmate_wechat_consume',
             'bean_rate_type_id' => $bean_rate_type_consume->id,
             'project_id' => $project0->id,
             'rate' => -100,
@@ -84,28 +84,28 @@ class InitialSeeder extends Seeder
 
         $bean_rate1 = BeanRate::create([
             'name' => '注册返迈豆',
-            'name_en' => 'ohmate_register',
+            'name_en' => 'ohmate_wechat_register',
             'bean_rate_type_id' => $bean_rate_type_register->id,
             'project_id' => $project->id,
             'rate' => 1000,
         ]);
         $bean_rate2 = BeanRate::create([
             'name' => '易康伴侣学习文章返迈豆',
-            'name_en' => 'ohmate_article_learn',
+            'name_en' => 'ohmate_wechat_article_learn',
             'bean_rate_type_id' => $bean_rate_type_learn->id,
             'project_id' => $project->id,
             'rate' => 20,
         ]);
         $bean_rate3 = BeanRate::create([
             'name' => '现金消费上级返迈豆',
-            'name_en' => 'ohmate_cash_consume_upper_feedback',
+            'name_en' => 'ohmate_wechat_cash_consume_upper_feedback',
             'bean_rate_type_id' => $bean_rate_type_consume_feedback->id,
             'project_id' => $project->id,
             'rate' => 2,
         ]);
         $bean_rate4 = BeanRate::create([
             'name' => '现金首单消费上级返迈豆',
-            'name_en' => 'ohmate_first_cash_consume_upper_feedback',
+            'name_en' => 'ohmate_wechat_first_cash_consume_upper_feedback',
             'bean_rate_type_id' => $bean_rate_type_consume_feedback->id,
             'project_id' => $project->id,
             'rate' => 1000,
