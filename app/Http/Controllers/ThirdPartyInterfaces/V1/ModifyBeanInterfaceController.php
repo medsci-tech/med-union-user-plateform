@@ -42,7 +42,7 @@ class ModifyBeanInterfaceController extends Controller
      *       "bean": 1000
      *     }
      *
-     * @apiSuccess {String} status 自定义状态码，这里总是显示"ok".仅当项目迈豆不足时显示"warning"。此时只会注册，不会发放迈豆。
+     * @apiSuccess {String} status 自定义状态码，成功时显示"ok".
      * @apiSuccess {Number} beans_after 修改后用户迈豆
      * @apiSuccessExample {json} Success-Response:
      *     HTTP/1.1 200 OK
