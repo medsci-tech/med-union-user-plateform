@@ -75,13 +75,6 @@ class RegisterInterfaceController extends Controller
      *          "电话 不能为空。"
      *       ]
      *     }
-     * @apiErrorExample {json} Error-422:
-     *     HTTP/1.1 422 Unprocessable Entity
-     *     {
-     *       "password": [
-     *          "密码 不能为空。"
-     *       ]
-     *     }
      *
      * @apiUse Unauthorized
      * @apiUse Forbidden

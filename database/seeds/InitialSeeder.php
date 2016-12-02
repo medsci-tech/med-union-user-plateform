@@ -110,6 +110,13 @@ class InitialSeeder extends Seeder
             'project_id' => $project->id,
             'rate' => 1000,
         ]);
+        $bean_rate4 = BeanRate::create([
+            'name' => '易康伴侣推广获得迈豆',
+            'name_en' => 'ohmate_popularize',
+            'bean_rate_type_id' => $bean_rate_type_consume_feedback->id,
+            'project_id' => $project->id,
+            'rate' => 1,
+        ]);
 
     }
 

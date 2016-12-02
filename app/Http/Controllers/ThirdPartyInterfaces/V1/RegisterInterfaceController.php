@@ -77,13 +77,6 @@ class RegisterInterfaceController extends Controller
      *          "电话 不能为空。"
      *       ]
      *     }
-     * @apiErrorExample {json} Error-422:
-     *     HTTP/1.1 422 Unprocessable Entity
-     *     {
-     *       "password": [
-     *          "密码 不能为空。"
-     *       ]
-     *     }
      *
      * @apiUse Unauthorized
      * @apiUse Forbidden
@@ -94,7 +87,7 @@ class RegisterInterfaceController extends Controller
      */
     public function handleRequest(RegisterRequest $request)
     {
-//        try {
+        try {
 
             $this->createUser($request)
                 ->createBeanForUser()
@@ -107,18 +100,18 @@ class RegisterInterfaceController extends Controller
                 'status' => 'ok',
                 'user_id' => $this->target_user->id
             ]);
-//        } catch (BeansNotEnoughForProjectException $e) {
-//            return response()->json([
-//                'status' => 'warning',
-//                'user_id' => $this->target_user->id,
-//                'message' => $e->getMessage()
-//            ]);
-//        } catch (\Exception $e) {
-//            return response()->json([
-//                'status' => 'error',
-//                'message' => '未知错误，请联系管理员'
-//            ], 500);
-//        }
+        } catch (BeansNotEnoughForProjectException $e) {
+            return response()->json([
+                'status' => 'warning',
+                'user_id' => $this->target_user->id,
+                'message' => $e->getMessage()
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => '未知错误，请联系管理员'
+            ], 500);
+        }
     }
 
     /**
