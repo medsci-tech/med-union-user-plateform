@@ -28,9 +28,10 @@ class LearnTest extends TestCase
 
          $project = Project::where('name_en', 'optimizing_health_mate_wechat_2016')->firstOrFail();
 
-         $this->actingAs(User::firstOrFail(), 'api')->json('POST', '/api/v1/learn', [
+         $request = $this->actingAs(User::firstOrFail(), 'api')->json('POST', '/api/v1/learn', [
              'phone' => $user->phone
-         ])->seeJson([
+         ]);
+         $request->seeJson([
              'status' => 'ok',
              'chance_remains_today' => 4
          ]);

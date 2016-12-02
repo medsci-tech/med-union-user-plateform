@@ -35,6 +35,7 @@ class RegisterTest extends TestCase
             'city'          => '武汉',
             'hospital_name' => '中心医院'
         ]);
+
         $request->seeJson([
             'status'  => 'ok',
         ]);
