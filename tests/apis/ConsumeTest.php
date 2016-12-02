@@ -49,8 +49,7 @@ class ConsumeTest extends TestCase
          $this->assertEquals($lower->bean_number, 0);
          $this->assertEquals($upper->bean_number, 1020);
          $this->assertEquals(Project::where('name_en', 'ohmate_consume_pool')->firstOrFail()->rest_of_beans, 1000);
-         $this->assertEquals(Project::where('name_en', 'ohmate_wechat_cash_consume_upper_feedback')->firstOrFail()->rest_of_beans, -20);
-         $this->assertEquals(Project::where('name_en', 'ohmate_wechat_first_cash_consume_upper_feedback')->firstOrFail()->rest_of_beans, -1000);
+         $this->assertEquals(Project::where('name_en', 'optimizing_health_mate_wechat_2016')->firstOrFail()->rest_of_beans, -1020);
 
          echo 'OK!'.PHP_EOL;
      }

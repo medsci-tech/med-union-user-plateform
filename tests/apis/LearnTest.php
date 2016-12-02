@@ -26,7 +26,7 @@ class LearnTest extends TestCase
              'phone' => '13344445555'
          ]);
 
-         $project = Project::where('name_en', 'ohmate_wechat_learn')->firstOrFail();
+         $project = Project::where('name_en', 'optimizing_health_mate_wechat_2016')->firstOrFail();
 
          $this->actingAs(User::firstOrFail(), 'api')->json('POST', '/api/v1/learn', [
              'phone' => $user->phone
