@@ -206,7 +206,7 @@ class RegisterInterfaceController extends Controller
     protected function addBeanForUser()
     {
         $user = $this->target_user;
-        $bean_rate = BeanRate::where('name_en', 'ohmate_register')->first();
+        $bean_rate = BeanRate::where('name_en', 'ohmate_wechat_register')->first();
 
         $user->modifyBeanAccordingToBeanRate($bean_rate);
 

@@ -105,17 +105,17 @@ class ConsumeInterfaceController extends Controller
     protected function modifyBeanForUser($request)
     {
         $this->target_user = $request->getTargetUser();
-        $this->target_user->modifyBeanAccordingToBeanRate(BeanRate::where('name_en', 'ohmate_consume')->firstOrFail(), $request->input('cash_paid_by_beans', 0));
+        $this->target_user->modifyBeanAccordingToBeanRate(BeanRate::where('name_en', 'ohmate_wechat_consume')->firstOrFail(), $request->input('cash_paid_by_beans', 0));
 
         if (($cash_paid = $request->input('cash_paid')) > 0 && $this->target_user->hasUpperUser()) {
             $upper = $this->target_user->upperUser();
 
             if ($request->input('is_first_cash_consume') == 1) {
-                $upper->modifyBeanAccordingToBeanRate(BeanRate::where('name_en', 'ohmate_first_cash_consume_upper_feedback')->firstOrFail());
+                $upper->modifyBeanAccordingToBeanRate(BeanRate::where('name_en', 'ohmate_wechat_first_cash_consume_upper_feedback')->firstOrFail());
             }
 
             $upper->modifyBeanAccordingToBeanRate(
-                BeanRate::where('name_en', 'ohmate_cash_consume_upper_feedback')->firstOrFail(),
+                BeanRate::where('name_en', 'ohmate_wechat_cash_consume_upper_feedback')->firstOrFail(),
                 $cash_paid
             );
 
