@@ -93,8 +93,8 @@ class RegisterInterfaceController extends Controller
                 ->createBeanForUser()
                 ->saveUserProfile($request)
                 ->saveUpperUserPhoneIfExists($request)
-                ->addBeanForUser()
-                ->dumpToStatisticsDatabase($request);
+                ->dumpToStatisticsDatabase($request)
+                ->addBeanForUser();
 
             return response()->json([
                 'status' => 'ok',
