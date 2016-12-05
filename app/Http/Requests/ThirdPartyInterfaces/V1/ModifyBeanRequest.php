@@ -25,7 +25,7 @@ class ModifyBeanRequest extends ApiRequest
     public function rules()
     {
         return [
-            'phone' => 'required|unique:users',
+            'phone' => 'required|exists:users',
             'bean' => 'numeric|between:1,1000000'
         ];
     }
