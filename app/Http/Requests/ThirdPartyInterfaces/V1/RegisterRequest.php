@@ -31,9 +31,9 @@ class RegisterRequest extends ApiRequest
         //TODO
         return [
             'phone' => 'required|unique:users',
-            'openid' => 'unique:users',
-            'unionid' => 'unique:users',
-            'email' => 'unique:users'
+            'openid' => 'nullable|unique:users',
+            'unionid' => 'nullable|unique:users',
+            'email' => 'nullable|unique:users'
         ];
     }
 }
