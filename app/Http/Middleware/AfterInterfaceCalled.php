@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Business\Log\InterfaceLog;
 use Closure;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class AfterInterfaceCalled
@@ -17,10 +18,12 @@ class AfterInterfaceCalled
      */
     public function handle($request, Closure $next)
     {
+        /** @var JsonResponse $response */
         $response = $next($request);
 
         $this->getInterfaceLog($request)->update([
-            'succeed' => 1
+            'response_content' => $response->content(),
+            'response_http_status_code' => $response->getStatusCode()
         ]);
 
         return $response;

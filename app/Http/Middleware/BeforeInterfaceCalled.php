@@ -18,6 +18,11 @@ class BeforeInterfaceCalled
      */
     public function handle($request, Closure $next)
     {
+        if (!\Auth::guard('api')->check()) {
+            return response()->json([
+                'error' => 'Unauthorized.'
+            ], 401);
+        }
         $this->createInterfaceLog($request);
         return $next($request);
     }
@@ -32,7 +37,9 @@ class BeforeInterfaceCalled
             'token_id'        => \Auth::guard('api')->user()->token()->id,
             'request_method'  => $request->method(),
             'request_url'     => $request->url(),
-            'request_content' => collect($request->all())->toJson()
+            'request_content' => collect($request->all())->toJson(),
+            'response_content' => '',
+            'response_http_status_code' => ''
         ]);
     }
 }

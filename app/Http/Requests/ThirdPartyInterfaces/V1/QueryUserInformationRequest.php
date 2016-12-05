@@ -31,7 +31,7 @@ class QueryUserInformationRequest extends ApiRequest
     public function rules()
     {
         return [
-            //
+            'phone' => 'required|exists:users'
         ];
     }
 }
