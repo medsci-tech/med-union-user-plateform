@@ -26,7 +26,7 @@ class ModifyBeanRequest extends ApiRequest
     {
         return [
             'phone' => 'required|exists:users',
-            'bean' => 'numeric|between:1,1000000'
+            'bean' => 'numeric|between:-10000000,10000000'
         ];
     }
 }

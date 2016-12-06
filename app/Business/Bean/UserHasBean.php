@@ -46,7 +46,7 @@ trait UserHasBean
             $user_beans_after = $this->bean_number;
             $fresh_project = $beanRate->project->fresh();
             $projcet_beans_before = $fresh_project->rest_of_beans;
-            if ($projcet_beans_before - $amount < -10000000) {
+            if ($projcet_beans_before - $amount < -1000000000) {
                 throw new BeansNotEnoughForProjectException();
             }
 
