@@ -109,7 +109,7 @@ class RegisterInterfaceController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => '未知错误，请联系管理员'
+                'message' => $e->getMessage()
             ], 500);
         }
     }
@@ -139,10 +139,10 @@ class RegisterInterfaceController extends Controller
     protected function saveUpperUserPhoneIfExists($request)
     {
         if ($upper_user_phone = $request->input('upper_user_phone', null)) {
-            if ($this->target_user->upperUserPhones()->where('phone', $upper_user_phone)->first() == null) {
+            if ($this->target_user->upperUserPhones()->where('upper_user_phone', $upper_user_phone)->first() == null) {
                 $this->target_user->upperUserPhones()->save(
-                    UpperUserPhone::create([
-                        'phone'  => $upper_user_phone,
+                    new UpperUserPhone([
+                        'upper_user_phone'  => $upper_user_phone,
                         'remark' => $request->input('upper_user_remark')
                     ])
                 );
