@@ -6,6 +6,7 @@ use App\Business\Log\InterfaceLog;
 use Closure;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class AfterInterfaceCalled
 {
@@ -18,11 +19,11 @@ class AfterInterfaceCalled
      */
     public function handle($request, Closure $next)
     {
-        /** @var JsonResponse $response */
+        /** @var Response $response */
         $response = $next($request);
 
         $this->getInterfaceLog($request)->update([
-            'response_content' => $response->content(),
+            'response_content' => $response->getContent(),
             'response_http_status_code' => $response->getStatusCode()
         ]);
 
