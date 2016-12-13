@@ -11,7 +11,7 @@
         <tr>
             <th>合同ID</th>
             <th>合同名称</th>
-            <th>合同英文名称</th>
+            {{-- <th>合同英文名称</th> --}}
             <th>所属项目</th>
             <th>所属应用</th>
             <th>所属企业</th>
@@ -25,7 +25,7 @@
             <tr>
                 <td>{{$contract->id}}</td>
                 <td><a href="{{route('contracts.show', ['id' => $contract->id])}}">{{$contract->name}}</a></td>
-                <td>{{$contract->name_en}}</td>
+                {{-- <td>{{$contract->name_en}}</td> --}}
                 <td><a href="{{route('projects.show', ['id' => $contract->project->id])}}">{{$contract->project->name}}</a></td>
                 <td><a href="{{route('applications.show', ['id' => $contract->project->application->id])}}">{{$contract->project->application->name}}</a></td>
                 <td><a href="{{route('enterprises.show', ['id' => $contract->project->application->enterprise->id])}}">{{$contract->project->application->enterprise->name}}</a></td>

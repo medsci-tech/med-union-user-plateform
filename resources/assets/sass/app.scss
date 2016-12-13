@@ -1,12 +1,18 @@
-
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
 // Variables
 @import "variables";
-
 // Bootstrap
-@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/select2/src/scss/core";
+@import "node_modules/icheck/skins/flat/_all";
+@import "node_modules/sweetalert/dev/sweetalert";
+body {
+    font-family: "Microsoft YaHei" !important;
+}
 
-@import "../../../node_modules/select2/dist/css/select2";
+v-cloak {
+    display: none;
+}
 
+table td {
+    word-break: break-all;
+}

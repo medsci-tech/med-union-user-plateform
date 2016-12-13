@@ -114,6 +114,6 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ elixir('js/app.js') }}"></script>
+<script src="{{ elixir('js/all.js') }}"></script>
 </body>
 </html>

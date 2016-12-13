@@ -19,7 +19,7 @@
         <div class="form-group">
             <label for="enterprise_id">所属企业</label>
             <select class="form-control enterprises-select2" id="enterprise_id" name="enterprise_id" required>
-                <option></option>
+                {{-- <option></option> --}}
                 @foreach($enterprises as $enterprise)
                     <option value="{{$enterprise->id}}"
                     @if($enterprise->id == $application->enterprise_id)
