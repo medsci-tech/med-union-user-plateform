@@ -1,23 +1,12 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * include Vue and Vue Resource. This gives a great starting point for
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
-require('./select2');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the body of the page. From here, you may begin adding components to
- * the application, or feel free to tweak this setup for your needs.
- */
+require('select2');
+require('icheck');
+require('sweetalert');
+
 
 Vue.component('example', require('./components/Example.vue'));
 
-/**
- * Laravel passport components.
- */
 Vue.component(
     'passport-clients',
     require('./components/passport/Clients.vue')
@@ -38,7 +27,24 @@ var app = new Vue({
 });
 
 
+$(document).ready(function () {
+    $('.enterprises-select2').select2({
+        placeholder: '请选择该应用所属企业',
+        allowClear: true
+    });
+    $('.applications-select2').select2({
+        placeholder: '请选择该项目所属应用',
+        allowClear: true
+    });
+    $('.projects-select2').select2({
+        placeholder: '请选择该合同所属项目',
+        allowClear: true
+    });
+});
+
+
 $(function() {
+
     // 选择按钮
     var checkboxClass = 'icheckbox_flat-blue';
     var radioClass = 'iradio_flat-blue';
