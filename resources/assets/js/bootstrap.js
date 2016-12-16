@@ -8,7 +8,7 @@ window.Cookies = require('js-cookie');
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery = require('jquery');
+window.$ = window.jQuery = window.jquery = require('jquery');
 require('bootstrap-sass/assets/javascripts/bootstrap');
 
 /**
