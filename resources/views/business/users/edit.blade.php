@@ -16,12 +16,13 @@
             <label for="role">角色</label>
             <div class="control-list checkbox">
                 @foreach($roles as $role)
-                <label class="" for="role">{{$role->label}}
+                <label class="">
                     <input name="role_id[]"
                            @if(in_array($role->id, $role_ids))
                                    checked
                                    @endif
                            type="checkbox" value="{{$role->id}}"  required>
+                           {{$role->label}}
                 </label>
                 @endforeach
             </div>
