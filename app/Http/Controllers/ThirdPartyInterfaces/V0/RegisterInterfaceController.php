@@ -43,6 +43,7 @@ class RegisterInterfaceController extends Controller
      * @apiParam {String} email 用户的电子邮箱密码，用作后台登录，选填。唯一。
      * @apiParam {String} unionid 用户的unionid。选填。唯一。
      * @apiParam {String} role 用户的角色，请依据预定义角色填写。选填。
+     * @apiParam {String} remark 用户的备注。选填。通用接口的用户来源可以在此注明。
      * @apiParam {String} title 用户的职称。选填。
      * @apiParam {String} office 用户的科室。选填。
      * @apiParam {String} province 用户的省份。选填。
@@ -161,7 +162,9 @@ class RegisterInterfaceController extends Controller
             'email'    => $request->input('email', null),
             'openid'   => $request->input('openid', null),
             'unionid'  => $request->input('unionid', null),
-            'password' => ($password = $request->input('password', null)) ? bcrypt($password) : null
+            'password' => ($password = $request->input('password', null)) ? bcrypt($password) : null,
+            'source' => 'basic',
+            'remark' => $request->input('remark', null)
         ]);
 
         return $this;

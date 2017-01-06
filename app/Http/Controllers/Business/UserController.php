@@ -21,7 +21,7 @@ class UserController extends CommonController
     public function index()
     {
         return view('business.users.index', [
-            'users' => User::all()
+            'users' => User::whereNull('source')
         ]);
     }
 
