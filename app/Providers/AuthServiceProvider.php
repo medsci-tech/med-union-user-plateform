@@ -12,6 +12,7 @@ use Laravel\Passport\Passport;
 use PDOException;
 
 Passport::tokensCan([
+    'basic' => '调用基础接口',
     'register' => '调用注册接口',
     'authenticate' => '检测用户认证信息接口',
     'learn' => '学习返迈豆接口',
