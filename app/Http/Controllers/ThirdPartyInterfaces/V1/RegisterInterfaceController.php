@@ -128,6 +128,7 @@ class RegisterInterfaceController extends Controller
             'province'      => $request->input('province', null),
             'city'          => $request->input('city', null),
             'hospital_name' => $request->input('hospital_name', null),
+            'extra' => $request->input('extra', null)
         ]));
 
         return $this;
@@ -167,7 +168,7 @@ class RegisterInterfaceController extends Controller
             'unionid'  => $request->input('unionid', null),
             'password' => ($password = $request->input('password', null)) ? bcrypt($password) : null,
             'source' => 'ohmate',
-            'remark' => $request->input('remark', null)
+            'remark' => $request->input('remark', null),
         ]);
 
         return $this;
