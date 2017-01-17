@@ -46,6 +46,7 @@ class RegisterInterfaceController extends Controller
      * @apiParam {String} unionid 用户的unionid。选填。唯一。
      * @apiParam {String} role 用户的角色，请依据预定义角色填写。选填。
      * @apiParam {String} remark 用户的备注。选填。
+     * @apiParam {String} extra 用户的额外信息。选填。一般为json字符串，用来提供的某些在接口参数列表里没有出现的字段，会直接写入数据库。
      * @apiParam {String} title 用户的职称。选填。
      * @apiParam {String} office 用户的科室。选填。
      * @apiParam {String} province 用户的省份。选填。
