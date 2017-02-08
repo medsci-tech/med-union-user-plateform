@@ -106,7 +106,6 @@ class RegisterInterfaceController extends Controller
                 'message' => $e->getMessage()
             ]);
         } catch (\Exception $e) {
-            \Log::error($e->getMessage());
             return response()->json([
                 'status' => 'error',
                 'message' => '未知错误，请联系管理员'
