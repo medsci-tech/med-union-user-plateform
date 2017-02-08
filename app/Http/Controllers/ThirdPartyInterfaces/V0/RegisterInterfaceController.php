@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ThirdPartyInterfaces\V0;
 use App\Business\Bean\Bean;
 use App\Business\Bean\BeanRate;
 use App\Business\Profile\Profile;
+use App\Business\Project\Project;
 use App\Business\UserRelevance\UpperUserPhone;
 use App\Events\Statistics\UserRegistered;
 use App\Exceptions\BeansNotEnoughForProjectException;
@@ -106,7 +107,7 @@ class RegisterInterfaceController extends Controller
                 'message' => $e->getMessage()
             ]);
         } catch (\Exception $e) {
-            \Log::error($e->getMessage(), $e->getTrace());
+            \Log::error($e->getMessage(), $e->get);
             return response()->json([
                 'status' => 'error',
                 'message' => '未知错误，请联系管理员'
@@ -192,7 +193,11 @@ class RegisterInterfaceController extends Controller
      */
     protected function dumpToStatisticsDatabase($request)
     {
-        event(new UserRegistered($this->target_user));
+        if ($request->input('remark') == '素材收集系统') {
+            event(new UserRegistered($this->target_user, Project::where('name_en', 'information_collection_system_2016')->firstOrFail()));
+        } else {
+            event(new UserRegistered($this->target_user));
+        }
         return $this;
     }
 
