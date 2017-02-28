@@ -20,7 +20,8 @@ Passport::tokensCan([
     'query-user-information' => '调用查询用户基本信息接口',
     'query-user-beans-log' => '调用查询用户迈豆记录接口',
     'update-user' => '调用更新用户信息接口',
-    'modify-bean' => '调用更新用户迈豆接口'
+    'modify-bean' => '调用更新用户迈豆接口',
+    'air-classes' => '调用空课接口群'
 ]);
 
 class AuthServiceProvider extends ServiceProvider
