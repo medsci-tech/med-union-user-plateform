@@ -195,6 +195,8 @@ class RegisterInterfaceController extends Controller
     {
         if ($request->input('remark') == '素材收集系统') {
             event(new UserRegistered($this->target_user, Project::where('name_en', 'information_collection_system_2016')->firstOrFail()));
+        } elseif ($request->input('remark') == '空中课堂') {
+        event(new UserRegistered($this->target_user, Project::where('name_en', 'air_classes_2017')->firstOrFail()));
         } else {
             event(new UserRegistered($this->target_user));
         }
