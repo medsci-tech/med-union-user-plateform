@@ -2,6 +2,8 @@ var elixir = require('laravel-elixir');
 
 var gulp = require('gulp');
 
+var webpack = require('webpack');
+
 require('laravel-elixir-vue');
 var apidoc = require('gulp-apidoc');
 
@@ -25,6 +27,19 @@ gulp.task('doc', function (done) {
 });
 
 elixir(function (mix) {
+
+  Elixir.webpack.mergeConfig({
+      devtool: "#source-map",
+      plugins: [
+          new webpack.optimize.UglifyJsPlugin({
+              comments: false,
+              compress: {
+                  warnings: false
+              }
+          })
+      ]
+  });  
+
   mix.sass([
         'app.scss',
         ])
