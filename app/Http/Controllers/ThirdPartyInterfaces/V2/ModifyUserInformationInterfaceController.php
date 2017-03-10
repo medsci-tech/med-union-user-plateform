@@ -104,6 +104,11 @@ class ModifyUserInformationInterfaceController extends Controller
     {
         $this->target_user = User::where('phone', $request->input('phone'))->firstOrFail();
         $this->target_user->update($request->only(['name', 'email', 'openid', 'unionid', 'remark']));
+        if ($request->has('password')) {
+            $this->target_user->update([
+                'password' => bcrypt($request->input('password'))
+            ]);
+        }
         $this->target_user->profile()->updateOrCreate($request->only(['role', 'title', 'office', 'province', 'city', 'hospital_name', 'extra']));
 
         return $this;
