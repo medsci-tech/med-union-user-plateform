@@ -19,7 +19,7 @@ class ModifyUserInformationInterfaceController extends Controller
     /**
      * @api            {get} /v2/modify-user-information 修改用户信息
      * @apiName        modify-user-information
-     * @apiDescription 查询用户信息接口。
+     * @apiDescription 修改用户信息接口。注意，如果某个字段不想被修改，请不要传入这个参数。只要参数列表里有这个参数，不管值是空字符串或者是null，数据库都会把信息更新至与该值相同。
      * @apiGroup       air-classes
      * @apiVersion     1.0.0
      *
