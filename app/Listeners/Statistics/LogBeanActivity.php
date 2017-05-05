@@ -44,8 +44,10 @@ class LogBeanActivity
             'create_time' => new UTCDateTime($bean_log->created_at->timestamp * 1000),
         ]);
 
-        User::where('phone', $bean_log->user->phone)->first()->update([
-            'total_beans' => $bean_log->user_beans_after
-        ]);
+        if ($u = User::where('phone', $bean_log->user->phone)->first()) {
+            $u->update([
+                'total_beans' => $bean_log->user_beans_after
+            ]);
+        }
     }
 }
